@@ -1,0 +1,41 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "WWDC Session 中文总结 — 快速了解 Apple 最新技术" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen" style="background-color: var(--color-bg); color: var(--color-text-primary);">
+    <nav class="border-b" style="border-color: var(--color-border-subtle); background-color: var(--color-surface);">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+        <a href="/" class="text-lg font-semibold" style="color: var(--color-text-primary);">
+          WWDC 中文总结
+        </a>
+        <span class="text-sm" style="color: var(--color-text-tertiary);">by AI</span>
+      </div>
+    </nav>
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+      <slot />
+    </main>
+    <footer class="border-t mt-16 py-8 text-center text-sm" style="border-color: var(--color-border-subtle); color: var(--color-text-tertiary);">
+      <p>内容由 AI 基于 Apple WWDC 官方字幕生成，仅供参考。</p>
+      <p class="mt-1">
+        数据来源：<a href="https://developer.apple.com" class="underline" style="color: var(--color-accent);">Apple Developer</a>
+      </p>
+    </footer>
+  </body>
+</html>

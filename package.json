@@ -1,0 +1,26 @@
+{
+  "name": "wwdc-summary-site",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "fetch": "tsx scripts/fetch-sessions.ts",
+    "generate": "tsx scripts/generate-summaries.ts",
+    "pipeline": "pnpm fetch && pnpm generate && pnpm build"
+  },
+  "dependencies": {
+    "astro": "^5.7.10",
+    "@astrojs/tailwind": "^6.0.2",
+    "@astrojs/sitemap": "^3.3.1",
+    "@astrojs/markdown-remark": "^6.3.1",
+    "tailwindcss": "^4.1.7",
+    "@tailwindcss/vite": "^4.1.7"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "tsx": "^4.19.4",
+    "@types/node": "^22.15.21"
+  }
+}

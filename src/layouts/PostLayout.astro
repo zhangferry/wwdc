@@ -1,0 +1,72 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import VideoLink from "../components/VideoLink.astro";
+import { formatDuration, formatDate, levelLabel } from "../utils/format";
+
+interface Props {
+  title: string;
+  titleZh: string;
+  track: string;
+  level: string;
+  duration: number;
+  date: Date;
+  thumbnail: string;
+  videoUrl: string;
+  tags: string[];
+}
+
+const { title, titleZh, track, level, duration, date, thumbnail, videoUrl, tags } = Astro.props;
+---
+
+<BaseLayout title={`${titleZh} — WWDC 中文总结`}>
+  <article class="max-w-3xl mx-auto">
+    <!-- Cover image -->
+    <figure class="mb-8 rounded-xl overflow-hidden">
+      <img
+        src={thumbnail}
+        alt={title}
+        class="w-full aspect-video object-cover"
+        loading="eager"
+      />
+    </figure>
+
+    <!-- Header -->
+    <header class="mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-2.5 py-0.5 rounded-full text-xs font-medium" style="background-color: var(--color-tag-bg); color: var(--color-tag-text);">
+          {track}
+        </span>
+        <span class="px-2.5 py-0.5 rounded-full text-xs font-medium" style="background-color: var(--color-tag-bg); color: var(--color-tag-text);">
+          {levelLabel(level)}
+        </span>
+        <span class="text-sm" style="color: var(--color-text-tertiary);">
+          {formatDuration(duration)}
+        </span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-bold mb-2" style="color: var(--color-text-primary);">{titleZh}</h1>
+      <p class="text-lg" style="color: var(--color-text-secondary);">{title}</p>
+      <p class="text-sm mt-2" style="color: var(--color-text-tertiary);">
+        {formatDate(date)}
+      </p>
+    </header>
+
+    <!-- Video link -->
+    <VideoLink url={videoUrl} />
+
+    <!-- Content -->
+    <div class="prose mt-8">
+      <slot />
+    </div>
+
+    <!-- Tags -->
+    {tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mt-8 pt-6 border-t" style="border-color: var(--color-border-subtle);">
+        {tags.map((tag) => (
+          <span class="px-2.5 py-1 rounded-full text-xs" style="background-color: var(--color-tag-bg); color: var(--color-tag-text);">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </article>
+</BaseLayout>

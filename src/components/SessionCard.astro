@@ -1,0 +1,51 @@
+---
+import { formatDuration, levelLabel } from "../utils/format";
+
+interface Props {
+  id: string;
+  title: string;
+  titleZh: string;
+  track: string;
+  level: string;
+  duration: number;
+  thumbnail: string;
+  date: Date;
+}
+
+const { id, title, titleZh, track, level, duration, thumbnail, date } = Astro.props;
+const year = date.getFullYear();
+const href = `/wwdc${year}/${id}`;
+---
+
+<a href={href} class="group block rounded-xl overflow-hidden transition-all duration-200 hover:shadow-lg" style="background-color: var(--color-surface); border: 1px solid var(--color-border-subtle);">
+  <!-- Cover -->
+  <div class="relative aspect-video overflow-hidden">
+    <img
+      src={thumbnail}
+      alt={title}
+      class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+      loading="lazy"
+    />
+    <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded text-xs font-medium" style="background-color: rgba(0,0,0,0.7); color: white;">
+      {formatDuration(duration)}
+    </span>
+  </div>
+
+  <!-- Info -->
+  <div class="p-4">
+    <div class="flex items-center gap-2 mb-2">
+      <span class="px-2 py-0.5 rounded-full text-xs font-medium" style="background-color: var(--color-tag-bg); color: var(--color-tag-text);">
+        {track}
+      </span>
+      <span class="px-2 py-0.5 rounded-full text-xs" style="background-color: var(--color-tag-bg); color: var(--color-tag-text);">
+        {levelLabel(level)}
+      </span>
+    </div>
+    <h3 class="font-semibold text-sm mb-1 line-clamp-2" style="color: var(--color-text-primary);">
+      {titleZh}
+    </h3>
+    <p class="text-xs line-clamp-1" style="color: var(--color-text-tertiary);">
+      {title}
+    </p>
+  </div>
+</a>

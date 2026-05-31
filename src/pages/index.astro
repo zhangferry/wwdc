@@ -1,0 +1,484 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { extractTracks } from "../utils/format";
+
+// Get all sessions
+const allSessions = await getCollection("wwdc2025");
+allSessions.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Extract unique tracks with counts
+const trackCounts = new Map<string, number>();
+for (const s of allSessions) {
+  const t = s.data.track;
+  trackCounts.set(t, (trackCounts.get(t) || 0) + 1);
+}
+const tracks = extractTracks(allSessions.map((s) => ({ track: s.data.track })));
+
+function formatDuration(seconds: number): string {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  if (h > 0) return `${h}h ${m}m`;
+  return `${m}m`;
+}
+---
+
+<BaseLayout title="WWDC 中文总结">
+  <div class="home-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <h2 class="sidebar-title">分类</h2>
+      <nav class="sidebar-nav">
+        <label class="sidebar-item">
+          <input type="checkbox" class="track-checkbox" value="" checked />
+          <span class="checkbox-box"></span>
+          <span class="sidebar-label">全部</span>
+          <span class="sidebar-count">{allSessions.length}</span>
+        </label>
+        {tracks.map((track) => (
+          <label class="sidebar-item">
+            <input type="checkbox" class="track-checkbox" value={track} />
+            <span class="checkbox-box"></span>
+            <span class="sidebar-label">{track}</span>
+            <span class="sidebar-count">{trackCounts.get(track) || 0}</span>
+          </label>
+        ))}
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content">
+      <!-- Search bar -->
+      <div class="search-bar">
+        <div class="search-wrapper">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            id="search-input"
+            type="text"
+            placeholder="搜索 Session..."
+          />
+        </div>
+      </div>
+
+      <!-- Session count -->
+      <div id="session-count" class="session-count"></div>
+
+      <!-- Session grid -->
+      <div id="session-grid" class="session-grid">
+        {allSessions.map((session) => {
+          const year = session.data.date.getFullYear();
+          return (
+            <div class="session-card-wrapper" data-track={session.data.track} data-title={session.data.titleZh} data-title-en={session.data.title} data-tags={session.data.tags.join(",")}>
+              <a href={`/wwdc${year}/${session.data.id}`} class="session-card group">
+                <div class="card-cover">
+                  <img
+                    src={session.data.thumbnail}
+                    alt={session.data.title}
+                    class="card-image"
+                    loading="lazy"
+                  />
+                  <span class="card-duration">{formatDuration(session.data.duration)}</span>
+                </div>
+                <div class="card-info">
+                  <span class="card-track">{session.data.track}</span>
+                  <h3 class="card-title-zh">{session.data.titleZh}</h3>
+                  <p class="card-title-en">{session.data.title}</p>
+                </div>
+              </a>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Empty state -->
+      <div id="empty-state" class="empty-state hidden">
+        <p>暂无结果</p>
+        <p>试试其他搜索词或筛选条件</p>
+      </div>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Layout: sidebar + main */
+  .home-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 2rem;
+  }
+
+  .sidebar-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    color: var(--color-text-tertiary);
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.15s;
+    user-select: none;
+  }
+
+  .sidebar-item:hover {
+    background-color: var(--color-surface-hover);
+  }
+
+  .sidebar-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .checkbox-box {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1.5px solid var(--color-border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    position: relative;
+  }
+
+  .sidebar-item input:checked + .checkbox-box {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .sidebar-item input:checked + .checkbox-box::after {
+    content: '';
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 1px;
+  }
+
+  .sidebar-label {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    transition: color 0.15s;
+  }
+
+  .sidebar-item:hover .sidebar-label {
+    color: var(--color-text-primary);
+  }
+
+  .sidebar-item input:checked ~ .sidebar-label {
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+
+  .sidebar-count {
+    font-size: 0.75rem;
+    color: var(--color-text-tertiary);
+    margin-left: auto;
+  }
+
+  /* Main content */
+  .main-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Search */
+  .search-bar {
+    margin-bottom: 1rem;
+  }
+
+  .search-wrapper {
+    position: relative;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--color-text-tertiary);
+    pointer-events: none;
+  }
+
+  .search-wrapper input {
+    width: 100%;
+    padding: 0.625rem 1rem 0.625rem 2.5rem;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.15s;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    color: var(--color-text-primary);
+    font-family: inherit;
+  }
+
+  .search-wrapper input:focus {
+    border-color: var(--color-accent);
+  }
+
+  .search-wrapper input::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  /* Session count */
+  .session-count {
+    font-size: 0.8125rem;
+    color: var(--color-text-tertiary);
+    margin-bottom: 1rem;
+  }
+
+  /* Session grid */
+  .session-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 1024px) {
+    .session-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .session-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Card */
+  .session-card {
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .session-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .card-cover {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+
+  .session-card:hover .card-image {
+    transform: scale(1.03);
+  }
+
+  .card-duration {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+  }
+
+  .card-info {
+    padding: 0.75rem 1rem 1rem;
+  }
+
+  .card-track {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    background-color: var(--color-tag-bg);
+    color: var(--color-tag-text);
+    margin-bottom: 0.375rem;
+  }
+
+  .card-title-zh {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+  }
+
+  .card-title-en {
+    font-size: 0.75rem;
+    color: var(--color-text-tertiary);
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center;
+    padding: 5rem 0;
+    color: var(--color-text-tertiary);
+  }
+
+  .empty-state p:first-child {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .empty-state p:last-child {
+    font-size: 0.875rem;
+  }
+
+  /* Mobile: hide sidebar, show top filter */
+  @media (max-width: 768px) {
+    .home-layout {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 100%;
+      position: static;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .sidebar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .sidebar-nav {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 6px;
+      padding-bottom: 4px;
+    }
+
+    .sidebar-item {
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding: 0.375rem 0.75rem;
+      font-size: 0.8125rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll<HTMLElement>('.session-card-wrapper');
+    const emptyState = document.getElementById('empty-state');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const sessionCountEl = document.getElementById('session-count');
+    const checkboxes = document.querySelectorAll<HTMLInputElement>('.track-checkbox');
+    const allCheckbox = document.querySelector<HTMLInputElement>('.track-checkbox[value=""]');
+
+    let selectedTracks = new Set<string>();
+    let searchQuery = '';
+
+    function applyFilters() {
+      let visibleCount = 0;
+      const query = searchQuery.toLowerCase();
+      const showAll = selectedTracks.size === 0;
+
+      cards.forEach(card => {
+        const matchTrack = showAll || selectedTracks.has(card.dataset.track || '');
+        const matchSearch = !query ||
+          (card.dataset.title || '').toLowerCase().includes(query) ||
+          (card.dataset.titleEn || '').toLowerCase().includes(query) ||
+          (card.dataset.track || '').toLowerCase().includes(query) ||
+          (card.dataset.tags || '').toLowerCase().includes(query);
+
+        const show = matchTrack && matchSearch;
+        card.style.display = show ? '' : 'none';
+        if (show) visibleCount++;
+      });
+
+      if (emptyState) {
+        emptyState.classList.toggle('hidden', visibleCount > 0);
+      }
+      if (sessionCountEl) {
+        sessionCountEl.textContent = `${visibleCount} 个 Session`;
+      }
+    }
+
+    // "全部" checkbox
+    allCheckbox?.addEventListener('change', () => {
+      if (allCheckbox.checked) {
+        selectedTracks.clear();
+        checkboxes.forEach(cb => { if (cb.value !== '') cb.checked = false; });
+      }
+      applyFilters();
+    });
+
+    // Individual track checkboxes
+    checkboxes.forEach(cb => {
+      if (cb.value === '') return;
+      cb.addEventListener('change', () => {
+        if (cb.checked) {
+          selectedTracks.add(cb.value);
+        } else {
+          selectedTracks.delete(cb.value);
+        }
+        if (allCheckbox) {
+          allCheckbox.checked = selectedTracks.size === 0;
+        }
+        applyFilters();
+      });
+    });
+
+    // Search
+    searchInput?.addEventListener('input', () => {
+      searchQuery = searchInput.value.trim();
+      applyFilters();
+    });
+
+    // Initial count
+    applyFilters();
+  });
+</script>

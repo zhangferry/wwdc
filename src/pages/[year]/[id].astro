@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from "astro:content";
+import PostLayout from "../../layouts/PostLayout.astro";
+
+export async function getStaticPaths() {
+  const sessions = await getCollection("wwdc2025");
+  return sessions.map((session) => {
+    const year = session.data.date.getFullYear();
+    return {
+      params: { year: `wwdc${year}`, id: session.data.id },
+      props: { session },
+    };
+  });
+}
+
+const { session } = Astro.props;
+const { Content } = await render(session);
+---
+
+<PostLayout
+  title={session.data.title}
+  titleZh={session.data.titleZh}
+  track={session.data.track}
+  level={session.data.level}
+  duration={session.data.duration}
+  date={session.data.date}
+  thumbnail={session.data.thumbnail}
+  videoUrl={session.data.videoUrl}
+  tags={session.data.tags}
+>
+  <Content />
+</PostLayout>

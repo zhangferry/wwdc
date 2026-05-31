@@ -1,0 +1,42 @@
+---
+interface Props {
+  tracks: string[];
+}
+
+const { tracks } = Astro.props;
+---
+
+<div class="flex flex-wrap gap-2 mb-8">
+  <a
+    href="#"
+    class="filter-pill filter-active px-3 py-1.5 rounded-full text-sm font-medium transition-colors"
+    data-track=""
+  >
+    全部
+  </a>
+  {tracks.map((track) => (
+    <a
+      href="#"
+      class="filter-pill px-3 py-1.5 rounded-full text-sm font-medium transition-colors"
+      data-track={track}
+    >
+      {track}
+    </a>
+  ))}
+</div>
+
+<style>
+  .filter-pill {
+    background-color: var(--color-tag-bg);
+    color: var(--color-tag-text);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .filter-pill:hover {
+    opacity: 0.85;
+  }
+  .filter-pill.filter-active {
+    background-color: var(--color-accent);
+    color: white;
+  }
+</style>

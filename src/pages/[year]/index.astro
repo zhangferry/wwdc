@@ -1,0 +1,108 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SessionCard from "../../components/SessionCard.astro";
+import FilterBar from "../../components/FilterBar.astro";
+import { extractTracks } from "../../utils/format";
+
+export function getStaticPaths() {
+  return [
+    { params: { year: "wwdc2025" } },
+  ];
+}
+
+const { year } = Astro.params;
+const yearNum = parseInt(year.replace("wwdc", ""));
+
+// Get all sessions for this year
+const allSessions = await getCollection("wwdc2025");
+
+// Sort by date descending
+allSessions.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Extract unique tracks
+const tracks = extractTracks(allSessions.map((s) => ({ track: s.data.track })));
+---
+
+<BaseLayout title={`WWDC ${yearNum} 中文总结`}>
+  <!-- Breadcrumb -->
+  <nav class="mb-6">
+    <a href="/" class="text-sm hover:underline" style="color: var(--color-accent);">
+      &larr; 返回首页
+    </a>
+  </nav>
+
+  <!-- Hero -->
+  <header class="text-center mb-10">
+    <h1 class="text-3xl sm:text-4xl font-bold mb-3" style="color: var(--color-text-primary);">
+      WWDC {yearNum} 中文总结
+    </h1>
+    <p class="text-lg" style="color: var(--color-text-secondary);">
+      AI 生成的 Session 中文技术博客，5 分钟了解核心内容
+    </p>
+    <p class="text-sm mt-2" style="color: var(--color-text-tertiary);">
+      共 {allSessions.length} 个 Session
+    </p>
+  </header>
+
+  <!-- Filter -->
+  <FilterBar tracks={tracks} />
+
+  <!-- Card grid -->
+  <div id="session-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+    {allSessions.map((session) => (
+      <div class="session-card-wrapper" data-track={session.data.track}>
+        <SessionCard
+          id={session.data.id}
+          title={session.data.title}
+          titleZh={session.data.titleZh}
+          track={session.data.track}
+          level={session.data.level}
+          duration={session.data.duration}
+          thumbnail={session.data.thumbnail}
+          date={session.data.date}
+        />
+      </div>
+    ))}
+  </div>
+
+  <!-- Empty state -->
+  <div id="empty-state" class="text-center py-20 hidden" style="color: var(--color-text-tertiary);">
+    <p class="text-lg">暂无内容</p>
+    <p class="text-sm mt-2">该分类下暂无 Session 总结</p>
+  </div>
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const pills = document.querySelectorAll<HTMLAnchorElement>('.filter-pill');
+    const cards = document.querySelectorAll<HTMLElement>('.session-card-wrapper');
+    const emptyState = document.getElementById('empty-state');
+
+    pills.forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        e.preventDefault();
+        const track = pill.dataset.track || '';
+
+        // Update active state
+        pills.forEach(p => {
+          const isActive = (p.dataset.track || '') === track;
+          p.classList.toggle('filter-active', isActive);
+        });
+
+        // Filter cards
+        let visibleCount = 0;
+        cards.forEach(card => {
+          const show = !track || card.dataset.track === track;
+          card.style.display = show ? '' : 'none';
+          if (show) visibleCount++;
+        });
+
+        // Show/hide empty state
+        if (emptyState) {
+          emptyState.classList.toggle('hidden', visibleCount > 0);
+        }
+      });
+    });
+  });
+</script>
