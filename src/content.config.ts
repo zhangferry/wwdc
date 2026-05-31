@@ -18,6 +18,21 @@ const wwdc2025 = defineCollection({
   schema: sessionSchema,
 });
 
-export const collections = { wwdc2025 };
+const wwdc2024 = defineCollection({
+  type: "content",
+  schema: sessionSchema,
+});
+
+const wwdc2023 = defineCollection({
+  type: "content",
+  schema: sessionSchema,
+});
+
+const wwdc2022 = defineCollection({
+  type: "content",
+  schema: sessionSchema,
+});
+
+export const collections = { wwdc2025, wwdc2024, wwdc2023, wwdc2022 };
 
 export type SessionData = z.infer<typeof sessionSchema>;

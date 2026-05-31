@@ -1,19 +1,34 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { extractTracks } from "../utils/format";
+import { extractTracks, consolidateTrack } from "../utils/format";
 
-// Get all sessions
-const allSessions = await getCollection("wwdc2025");
+// Get all sessions from both years
+const [s2025, s2024, s2023, s2022] = await Promise.all([
+  getCollection("wwdc2025"),
+  getCollection("wwdc2024"),
+  getCollection("wwdc2023"),
+  getCollection("wwdc2022"),
+]);
+const allSessions = [...s2025, ...s2024, ...s2023, ...s2022];
 allSessions.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-// Extract unique tracks with counts
+// Extract unique consolidated tracks with counts
 const trackCounts = new Map<string, number>();
 for (const s of allSessions) {
-  const t = s.data.track;
-  trackCounts.set(t, (trackCounts.get(t) || 0) + 1);
+  const ct = consolidateTrack(s.data.track);
+  trackCounts.set(ct, (trackCounts.get(ct) || 0) + 1);
 }
 const tracks = extractTracks(allSessions.map((s) => ({ track: s.data.track })));
+
+// Year info
+const years = [
+  { label: "全部", value: "", count: allSessions.length },
+  { label: "WWDC 2025", value: "2025", count: s2025.length },
+  { label: "WWDC 2024", value: "2024", count: s2024.length },
+  { label: "WWDC 2023", value: "2023", count: s2023.length },
+  { label: "WWDC 2022", value: "2022", count: s2022.length },
+];
 
 function formatDuration(seconds: number): string {
   const h = Math.floor(seconds / 3600);
@@ -27,23 +42,41 @@ function formatDuration(seconds: number): string {
   <div class="home-layout">
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
-      <h2 class="sidebar-title">分类</h2>
-      <nav class="sidebar-nav">
-        <label class="sidebar-item">
-          <input type="checkbox" class="track-checkbox" value="" checked />
-          <span class="checkbox-box"></span>
-          <span class="sidebar-label">全部</span>
-          <span class="sidebar-count">{allSessions.length}</span>
-        </label>
-        {tracks.map((track) => (
+      <!-- Year section -->
+      <div class="sidebar-section">
+        <h2 class="sidebar-title">年份</h2>
+        <nav class="sidebar-nav">
+          {years.map((y, i) => (
+            <label class="sidebar-item">
+              <input type="radio" name="year" class="year-radio" value={y.value} checked={i === 0} />
+              <span class="radio-dot"></span>
+              <span class="sidebar-label">{y.label}</span>
+              <span class="sidebar-count">{y.count}</span>
+            </label>
+          ))}
+        </nav>
+      </div>
+
+      <!-- Track section -->
+      <div class="sidebar-section">
+        <h2 class="sidebar-title">分类</h2>
+        <nav class="sidebar-nav">
           <label class="sidebar-item">
-            <input type="checkbox" class="track-checkbox" value={track} />
+            <input type="checkbox" class="track-checkbox" value="" checked />
             <span class="checkbox-box"></span>
-            <span class="sidebar-label">{track}</span>
-            <span class="sidebar-count">{trackCounts.get(track) || 0}</span>
+            <span class="sidebar-label">全部</span>
+            <span class="sidebar-count">{allSessions.length}</span>
           </label>
-        ))}
-      </nav>
+          {tracks.map((track) => (
+            <label class="sidebar-item">
+              <input type="checkbox" class="track-checkbox" value={track} />
+              <span class="checkbox-box"></span>
+              <span class="sidebar-label">{track}</span>
+              <span class="sidebar-count">{trackCounts.get(track) || 0}</span>
+            </label>
+          ))}
+        </nav>
+      </div>
     </aside>
 
     <!-- Main content -->
@@ -70,8 +103,9 @@ function formatDuration(seconds: number): string {
       <div id="session-grid" class="session-grid">
         {allSessions.map((session) => {
           const year = session.data.date.getFullYear();
+          const displayTrack = consolidateTrack(session.data.track);
           return (
-            <div class="session-card-wrapper" data-track={session.data.track} data-title={session.data.titleZh} data-title-en={session.data.title} data-tags={session.data.tags.join(",")}>
+            <div class="session-card-wrapper" data-year={year.toString()} data-track={displayTrack} data-raw-track={session.data.track} data-title={session.data.titleZh} data-title-en={session.data.title} data-tags={session.data.tags.join(",")}>
               <a href={`/wwdc${year}/${session.data.id}`} class="session-card group">
                 <div class="card-cover">
                   <img
@@ -83,7 +117,7 @@ function formatDuration(seconds: number): string {
                   <span class="card-duration">{formatDuration(session.data.duration)}</span>
                 </div>
                 <div class="card-info">
-                  <span class="card-track">{session.data.track}</span>
+                  <span class="card-track">{displayTrack}</span>
                   <h3 class="card-title-zh">{session.data.titleZh}</h3>
                   <p class="card-title-en">{session.data.title}</p>
                 </div>
@@ -118,6 +152,16 @@ function formatDuration(seconds: number): string {
     top: 2rem;
   }
 
+  .sidebar-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar-section:last-child {
+    margin-bottom: 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
   .sidebar-title {
     font-size: 0.75rem;
     font-weight: 600;
@@ -148,13 +192,16 @@ function formatDuration(seconds: number): string {
     background-color: var(--color-surface-hover);
   }
 
-  .sidebar-item input[type="checkbox"] {
+  /* Hidden native inputs */
+  .sidebar-item input[type="checkbox"],
+  .sidebar-item input[type="radio"] {
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
   }
 
+  /* Checkbox style */
   .checkbox-box {
     width: 16px;
     height: 16px;
@@ -168,12 +215,12 @@ function formatDuration(seconds: number): string {
     position: relative;
   }
 
-  .sidebar-item input:checked + .checkbox-box {
+  .sidebar-item input[type="checkbox"]:checked + .checkbox-box {
     background-color: var(--color-accent);
     border-color: var(--color-accent);
   }
 
-  .sidebar-item input:checked + .checkbox-box::after {
+  .sidebar-item input[type="checkbox"]:checked + .checkbox-box::after {
     content: '';
     width: 4px;
     height: 8px;
@@ -184,6 +231,33 @@ function formatDuration(seconds: number): string {
     top: 1px;
   }
 
+  /* Radio style */
+  .radio-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    position: relative;
+  }
+
+  .sidebar-item input[type="radio"]:checked + .radio-dot {
+    border-color: var(--color-accent);
+  }
+
+  .sidebar-item input[type="radio"]:checked + .radio-dot::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+  }
+
+  /* Label & count */
   .sidebar-label {
     font-size: 0.8125rem;
     color: var(--color-text-secondary);
@@ -374,7 +448,7 @@ function formatDuration(seconds: number): string {
     font-size: 0.875rem;
   }
 
-  /* Mobile: hide sidebar, show top filter */
+  /* Mobile */
   @media (max-width: 768px) {
     .home-layout {
       flex-direction: column;
@@ -383,21 +457,24 @@ function formatDuration(seconds: number): string {
     .sidebar {
       width: 100%;
       position: static;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
     }
 
-    .sidebar::-webkit-scrollbar {
-      display: none;
+    .sidebar-section:last-child {
+      border-top: none;
+      padding-top: 0;
     }
 
     .sidebar-nav {
       flex-direction: row;
       flex-wrap: nowrap;
       gap: 6px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       padding-bottom: 4px;
+    }
+
+    .sidebar-nav::-webkit-scrollbar {
+      display: none;
     }
 
     .sidebar-item {
@@ -417,24 +494,27 @@ function formatDuration(seconds: number): string {
     const sessionCountEl = document.getElementById('session-count');
     const checkboxes = document.querySelectorAll<HTMLInputElement>('.track-checkbox');
     const allCheckbox = document.querySelector<HTMLInputElement>('.track-checkbox[value=""]');
+    const yearRadios = document.querySelectorAll<HTMLInputElement>('.year-radio');
 
     let selectedTracks = new Set<string>();
+    let selectedYear = '';
     let searchQuery = '';
 
     function applyFilters() {
       let visibleCount = 0;
       const query = searchQuery.toLowerCase();
-      const showAll = selectedTracks.size === 0;
+      const showAllTracks = selectedTracks.size === 0;
 
       cards.forEach(card => {
-        const matchTrack = showAll || selectedTracks.has(card.dataset.track || '');
+        const matchYear = !selectedYear || card.dataset.year === selectedYear;
+        const matchTrack = showAllTracks || selectedTracks.has(card.dataset.track || '');
         const matchSearch = !query ||
           (card.dataset.title || '').toLowerCase().includes(query) ||
           (card.dataset.titleEn || '').toLowerCase().includes(query) ||
           (card.dataset.track || '').toLowerCase().includes(query) ||
           (card.dataset.tags || '').toLowerCase().includes(query);
 
-        const show = matchTrack && matchSearch;
+        const show = matchYear && matchTrack && matchSearch;
         card.style.display = show ? '' : 'none';
         if (show) visibleCount++;
       });
@@ -447,7 +527,15 @@ function formatDuration(seconds: number): string {
       }
     }
 
-    // "全部" checkbox
+    // Year filter (radio — single select)
+    yearRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        selectedYear = radio.value;
+        applyFilters();
+      });
+    });
+
+    // "全部" track checkbox
     allCheckbox?.addEventListener('change', () => {
       if (allCheckbox.checked) {
         selectedTracks.clear();

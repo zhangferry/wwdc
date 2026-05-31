@@ -25,8 +25,43 @@ export function levelLabel(level: string): string {
   return map[level] ?? level;
 }
 
-/** All unique tracks from sessions */
+/** Track consolidation mapping — display only, original article data unchanged */
+const TRACK_MAP: Record<string, string> = {
+  "SwiftUI & UI Frameworks": "Swift & UI",
+  "SwiftUI": "Swift & UI",
+  "UIKit": "Swift & UI",
+  "Swift": "Swift & UI",
+  "Widget & Live Activities": "Swift & UI",
+  "App Intents": "Swift & UI",
+  "Internationalization": "Swift & UI",
+  "Essentials|Design": "Essentials",
+  "Essentials|Machine Learning & AI": "Essentials",
+  "Design|SwiftUI & UI Frameworks": "Design",
+  "Machine Learning & AI|Design": "Machine Learning & AI",
+  "Audio & Video|Spatial Computing": "Spatial Computing",
+  "App Store, Distribution & Marketing": "App Store & Distribution",
+  "App Store & Distribution": "App Store & Distribution",
+  "App Store Distribution & Marketing": "App Store & Distribution",
+  "Business & Education": "App Store & Distribution",
+  "System Frameworks": "System & Services",
+  "System Services": "System & Services",
+  "Networking": "System & Services",
+  "Accessories": "System & Services",
+  "CarPlay": "System & Services",
+  "watchOS": "System & Services",
+  "tvOS": "System & Services",
+  "App Services": "System & Services",
+  "Audio & Video": "Media & Web",
+  "Photos & Camera": "Media & Web",
+  "Safari & Web": "Media & Web",
+};
+
+export function consolidateTrack(track: string): string {
+  return TRACK_MAP[track] ?? track;
+}
+
+/** All unique consolidated tracks from sessions */
 export function extractTracks(sessions: Array<{ track: string }>): string[] {
-  const tracks = new Set(sessions.map((s) => s.track));
+  const tracks = new Set(sessions.map((s) => consolidateTrack(s.track)));
   return Array.from(tracks).sort();
 }

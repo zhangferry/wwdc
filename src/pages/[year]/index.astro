@@ -7,15 +7,19 @@ import { extractTracks } from "../../utils/format";
 
 export function getStaticPaths() {
   return [
-    { params: { year: "wwdc2025" } },
+    { params: { year: "wwdc2025" }, props: { collection: "wwdc2025" } },
+    { params: { year: "wwdc2024" }, props: { collection: "wwdc2024" } },
+    { params: { year: "wwdc2023" }, props: { collection: "wwdc2023" } },
+    { params: { year: "wwdc2022" }, props: { collection: "wwdc2022" } },
   ];
 }
 
 const { year } = Astro.params;
+const { collection } = Astro.props;
 const yearNum = parseInt(year.replace("wwdc", ""));
 
 // Get all sessions for this year
-const allSessions = await getCollection("wwdc2025");
+const allSessions = await getCollection(collection as any);
 
 // Sort by date descending
 allSessions.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());

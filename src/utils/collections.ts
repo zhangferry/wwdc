@@ -1,6 +1,6 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
-export type SessionEntry = CollectionEntry<"wwdc2025">;
+export type SessionEntry = CollectionEntry<"wwdc2025"> | CollectionEntry<"wwdc2024"> | CollectionEntry<"wwdc2023"> | CollectionEntry<"wwdc2022">;
 
 export interface YearInfo {
   year: number;
@@ -10,6 +10,9 @@ export interface YearInfo {
 
 const YEAR_COLLECTIONS: Record<string, number> = {
   wwdc2025: 2025,
+  wwdc2024: 2024,
+  wwdc2023: 2023,
+  wwdc2022: 2022,
 };
 
 export function getAvailableYears(): string[] {
@@ -21,7 +24,11 @@ export function yearFromCollection(collectionName: string): number | undefined {
 }
 
 export async function getAllSessions(): Promise<SessionEntry[]> {
-  const sessions = await getCollection("wwdc2025");
+  const [s2025, s2024] = await Promise.all([
+    getCollection("wwdc2025"),
+    getCollection("wwdc2024"),
+  ]);
+  const sessions = [...s2025, ...s2024];
   sessions.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
   return sessions;
 }
@@ -30,7 +37,7 @@ export async function getYearInfo(): Promise<YearInfo[]> {
   const years: YearInfo[] = [];
   for (const [collection, year] of Object.entries(YEAR_COLLECTIONS)) {
     try {
-      const sessions = await getCollection(collection as "wwdc2025");
+      const sessions = await getCollection(collection as any);
       years.push({ year, slug: `wwdc${year}`, count: sessions.length });
     } catch {
       years.push({ year, slug: `wwdc${year}`, count: 0 });
