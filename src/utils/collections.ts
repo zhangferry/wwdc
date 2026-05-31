@@ -1,6 +1,6 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
-export type SessionEntry = CollectionEntry<"wwdc2025"> | CollectionEntry<"wwdc2024"> | CollectionEntry<"wwdc2023"> | CollectionEntry<"wwdc2022">;
+export type SessionEntry = CollectionEntry<"wwdc2025"> | CollectionEntry<"wwdc2024"> | CollectionEntry<"wwdc2023"> | CollectionEntry<"wwdc2022"> | CollectionEntry<"wwdc2021"> | CollectionEntry<"wwdc2020">;
 
 export interface YearInfo {
   year: number;
@@ -13,6 +13,8 @@ const YEAR_COLLECTIONS: Record<string, number> = {
   wwdc2024: 2024,
   wwdc2023: 2023,
   wwdc2022: 2022,
+  wwdc2021: 2021,
+  wwdc2020: 2020,
 };
 
 export function getAvailableYears(): string[] {

@@ -1,32 +1,37 @@
-# WWDC 2025 中文总结
+# WWDC 中文总结
 
-WWDC 2025 全部 Session 的中文技术总结站，覆盖 130+ 篇文章，每篇包含核心洞察、代码片段和迁移建议。
+WWDC Session 中文技术总结站，覆盖 2020-2025 六届 WWDC，900+ 篇文章，每篇包含核心洞察、代码片段和迁移建议。
 
 ## 特性
 
-- 130+ 篇 WWDC 2025 Session 中文技术博客
+- 900+ 篇 WWDC Session 中文技术博客（2020-2025）
 - 每篇文章包含：一句话判断、深度分析、代码片段、最佳实践
-- Apple 风格首页布局，分类多选筛选 + 关键词搜索
+- Apple 风格首页布局，年份筛选 + 分类多选 + 关键词搜索
 - 自动适配 Dark Mode
 - 缩略图使用 Apple CDN 高清资源
 
+## 覆盖年份
+
+| 年份 | 文章数 |
+|------|--------|
+| WWDC 2025 | 133 |
+| WWDC 2024 | 122 |
+| WWDC 2023 | 177 |
+| WWDC 2022 | 184 |
+| WWDC 2021 | 207 |
+| WWDC 2020 | 209 |
+
 ## 技术栈
 
-- [Astro 5](https://astro.build) — 静态站点生成
-- Tailwind CSS v4 — 样式系统
-- TypeScript — 类型安全
-- Vercel — 部署平台
+- [Astro 5](https://astro.build) + Tailwind CSS v4 + TypeScript
+- pnpm 包管理
+- Vercel 部署
 
 ## 本地开发
 
 ```bash
-# 安装依赖
 pnpm install
-
-# 启动开发服务器
 pnpm dev
-
-# 构建
 pnpm build
 ```
 
@@ -34,13 +39,18 @@ pnpm build
 
 ```
 ├── src/
-│   ├── content/wwdc2025/    # 133 篇 Session 文章（Markdown）
-│   ├── layouts/             # 页面布局
-│   ├── pages/               # 路由页面
-│   ├── styles/              # 全局样式
-│   └── utils/               # 工具函数
-├── public/                  # 静态资源
-└── scripts/                 # 文章模板
+│   ├── content/
+│   │   ├── wwdc2020/    # 209 篇
+│   │   ├── wwdc2021/    # 207 篇
+│   │   ├── wwdc2022/    # 184 篇
+│   │   ├── wwdc2023/    # 177 篇
+│   │   ├── wwdc2024/    # 122 篇
+│   │   └── wwdc2025/    # 133 篇
+│   ├── layouts/
+│   ├── pages/
+│   ├── styles/
+│   └── utils/
+└── scripts/
 ```
 
 ## 文章结构

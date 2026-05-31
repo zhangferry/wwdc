@@ -4,13 +4,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { extractTracks, consolidateTrack } from "../utils/format";
 
 // Get all sessions from both years
-const [s2025, s2024, s2023, s2022] = await Promise.all([
+const [s2025, s2024, s2023, s2022, s2021, s2020] = await Promise.all([
   getCollection("wwdc2025"),
   getCollection("wwdc2024"),
   getCollection("wwdc2023"),
   getCollection("wwdc2022"),
+  getCollection("wwdc2021"),
+  getCollection("wwdc2020"),
 ]);
-const allSessions = [...s2025, ...s2024, ...s2023, ...s2022];
+const allSessions = [...s2025, ...s2024, ...s2023, ...s2022, ...s2021, ...s2020];
 allSessions.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 // Extract unique consolidated tracks with counts
@@ -28,6 +30,8 @@ const years = [
   { label: "WWDC 2024", value: "2024", count: s2024.length },
   { label: "WWDC 2023", value: "2023", count: s2023.length },
   { label: "WWDC 2022", value: "2022", count: s2022.length },
+  { label: "WWDC 2021", value: "2021", count: s2021.length },
+  { label: "WWDC 2020", value: "2020", count: s2020.length },
 ];
 
 function formatDuration(seconds: number): string {
