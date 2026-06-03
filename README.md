@@ -44,19 +44,13 @@ pnpm build
 推荐使用 `skills` CLI 安装。它会从仓库的 `skills/` 目录发现可用 skill，并提示选择 skill 与支持的 agent：
 
 ```bash
-npx skills@latest add zhangferry/wwdc
+npx skills@latest add zhangferry/wwdc --skill wwdc-notes
 ```
 
 也可以跳过交互，安装到全部支持的 agent：
 
 ```bash
-npx skills@latest add zhangferry/wwdc --all
-```
-
-只安装当前这个 skill：
-
-```bash
-npx skills@latest add zhangferry/wwdc --skill wwdc-notes
+npx skills@latest add zhangferry/wwdc --skill wwdc-notes --agent '*'
 ```
 
 如果只想用 npm 安装器直接安装到 Codex：
