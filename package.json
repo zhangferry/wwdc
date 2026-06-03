@@ -15,6 +15,7 @@
     "skill:validate": "python3 tools/wwdc-distiller/validate.py --skill skills/wwdc-notes",
     "skill:evaluate": "python3 tools/wwdc-distiller/evaluate.py --skill skills/wwdc-notes",
     "skill:pack:npm": "python3 tools/wwdc-distiller/pack_npm.py --skill skills/wwdc-notes --out .dist/wwdc-notes-npm",
+    "skill:publish:branch": "python3 tools/wwdc-distiller/publish_branch.py --skill skills/wwdc-notes --branch skill",
     "skill:publish:npm": "pnpm skill:distill && pnpm skill:validate && pnpm skill:evaluate && pnpm skill:pack:npm && npm publish .dist/wwdc-notes-npm --access public --registry https://registry.npmjs.org"
   },
   "dependencies": {

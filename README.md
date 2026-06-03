@@ -41,13 +41,25 @@ pnpm build
 
 本项目同时维护一个可独立安装的 `wwdc-notes` skill，用于在 Codex 或 Claude 中离线查询 WWDC 2020-2025 Apple 平台开发知识。
 
-安装到 Codex：
+推荐使用 `skills` CLI 安装。它会提示选择支持的 agent：
+
+```bash
+npx skills add zhangferry/wwdc#skill
+```
+
+也可以跳过交互，安装到全部支持的 agent：
+
+```bash
+npx skills add zhangferry/wwdc#skill --all
+```
+
+如果只想用 npm 安装器直接安装到 Codex：
 
 ```bash
 npx @zhangferry-dev/wwdc-notes install codex
 ```
 
-安装到 Claude：
+或直接安装到 Claude：
 
 ```bash
 npx @zhangferry-dev/wwdc-notes install claude
@@ -72,6 +84,7 @@ pnpm skill:distill
 pnpm skill:validate
 pnpm skill:evaluate
 pnpm skill:pack:npm
+pnpm skill:publish:branch
 pnpm skill:publish:npm
 ```
 
