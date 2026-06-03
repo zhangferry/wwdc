@@ -1,0 +1,20 @@
+{
+  "added": [],
+  "changed": [],
+  "removed": [],
+  "unchanged": 1032,
+  "affectedDomains": [
+    "app-distribution",
+    "design-accessibility",
+    "graphics-media",
+    "machine-learning",
+    "networking-storage",
+    "platform-services",
+    "privacy-security",
+    "spatial-computing",
+    "swift-concurrency",
+    "swiftui",
+    "uikit-appkit",
+    "xcode-tools"
+  ]
+}

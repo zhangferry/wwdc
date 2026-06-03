@@ -509,6 +509,35 @@ function formatDuration(seconds: number): string {
       const query = searchQuery.toLowerCase();
       const showAllTracks = selectedTracks.size === 0;
 
+      // Count sessions per track for selected year
+      const yearTrackCounts = new Map<string, number>();
+      let yearTotal = 0;
+      cards.forEach(card => {
+        const matchYear = !selectedYear || card.dataset.year === selectedYear;
+        if (matchYear) {
+          const track = card.dataset.track || '';
+          yearTrackCounts.set(track, (yearTrackCounts.get(track) || 0) + 1);
+          yearTotal++;
+        }
+      });
+
+      // Update sidebar counts
+      const sidebarItems = document.querySelectorAll('.sidebar-item');
+      sidebarItems.forEach(item => {
+        const cb = item.querySelector<HTMLInputElement>('.track-checkbox');
+        const countEl = item.querySelector('.sidebar-count');
+        if (!cb || !countEl) return;
+        if (cb.value === '') {
+          countEl.textContent = `${yearTotal}`;
+        } else {
+          const c = yearTrackCounts.get(cb.value) || 0;
+          countEl.textContent = `${c}`;
+          // Hide tracks with 0 sessions for this year
+          (item as HTMLElement).style.display = c === 0 ? 'none' : '';
+        }
+      });
+
+      // Filter cards
       cards.forEach(card => {
         const matchYear = !selectedYear || card.dataset.year === selectedYear;
         const matchTrack = showAllTracks || selectedTracks.has(card.dataset.track || '');

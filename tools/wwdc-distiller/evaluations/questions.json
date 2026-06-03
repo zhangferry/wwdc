@@ -1,0 +1,12 @@
+[
+  {"id":"swiftui-sendable","question":"SwiftUI 中哪些闭包可能在后台执行？访问 @State 时应该怎么处理？","expectedDomains":["swiftui","swift-concurrency"],"keywords":["SwiftUI","Sendable"]},
+  {"id":"swiftui-navigation","question":"从 WWDC20 到 WWDC25，SwiftUI 导航 API 的演进路线是什么？","expectedDomains":["swiftui"],"keywords":["SwiftUI","导航"]},
+  {"id":"strict-concurrency","question":"Swift 6 严格并发检查下，什么时候应该使用 Sendable、Actor 和 Mutex？","expectedDomains":["swift-concurrency"],"keywords":["Sendable","Actor"]},
+  {"id":"ui-interop","question":"UIKit 与 SwiftUI 混合开发时，生命周期和状态管理有哪些常见问题？","expectedDomains":["uikit-appkit","swiftui"],"keywords":["UIKit","SwiftUI"]},
+  {"id":"visionos-scenes","question":"visionOS 空间界面中，Window、Volume 和 Immersive Space 分别适合什么场景？","expectedDomains":["spatial-computing"],"keywords":["visionOS","Window"]},
+  {"id":"coreml-optimization","question":"Core ML 模型在 Apple Silicon 上做端侧推理优化时，应优先关注哪些方向？","expectedDomains":["machine-learning"],"keywords":["Core ML","模型"]},
+  {"id":"instruments-swiftui","question":"Instruments 可以如何定位 SwiftUI 卡顿、过度刷新和启动性能问题？","expectedDomains":["xcode-tools","swiftui"],"keywords":["Instruments","SwiftUI"]},
+  {"id":"system-surfaces","question":"App Intents、Widget 和 Live Activity 之间应该如何选择和组合？","expectedDomains":["platform-services"],"keywords":["App Intents","Widget"]},
+  {"id":"privacy-minimization","question":"Apple 平台上的隐私设计从权限申请向数据最小化发生了哪些变化？","expectedDomains":["privacy-security"],"keywords":["隐私","权限"]},
+  {"id":"offline-sync","question":"我要实现离线优先的数据同步：WWDC 知识库中有哪些关于 SwiftData、CloudKit 和网络恢复的建议？","expectedDomains":["networking-storage"],"keywords":["SwiftData","CloudKit"]}
+]

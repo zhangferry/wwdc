@@ -1,0 +1,64 @@
+{
+  "domains": {
+    "swiftui": {
+      "label": "SwiftUI",
+      "description": "声明式 UI、布局、导航、动画、Observation 与 SwiftUI 性能",
+      "keywords": ["swiftui", "view", "视图", "layout", "布局", "navigation", "导航", "animation", "动画", "observation", "observable", "environment", "scrollview", "geometry", "transition"]
+    },
+    "swift-concurrency": {
+      "label": "Swift Concurrency",
+      "description": "Swift 语言演进、async/await、Actor、Sendable 与线程安全",
+      "keywords": ["swift 6", "swift language", "concurrency", "并发", "async", "await", "actor", "mainactor", "sendable", "task", "mutex", "线程", "isolation", "隔离"]
+    },
+    "uikit-appkit": {
+      "label": "UIKit & AppKit",
+      "description": "UIKit、AppKit、生命周期与 SwiftUI 互操作",
+      "keywords": ["uikit", "appkit", "uiview", "nsview", "viewcontroller", "appdelegate", "scene", "生命周期", "interop", "representable", "collection view"]
+    },
+    "xcode-tools": {
+      "label": "Xcode & Developer Tools",
+      "description": "Xcode、调试、测试、Instruments、性能与开发工具",
+      "keywords": ["xcode", "instrument", "调试", "debug", "测试", "test", "performance", "性能", "profil", "metric", "lldb", "build", "编译", "crash", "启动"]
+    },
+    "spatial-computing": {
+      "label": "Spatial Computing",
+      "description": "visionOS、空间界面、RealityKit、ARKit 与沉浸体验",
+      "keywords": ["visionos", "spatial", "空间", "realitykit", "arkit", "immersive", "volume", "window", "vision pro", "reality composer", "3d", "ar"]
+    },
+    "machine-learning": {
+      "label": "Machine Learning & AI",
+      "description": "Core ML、Create ML、端侧推理、模型优化与 Apple Intelligence",
+      "keywords": ["core ml", "coreml", "create ml", "createml", "machine learning", "机器学习", "模型", "model", "neural", "ai", "apple intelligence", "inference", "推理", "transformer"]
+    },
+    "networking-storage": {
+      "label": "Networking & Storage",
+      "description": "网络、数据持久化、CloudKit、SwiftData 与同步",
+      "keywords": ["network", "网络", "urlsession", "cloudkit", "swiftdata", "core data", "存储", "storage", "database", "数据库", "sync", "同步", "offline", "离线", "icloud", "http"]
+    },
+    "graphics-media": {
+      "label": "Graphics & Media",
+      "description": "Metal、图形、游戏、音视频、照片、相机与 WebKit",
+      "keywords": ["metal", "graphics", "图形", "game", "游戏", "audio", "音频", "video", "视频", "avfoundation", "camera", "相机", "photo", "webkit", "safari", "hdr", "render", "渲染"]
+    },
+    "platform-services": {
+      "label": "Platform Services",
+      "description": "系统服务、Widget、App Intents、Live Activity、通知与系统集成",
+      "keywords": ["widget", "app intent", "live activity", "activitykit", "通知", "notification", "mapkit", "healthkit", "storekit", "system", "系统", "carplay", "watchos", "app shortcut", "shortcut", "小组件"]
+    },
+    "app-distribution": {
+      "label": "App Distribution",
+      "description": "App Store、TestFlight、签名、审核与分发",
+      "keywords": ["app store", "testflight", "distribution", "分发", "审核", "review", "signing", "签名", "storekit", "订阅", "subscription", "marketing"]
+    },
+    "privacy-security": {
+      "label": "Privacy & Security",
+      "description": "隐私、安全、权限、认证与数据最小化",
+      "keywords": ["privacy", "隐私", "security", "安全", "permission", "权限", "passkey", "authentication", "认证", "keychain", "data protection", "加密", "encryption"]
+    },
+    "design-accessibility": {
+      "label": "Design & Accessibility",
+      "description": "设计原则、无障碍、国际化与包容性体验",
+      "keywords": ["design", "设计", "accessibility", "无障碍", "voiceover", "localization", "internationalization", "本地化", "dynamic type", "color", "颜色", "typography", "交互"]
+    }
+  }
+}

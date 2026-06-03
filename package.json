@@ -1,5 +1,6 @@
 {
-  "name": "wwdc-summary-site",
+  "name": "wwdc-notes",
+  "private": true,
   "type": "module",
   "version": "1.0.0",
   "scripts": {
@@ -8,7 +9,13 @@
     "preview": "astro preview",
     "fetch": "tsx scripts/fetch-sessions.ts",
     "generate": "tsx scripts/generate-summaries.ts",
-    "pipeline": "pnpm fetch && pnpm generate && pnpm build"
+    "pipeline": "pnpm fetch && pnpm generate && pnpm build",
+    "skill:distill": "python3 tools/wwdc-distiller/distill.py --source . --out skills/wwdc-notes --full",
+    "skill:update": "python3 tools/wwdc-distiller/update.py --source . --out skills/wwdc-notes",
+    "skill:validate": "python3 tools/wwdc-distiller/validate.py --skill skills/wwdc-notes",
+    "skill:evaluate": "python3 tools/wwdc-distiller/evaluate.py --skill skills/wwdc-notes",
+    "skill:pack:npm": "python3 tools/wwdc-distiller/pack_npm.py --skill skills/wwdc-notes --out .dist/wwdc-notes-npm",
+    "skill:publish:npm": "pnpm skill:distill && pnpm skill:validate && pnpm skill:evaluate && pnpm skill:pack:npm && npm publish .dist/wwdc-notes-npm --access public --registry https://registry.npmjs.org"
   },
   "dependencies": {
     "astro": "^5.7.10",

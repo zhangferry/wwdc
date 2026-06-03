@@ -1,0 +1,213 @@
+{
+  "passed": 10,
+  "total": 10,
+  "score": 1.0,
+  "cases": [
+    {
+      "id": "swiftui-sendable",
+      "passed": true,
+      "expectedDomains": [
+        "swiftui",
+        "swift-concurrency"
+      ],
+      "routedDomains": [
+        "swiftui"
+      ],
+      "topConcepts": [
+        "swiftui-state-变更节点",
+        "swiftui-stateobject-vs-observedobject-的选择逻辑",
+        "swiftui-tvos"
+      ],
+      "topSources": [
+        "WWDC25-266",
+        "WWDC25-306",
+        "WWDC23-10149"
+      ]
+    },
+    {
+      "id": "swiftui-navigation",
+      "passed": true,
+      "expectedDomains": [
+        "swiftui"
+      ],
+      "routedDomains": [
+        "swiftui"
+      ],
+      "topConcepts": [
+        "swiftui-navigationstack",
+        "swiftui-debug-border-3d-的实现展示了新-api-的组合能力",
+        "swiftui-filedocument-的读写分离设计"
+      ],
+      "topSources": [
+        "WWDC23-10162",
+        "WWDC22-10054",
+        "WWDC25-231"
+      ]
+    },
+    {
+      "id": "strict-concurrency",
+      "passed": true,
+      "expectedDomains": [
+        "swift-concurrency"
+      ],
+      "routedDomains": [
+        "swift-concurrency"
+      ],
+      "topConcepts": [
+        "swift-concurrency-actor-与-sendable-协议的关系",
+        "swift-concurrency-actor-的隔离模型",
+        "swift-concurrency-mainactor"
+      ],
+      "topSources": [
+        "WWDC25-266",
+        "WWDC21-10133",
+        "WWDC25-245"
+      ]
+    },
+    {
+      "id": "ui-interop",
+      "passed": true,
+      "expectedDomains": [
+        "uikit-appkit",
+        "swiftui"
+      ],
+      "routedDomains": [
+        "uikit-appkit",
+        "swiftui"
+      ],
+      "topConcepts": [
+        "swiftui-clipping-margins-不是保证给你的",
+        "swiftui-liquid-glass",
+        "swiftui-namespace"
+      ],
+      "topSources": [
+        "WWDC23-10036",
+        "WWDC22-10072",
+        "WWDC25-268"
+      ]
+    },
+    {
+      "id": "visionos-scenes",
+      "passed": true,
+      "expectedDomains": [
+        "spatial-computing"
+      ],
+      "routedDomains": [
+        "spatial-computing"
+      ],
+      "topConcepts": [
+        "spatial-computing-clipping-margins-不是保证给你的",
+        "spatial-computing-realityview",
+        "spatial-computing-scene-bridging-是给存量-uikit-app-的增量升级路径"
+      ],
+      "topSources": [
+        "WWDC24-10153",
+        "WWDC25-290",
+        "WWDC25-296"
+      ]
+    },
+    {
+      "id": "coreml-optimization",
+      "passed": true,
+      "expectedDomains": [
+        "machine-learning"
+      ],
+      "routedDomains": [
+        "machine-learning"
+      ],
+      "topConcepts": [
+        "machine-learning-mpsgraph-与-core-ml-的协作模式",
+        "machine-learning-api-和-pytorch-几乎一样",
+        "machine-learning-float16-支持消除了一个隐藏的性能杀手"
+      ],
+      "topSources": [
+        "WWDC25-298",
+        "WWDC24-10161",
+        "WWDC25-315"
+      ]
+    },
+    {
+      "id": "instruments-swiftui",
+      "passed": true,
+      "expectedDomains": [
+        "xcode-tools",
+        "swiftui"
+      ],
+      "routedDomains": [
+        "swiftui",
+        "xcode-tools"
+      ],
+      "topConcepts": [
+        "swiftui-task",
+        "swiftui-instruments-的-swiftui-模板",
+        "swiftui-三种卡顿模式的诊断策略"
+      ],
+      "topSources": [
+        "WWDC25-306",
+        "WWDC23-10160",
+        "WWDC25-256"
+      ]
+    },
+    {
+      "id": "system-surfaces",
+      "passed": true,
+      "expectedDomains": [
+        "platform-services"
+      ],
+      "routedDomains": [
+        "platform-services"
+      ],
+      "topConcepts": [
+        "platform-services-watchos",
+        "platform-services-appintent",
+        "platform-services-builder-delegate-是更新-ui-的正确方式"
+      ],
+      "topSources": [
+        "WWDC24-10068",
+        "WWDC24-10176",
+        "WWDC22-10170"
+      ]
+    },
+    {
+      "id": "privacy-minimization",
+      "passed": true,
+      "expectedDomains": [
+        "privacy-security"
+      ],
+      "routedDomains": [
+        "privacy-security",
+        "design-accessibility"
+      ],
+      "topConcepts": [
+        "design-accessibility-10-秒法则",
+        "design-accessibility-accessibility",
+        "design-accessibility-apple-提供-keynote-的-asl-版本本身就是一个信号"
+      ],
+      "topSources": [
+        "WWDC20-10162",
+        "WWDC23-10040",
+        "WWDC21-10085"
+      ]
+    },
+    {
+      "id": "offline-sync",
+      "passed": true,
+      "expectedDomains": [
+        "networking-storage"
+      ],
+      "routedDomains": [
+        "networking-storage"
+      ],
+      "topConcepts": [
+        "networking-storage-cloudkit",
+        "networking-storage-model-宏的双重角色",
+        "networking-storage-modelcontext-的快照机制"
+      ],
+      "topSources": [
+        "WWDC24-10138",
+        "WWDC23-10187",
+        "WWDC23-10196"
+      ]
+    }
+  ]
+}

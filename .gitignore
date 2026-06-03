@@ -1,8 +1,10 @@
 node_modules/
 dist/
+.dist/
 .astro/
 .env
 .env.local
+.npmrc
 scripts/data/
 .DS_Store
 .omc/

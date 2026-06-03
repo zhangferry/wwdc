@@ -1,0 +1,22 @@
+{
+  "knowledgeVersion": "2026.06.03",
+  "coverage": {
+    "from": 2020,
+    "to": 2025,
+    "sessions": 1032
+  },
+  "domains": {
+    "swiftui": 147,
+    "swift-concurrency": 43,
+    "uikit-appkit": 24,
+    "xcode-tools": 152,
+    "spatial-computing": 103,
+    "machine-learning": 73,
+    "networking-storage": 48,
+    "graphics-media": 187,
+    "platform-services": 325,
+    "app-distribution": 57,
+    "privacy-security": 57,
+    "design-accessibility": 153
+  }
+}

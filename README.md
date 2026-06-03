@@ -1,6 +1,6 @@
-# WWDC 中文总结
+# WWDC Notes
 
-WWDC Session 中文技术总结站，覆盖 2020-2025 六届 WWDC，930+ 篇文章，每篇包含核心洞察、代码片段和迁移建议。
+WWDC Session 中文笔记站，覆盖 2020-2025 六届 WWDC，930+ 篇文章，每篇包含核心洞察、代码片段和迁移建议。
 
 ![WWDC 中文总结首页](public/screenshot.png)
 
@@ -37,6 +37,46 @@ pnpm dev
 pnpm build
 ```
 
+## WWDC Notes Skill
+
+本项目同时维护一个可独立安装的 `wwdc-notes` skill，用于在 Codex 或 Claude 中离线查询 WWDC 2020-2025 Apple 平台开发知识。
+
+安装到 Codex：
+
+```bash
+npx @zhangferry-dev/wwdc-notes install codex
+```
+
+安装到 Claude：
+
+```bash
+npx @zhangferry-dev/wwdc-notes install claude
+```
+
+自定义安装目录：
+
+```bash
+npx @zhangferry-dev/wwdc-notes install --target ~/.codex/skills
+```
+
+安装后使用 `$wwdc-notes` 提问，例如：
+
+```text
+$wwdc-notes SwiftUI 的 @MainActor 和 Sendable 在 WWDC25 里是怎么讲的？
+```
+
+维护发布：
+
+```bash
+pnpm skill:distill
+pnpm skill:validate
+pnpm skill:evaluate
+pnpm skill:pack:npm
+pnpm skill:publish:npm
+```
+
+发布 npm 包前需要本机已有 npmjs 发布凭证。
+
 ## 项目结构
 
 ```
@@ -52,6 +92,10 @@ pnpm build
 │   ├── pages/
 │   ├── styles/
 │   └── utils/
+├── skills/
+│   └── wwdc-notes/    # 可独立安装的 skill 运行包
+├── tools/
+│   └── wwdc-distiller/ # skill 蒸馏、验证、评测、npm 打包工具
 └── scripts/
 ```
 
