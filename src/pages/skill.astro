@@ -1,0 +1,197 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="WWDC Notes Skill"
+  description="WWDC Notes Skill 使用说明：在 Codex 或 Claude 中离线查询 WWDC 2020-2025 Apple 平台开发知识。"
+>
+  <article class="skill-page">
+    <header class="skill-hero">
+      <p class="eyebrow">Agent Skill</p>
+      <h1>WWDC Notes Skill</h1>
+      <p class="lead">
+        一个面向 Codex 和 Claude 的离线 WWDC 知识库，用来查询 WWDC 2020-2025 Apple 平台开发知识、API 演进和 Session 来源。
+      </p>
+    </header>
+
+    <section class="section">
+      <h2>它能做什么</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <h3>查询平台知识</h3>
+          <p>覆盖 Swift、SwiftUI、UIKit、AppKit、Xcode、visionOS、Core ML、图形媒体、网络存储、隐私安全等主题。</p>
+        </div>
+        <div class="feature-item">
+          <h3>追踪跨年演进</h3>
+          <p>适合回答某个 API、框架或开发范式从 WWDC 2020 到 2025 的变化脉络。</p>
+        </div>
+        <div class="feature-item">
+          <h3>定位 Session 来源</h3>
+          <p>通过内置索引检索具体 Session，并在回答中标注类似 <code>[WWDC25-266]</code> 的来源。</p>
+        </div>
+        <div class="feature-item">
+          <h3>辅助技术判断</h3>
+          <p>可以对比 API 适用场景、迁移成本和常见反模式，帮助做实现前的技术取舍。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>安装</h2>
+      <p>推荐使用 <code>skills</code> CLI 安装，它会从仓库的 <code>skills/</code> 目录发现可用 skill。</p>
+      <pre><code>npx skills@latest add zhangferry/wwdc --skill wwdc-notes</code></pre>
+    </section>
+
+    <section class="section">
+      <h2>适合这样问</h2>
+      <ul class="question-list">
+        <li>SwiftUI Observation 是从哪年开始变重要的？相关 Session 有哪些？</li>
+        <li>WWDC 2024 和 2025 里 App Intents 的变化是什么？</li>
+        <li>visionOS 相关的 RealityKit 和空间计算 Session 应该先看哪些？</li>
+        <li>Xcode 近几年在调试、测试和 Instruments 上有哪些值得迁移的能力？</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>使用边界</h2>
+      <p>
+        这个 skill 默认读取项目内置的离线摘要和索引，不把推断包装成 Apple 官方保证。涉及当前 SDK 状态、最低系统版本、弃用状态或最新 API 行为时，应以 Apple Developer Documentation 为准。
+      </p>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .skill-page {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .skill-hero {
+    padding: 2rem 0 2.5rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .eyebrow {
+    margin-bottom: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    font-weight: 650;
+    color: var(--color-text-primary);
+  }
+
+  .lead {
+    max-width: 680px;
+    margin-top: 1rem;
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+  }
+
+  .section {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .section:last-child {
+    border-bottom: 0;
+  }
+
+  h2 {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .feature-item {
+    padding: 1rem;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 8px;
+    background-color: var(--color-surface);
+  }
+
+  code {
+    font-family: var(--font-mono);
+    background-color: var(--color-bg-secondary);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.875em;
+    color: var(--color-text-primary);
+  }
+
+  pre {
+    margin: 1rem 0 0;
+    overflow-x: auto;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 8px;
+    background-color: var(--color-bg-secondary);
+    padding: 1rem;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+    white-space: pre;
+  }
+
+  .question-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: var(--color-text-secondary);
+  }
+
+  .question-list li {
+    margin-bottom: 0.75rem;
+    line-height: 1.75;
+  }
+
+  .question-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .question-list li::marker {
+    color: var(--color-text-tertiary);
+  }
+
+  @media (max-width: 720px) {
+    .skill-hero {
+      padding-top: 1rem;
+    }
+
+    .feature-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
