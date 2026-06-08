@@ -499,15 +499,83 @@ function formatDuration(seconds: number): string {
     const checkboxes = document.querySelectorAll<HTMLInputElement>('.track-checkbox');
     const allCheckbox = document.querySelector<HTMLInputElement>('.track-checkbox[value=""]');
     const yearRadios = document.querySelectorAll<HTMLInputElement>('.year-radio');
+    const grid = document.getElementById('session-grid');
 
     let selectedTracks = new Set<string>();
     let selectedYear = '';
     let searchQuery = '';
 
+    const originalOrder = new Map<HTMLElement, number>();
+    cards.forEach((card, index) => originalOrder.set(card, index));
+
+    function normalize(value: string) {
+      return value.toLowerCase();
+    }
+
+    function tokenize(value: string) {
+      return normalize(value).match(/[a-z0-9]+|[\u4e00-\u9fff]+/g) || [];
+    }
+
+    function isPlatformQuery(query: string) {
+      return /^(ios|ipados|macos|tvos|watchos|visionos)$/.test(query);
+    }
+
+    function scoreField(value: string, query: string, exact: number, prefix: number, contains: number) {
+      const normalized = normalize(value);
+      if (!normalized) return 0;
+      if (isPlatformQuery(query)) {
+        const fieldTokens = tokenize(value);
+        if (normalized === query) return exact;
+        if (fieldTokens.includes(query)) return contains;
+        return 0;
+      }
+      if (normalized === query) return exact;
+      if (normalized.startsWith(query)) return prefix;
+      return normalized.includes(query) ? contains : 0;
+    }
+
+    function scoreTokenField(value: string, tokens: string[], contains: number) {
+      const normalized = normalize(value);
+      if (!normalized) return 0;
+      if (tokens.length > 1 && !tokens.every(token => normalized.includes(token))) return 0;
+      return tokens.reduce((score, token) => score + (normalized.includes(token) ? contains : 0), 0);
+    }
+
+    function getSearchScore(card: HTMLElement, query: string) {
+      if (!query) return 0;
+
+      const title = card.dataset.title || '';
+      const titleEn = card.dataset.titleEn || '';
+      const track = card.dataset.track || '';
+      const rawTrack = card.dataset.rawTrack || '';
+      const tags = card.dataset.tags || '';
+      const tokens = query.split(/\s+/).filter(Boolean);
+
+      const titleScore = Math.max(
+        scoreField(title, query, 1200, 1000, 850),
+        scoreField(titleEn, query, 1200, 1000, 850),
+        scoreTokenField(title, tokens, 260),
+        scoreTokenField(titleEn, tokens, 260),
+      );
+      const trackScore = Math.max(
+        scoreField(track, query, 760, 680, 600),
+        scoreField(rawTrack, query, 760, 680, 600),
+        scoreTokenField(track, tokens, 160),
+        scoreTokenField(rawTrack, tokens, 160),
+      );
+      const tagScore = Math.max(
+        scoreField(tags, query, 420, 360, 300),
+        scoreTokenField(tags, tokens, 80),
+      );
+
+      return titleScore + trackScore + tagScore;
+    }
+
     function applyFilters() {
       let visibleCount = 0;
       const query = searchQuery.toLowerCase();
       const showAllTracks = selectedTracks.size === 0;
+      const rankedCards: Array<{ card: HTMLElement; score: number; order: number }> = [];
 
       // Count sessions per track for selected year
       const yearTrackCounts = new Map<string, number>();
@@ -537,20 +605,30 @@ function formatDuration(seconds: number): string {
         }
       });
 
-      // Filter cards
+      // Filter and rank cards. Title matches rank first, then category, then tags.
       cards.forEach(card => {
         const matchYear = !selectedYear || card.dataset.year === selectedYear;
         const matchTrack = showAllTracks || selectedTracks.has(card.dataset.track || '');
-        const matchSearch = !query ||
-          (card.dataset.title || '').toLowerCase().includes(query) ||
-          (card.dataset.titleEn || '').toLowerCase().includes(query) ||
-          (card.dataset.track || '').toLowerCase().includes(query) ||
-          (card.dataset.tags || '').toLowerCase().includes(query);
+        const searchScore = getSearchScore(card, query);
+        const matchSearch = !query || searchScore > 0;
 
         const show = matchYear && matchTrack && matchSearch;
         card.style.display = show ? '' : 'none';
-        if (show) visibleCount++;
+        if (show) {
+          visibleCount++;
+          rankedCards.push({
+            card,
+            score: searchScore,
+            order: originalOrder.get(card) || 0,
+          });
+        }
       });
+
+      if (grid) {
+        rankedCards
+          .sort((a, b) => query ? b.score - a.score || a.order - b.order : a.order - b.order)
+          .forEach(({ card }) => grid.appendChild(card));
+      }
 
       if (emptyState) {
         emptyState.classList.toggle('hidden', visibleCount > 0);
