@@ -2,21 +2,21 @@
 
 ## 领域判断
 
-Xcode、调试、测试、Instruments、性能与开发工具。本领域覆盖 175 场 WWDC Session，回答时优先把 API 变化放回年度语境里判断。
+Xcode、调试、测试、Instruments、性能与开发工具。本领域覆盖 165 场 WWDC Session，回答时优先把 API 变化放回年度语境里判断。
 
 ## 核心模型
 
 - **Developer Tools**：Xcode 16 在编辑、构建、调试、测试四个环节都有实质改进，其中 Explicit Modules 和 Swift 6 渐进式迁移是最值得开发者立刻上手的两件事。；不管你是 Xcode 新手还是老用户，这个 session 里的导航、搜索和 Git 技巧至少有三个是你不知道的——尤其是 Find Navigator 的高级搜索和 tab 管理的隐藏行为。；Xcode Cloud 新增了手动触发工作流、自定义别名（Custom Aliases）和 ci scripts 自定义脚本三大能力，让你的 CI 从"代码推送就跑"进化到"按需触发、版本统一、环境可控"。 来源：[WWDC24-10135]、[WWDC24-10181]、[WWDC24-10200]、[WWDC23-10140]
-- **Xcode**：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解如何利用 12 个月承诺期的月度订阅，为用户提供更实惠的订阅支付方式，同时巩固长期订阅关系。探索如何使用 App Store Connect、StoreKit API、Xcode 测试以及其他工具，配置并测试这一全新的支付选项。你还将了解优惠代码兑换 API 的改进，以及 App 审核内容提交体验的提升。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解 Xcode 和编码智能体如何根据 App 的情境帮助你翻译字符串目录。我们将介绍审核翻译输出和迭代本地化的策略，以便你为全球用户提供量身定制的体验。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：从零开始构建并测试 Safari 浏览器网页扩展，放心迈出入门第一步，而且全程无需使用 Xcode。探索内容拦截、页面修改、原生通信和权限模式如何协同工作，跨平台打造强大且保护隐私的浏览体验。 来源：[WWDC26-210]、[WWDC26-213]、[WWDC26-216]、[WWDC26-227]
 - **Swift & UI**：Swift 5.9 宏的完整指南——从创建你的第一个宏到处理错误诊断，这节课把该讲的都讲了。；SwiftUI 在 iOS 15 中补上了样式系统这块拼图——ButtonRole、controlSize、listStyle 等新 API 让你不用写自定义修饰符就能获得平台一致的视觉效果。；ARC 不是垃圾回收，理解 retain/release 的插入时机是写出高性能 Swift 代码的前提——特别是 async/await 场景下 ARC 优化器的行为发生了变化。 来源：[WWDC23-10166]、[WWDC21-10196]、[WWDC21-10216]、[WWDC20-10093]
 - **System Frameworks**：WorkoutKit 终于在 watchOS 11 支持自定义游泳训练了，包括全新的"距离+时间"复合目标类型，这是游泳开发者等了整整一年的核心功能。；iOS 18 为文档类 App 提供了一套全新的可定制启动界面，从系统文档浏览器变成了带有品牌装饰、模板选择和自定义背景的沉浸式首页——重新编译就能获得。；如果你的 App 有任何非英语用户（基本上就是所有 App），这场 Session 提供的几个"一行代码修 bug"方案值得立刻加进你的代码库。 来源：[WWDC24-10084]、[WWDC24-10132]、[WWDC24-10185]、[WWDC20-10111]
 - **开发工具**：Xcode 26 的 String Catalog 自动注释生成和符号生成功能，让本地化从"维护负担"变成了"开发工作流的自然延伸" 你写代码，Xcode 帮你准备翻译上下文。；Xcode 26 最大的卖点是 LLM 驱动的 Coding Assistant 正式落地，但更实在的进步是 build 加速、debugger 改善、以及 UI testing 的代码生成革命。；SwiftUI 今年的更新覆盖了从视觉到性能到生态的全链路——Liquid Glass 设计语言让你重新编译就焕然一新，列表性能提升 16 倍，WebView 和富文本终于官方支持，visionOS 三维布局正式成型。 来源：[WWDC25-225]、[WWDC25-247]、[WWDC25-256]、[WWDC25-306]
-- **Swift & Data**：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：与我们一起了解 Swift 的最新更新。探索语言方面的最新进展，包括提升日常开发体验的更新、改进的并发性，以及更安全的高性能代码。了解工作流程和语言互操作性的改进，以及嵌入式 Swift 的更新。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：使用 gRPC 在你的 Swift App 中及后端打造引人入胜的实时体验。gRPC 是一个开源的 RPC 框架，专为高性能、双向流式 API 设计。探索 gRPC Swift 软件包如何借助 Swift 并发提供现代且安全的运行时环境。了解整合的诸多工具如何简化你的工作流程，并帮助你轻松打造实时功能。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解如何借助测试框架之间的互操作性，在使用 XCTest 的同时放心地采用 Swift Testing。探索逐步引入高级测试功能的最佳做法和模式，以便加快开发速度并扩大测试覆盖面。 来源：[WWDC26-262]、[WWDC26-265]、[WWDC26-267]、[WWDC26-298]
 - **System & Services**：iOS 17 终于支持可恢复的上传任务了，下载和上传现在都能从中断处继续——这对大文件传输是改变游戏规则的更新。；Accelerate 框架在 iOS 15 中新增了加密归档（Encrypted Archive）支持——用 Apple 独有的加密算法压缩和保护数据，性能比 CommonCrypto 好得多。；iOS 14 新增的"大致位置"选项让用户可以选择只给 App 一个模糊的位置精度，如果你的企业 App 需要精确定位（比如室内导航、资产管理），你需要引导用户授予精确定位权限。 来源：[WWDC23-10006]、[WWDC21-10233]、[WWDC20-10140]、[WWDC20-10142]
+- **Task**：这场 Session 最值得关注的一件事是：Apple 终于用全新的 StateReporting 框架解决了“全局平均指标掩盖特定页面卡顿”的千古难题。；visionOS 上性能优化的首要目标不是省电，而是避免热压降频——系统始终在渲染每一帧（即使用户没操作），多个 App 同时运行，你的 App 如果占用资源过多会导致整体体验下降。；从开发阶段到发布后，Apple 提供了一整套卡顿（Hang）检测工具链——Xcode 中的 Hangs Instrument、TestFlight 阶段的设备端检测、以及 App Store Connect 中的聚合报告。 来源：[WWDC26-222]、[WWDC23-10100]、[WWDC22-10082]、[WWDC21-10258]
+- **Xcode**：Xcode 终于把 AI 翻译做成了原生工作流，靠 String Catalogs（字符串目录）攒了三年的工程上下文，这次大模型翻译不再是“人工智障”了。；✅ "Coding Agent 终于从侧边栏玩具变成了编辑器里的一等公民，甚至包揽了多语言本地化和 Organizer 性能修复的脏活。"；✅ Device Hub 把 Xcode 臃肿的设备管理剥离成了独立 App，并用全新的 devicectl 命令行工具彻底拯救了 CI/CD 里的设备控制脚本。 来源：[WWDC26-213]、[WWDC26-258]、[WWDC26-260]、[WWDC25-257]
 
 ## API 演进时间线
 
-- **WWDC26**：23 场，代表来源：[WWDC26-210]、[WWDC26-213]、[WWDC26-216]、[WWDC26-222]、[WWDC26-227]
+- **WWDC26**：13 场，代表来源：[WWDC26-201]、[WWDC26-213]、[WWDC26-216]、[WWDC26-222]、[WWDC26-227]
 - **WWDC25**：10 场，代表来源：[WWDC25-225]、[WWDC25-247]、[WWDC25-256]、[WWDC25-257]、[WWDC25-306]
 - **WWDC24**：13 场，代表来源：[WWDC24-10066]、[WWDC24-10084]、[WWDC24-10113]、[WWDC24-10132]、[WWDC24-10135]
 - **WWDC23**：25 场，代表来源：[WWDC23-10006]、[WWDC23-10016]、[WWDC23-10023]、[WWDC23-10029]、[WWDC23-10056]
@@ -26,49 +26,49 @@ Xcode、调试、测试、Instruments、性能与开发工具。本领域覆盖 
 
 ## 决策启发式
 
-- 先用本页确认 Session 是否与你的项目相关，再针对具体 API 查阅 Apple Developer Documentation。
-- 涉及最低系统版本、弃用状态和运行时行为时，以 Xcode 27 SDK 与正式文档为准。
-- 当前不要把章节摘要当作完整迁移指南；待 transcript 发布后再做架构和兼容性决策。
-- 开启自动注释生成 。Xcode Settings Editing "automatically generate string catalog comments"。这会让翻译人员获得足够上下文，减少来回沟通。
-- 早期项目用字符串提取，成熟项目切符号生成 。两者之间的 Refactor 菜单可以一键转换，不必一开始就做决定。
-- 使用 plural form 处理数量相关字符串 。不要用简单的 "item(s)" 占位，让系统根据语言规则选择正确形式。
-- 给翻译人员导出时选择性导出语言 。Product Export Localizations 只选需要的语言，减少翻译文件体积。
-- 大型项目的字符串按功能模块分 table 。比如 "Settings"、"Discover"、"Profile" 各一个 String Catalog，避免单个文件过大。
-- 用 Coding Assistant 探索不熟悉的代码库时关闭自动应用修改，先理解模型的建议再决定是否采纳。
-- 在 Signing & Capabilities 编辑器中统一管理 usage description，避免手动修改 Info.plist 导致的遗漏。
+- 已有 Chrome 扩展迁移 ：如果你的扩展已经是 Manifest V3，直接复用 95% 的代码。重点检查 background 脚本，Safari 强制要求使用 Service Worker，不支持 persistent background pages。另外，把 <all urls 这种宽泛权限拆成 Optional Host Permissions，在 Safari 里体验会好很多。
+- 新项目架构建议 ：采用“核心逻辑纯 Web + 平台特性 Native”的架构。把 UI、网络拦截、DOM 操作全部用标准 Web API 写好，这部分代码可以跨浏览器复用。只有当需要用到 Touch ID、Keychain 或跨 App 通信时，才在 Xcode 里写一层薄薄的 Native Wrapper，通过 browser.runtime.sendNativeMessage 桥接。
+- 调试避坑 ：在 Safari 设置里开启“允许未签名的扩展”后，每次修改代码不需要重启 Safari，只需在扩展管理面板点一下“重新加载”按钮。但如果修改了 manifest.json 里的权限，建议彻底关掉 Safari 再重开，避免权限缓存导致灵异事件。
+- 已有项目的迁移策略 ：不要一上来就全局开启 Agent 自动修复。先在 Organizer 里挑几个低优先级的 Animation hitches 或 Metric Goals（指标目标）未达标的问题，让 Agent 生成 /plan，人工 Review 它的思路后再 Apply。本地化方面，先让 Agent 跑一遍 String Catalogs 生成，重点人工校对带有上下文歧义的 UI 文案。
+- 新项目的采用建议 ：习惯使用独立 Swift 文件做 UI 预研。在写核心业务逻辑前，先建一个 .swift 文件，用 Preview 把各种边界情况（如超长文本、暗黑模式、动态字体）跑通，再移入主工程。这能大幅减少后期的 UI 调整时间。
+- 实战中容易踩的坑 ：Xcode 27 的 Inline Issues（内联问题）在打字时变淡了，这虽然减少了视觉干扰，但容易让你忽略潜在的语法错误。建议保持 Cmd + B 的肌肉记忆，不要完全依赖编辑器里变淡的预测提示，以免在长代码块末尾积累一堆编译错误。
+- 已有项目的迁移策略 ：别一上来就让智能体重构核心逻辑。先让它跑一遍 Explore 流程，生成项目的架构文档。人工 Review 这些文档，修正 AI 理解错的地方，把这份文档作为后续 AI 协作的“基准线”。
+- 新项目的采用建议 ：把智能体当成一个记忆力很好但缺乏业务常识的 Junior 开发。使用 Plan mode (计划模式) 让它先出方案，你通过 Queued messages (排队消息) 实时纠偏，确认架构没问题了再让它动手写代码。
+- 实战避坑 ：千万别在聊天框里发几百字的长篇大论。把需求拆碎，利用 Xcode 的 Preview 和 Test 工具做闭环验证。AI 改完一步，立刻跑一次测试，别等它改完十个文件再跑，那时候报错你都找不到是哪一步引入的。
+- 已有项目的迁移策略 ：把 CI 仓库里的 xcrun simctl 和 ios deploy 逐步替换为 xcrun devicectl。先在一个非核心的 nightly build 流水线跑一周，观察设备连接稳定性和 JSON 输出格式。
 
 ## 反模式与坑
 
-- Session 222（多语言体验增强）提供了 Locale.preferredLocales 和 Natural Selection 的 API 更新，与本地化工作流直接相关。
-- String Catalog 支持 Usage Description Comments 自动生成，提供翻译所需的上下文信息。
-- 如果你的 app 支持多语言，优先处理长字符串语言（如德语）和 RTL 语言（如阿拉伯语、希伯来语）的布局适配。
-- 两种工作流各有优势
-- bundle 宏是小而美的改进
-- 自动注释生成使用的是端侧模型
-- Swift Build 已开源并在 GitHub 上接受社区贡献，正在被集成到 SwiftPM 中以统一 Xcode 和开源工具链的 build 引擎。
-- String Catalog 现在能用 on device model 自动生成 localized string 的上下文注释，对翻译团队非常有价值。
+- iOS 27 新增 Authenticator data Extensions ：现在能直接拿到 App 的 Launch validation category（启动验证类别）和 Bundle version，服务端终于能精准识别出请求是来自 TestFlight 还是 App Store 正式版了。
+- isSupported 的逆向思维 ：Apple 明确建议把 isSupported == false 当作 Fraud signal（欺诈信号），这在越狱检测库满天飞的今天，算是官方给的最稳妥的“照妖镜”。
+- 密钥不跟随 iCloud 备份 ：App Attest 的密钥是和设备硬件绑定的，用户从 iCloud 备份恢复新手机时，旧密钥直接作废，客户端必须老老实实重新走一遍生成和 Attest 流程。
+- XLIFF 标记支持 ：导出的 XLIFF 文件里，机翻内容会带上 state qualifier="leveraged mt" 标记，方便专业翻译人员快速过滤和复核。
+- 复数变体自动补全 ：Agent 会根据目标语言的语法规则（如阿拉伯语的 6 种复数形式），自动在 String Catalog 里生成对应的 Plural Variations（复数变体）占位符。
+- 子 Agent 并发架构 ：Xcode 在后台把字符串分批次扔给多个子 Agent 并发翻译，大幅缩短了大型项目的本地化等待时间。
+- 原生消息传递 (Native Messaging) ：Session 展示了通过 Xcode 打包后，JS 可以直接和包含它的 macOS/iOS App 通信，这是解锁 Apple 平台专属能力（如 Local Authentication）的唯一途径。
+- TestFlight 无缝分发 ：Safari 扩展现在可以像普通 App 一样，直接通过 TestFlight 分发给测试用户，终于不用每次内测都到处发 .ipa 或 .pkg 了。
 
 ## 高频主题
 
-`Xcode` (12)、`Swift` (9)、`开发工具` (7)、`Instruments` (3)、`SwiftUI` (3)、`Xcode & Developer Tools` (2)、`Siri` (2)、`Other` (2)、`Design` (2)、`StoreKit` (1)、`Safari` (1)、`App Intents` (1)、`Swift & Data` (1)、`Metal` (1)、`应用服务` (1)、`基础` (1)、`空间计算` (1)、`AI` (1)
+`开发工具` (7)、`Swift` (6)、`SwiftUI` (5)、`Xcode` (4)、`Instruments` (3)、`String Catalogs` (2)、`MetricKit` (2)、`StateReporting` (2)、`Performance` (2)、`Xcode Agents` (2)、`Device Hub` (2)、`CI/CD` (2)、`Swift Concurrency` (2)、`App Attest` (1)、`DeviceCheck` (1)、`Secure Enclave` (1)、`Fraud Metric` (1)、`macOS` (1)
 
 ## 关键 Session
 
-- [WWDC26-210] Apple App 内购买项目的新功能：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解如何利用 12 个月承诺期的月度订阅，为用户提供更实惠的订阅支付方式，同时巩固长期订阅关系。探索如何使用 App Store Connect、StoreKit API、Xcode 测试以及其他工具，配置并测试这一全新的支付选项。你还将了解优惠代码兑换 API 的改进，以及 App 审核内容提交体验的提升。
-- [WWDC26-213] 使用 Xcode 中的智能体翻译你的 App：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解 Xcode 和编码智能体如何根据 App 的情境帮助你翻译字符串目录。我们将介绍审核翻译输出和迭代本地化的策略，以便你为全球用户提供量身定制的体验。
-- [WWDC26-216] 创建 Safari 浏览器的网页扩展：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：从零开始构建并测试 Safari 浏览器网页扩展，放心迈出入门第一步，而且全程无需使用 Xcode。探索内容拦截、页面修改、原生通信和权限模式如何协同工作，跨平台打造强大且保护隐私的浏览体验。
-- [WWDC26-222] 了解全新的 MetricKit：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：借助新工具，比以往更快地发现和修复性能问题。与我们一起探索 MetricKit 如何为你提供关键的性能指标和实用的诊断信息，助你精准发现你的 App 在哪些方面仍有改进空间。我们还将介绍如何使用 StateReporting 框架按 App 状态对 App 的指标和诊断信息进行交叉分析，借此全面掌握相关情况，以便进一步排查并优化你 App 的体验。
-- [WWDC26-227] 使用 Xcode 中的智能体创建 UI 原型：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解如何使用 Xcode 中的智能体构建 App 原型。探索相关技巧，看看如何借助 AI 进行互动原型设计、布局迭代，并创造性地解决设计难题。你还将了解如何用辩证的眼光评估想法，并将想法提炼成以用户为中心的高质量 App 体验。
-- [WWDC26-240] 使用 App Schemas 打造智能 Siri 体验：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：利用 App Intents，将你 App 的内容和操作带到 Siri。通过 App Entities 对数据进行建模，使用 App Schemas 实现强大的系统操作，并为依托 Apple 智能的自然语言交互提供支持。探索如何启用语义搜索、跨 App 执行操作，以及利用屏幕感知和内容传输功能打造贴合情境的用户体验。了解一些最佳做法和测试工具，助你构建快速、可靠的 Siri 体验。
-- [WWDC26-243] 使用 Instruments 调试和分析智能体 App 体验：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：探索 Xcode 中增强的 Foundation Models Instrument，以便检查相关行为表现，并优化智能体流程的性能。了解如何在涉及多个 LanguageModelSession 和配置的高级用例中，检查提示词、分析延迟并追踪控制流。
-- [WWDC26-258] Xcode 27 的新功能：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：探索 Xcode 27 中最新的效率增强功能。通过自定、编码智能体和 Device Hub 加速你的开发流程。探索本地化、性能和测试工具方面的更新，以便进一步优化你的 App。
-- [WWDC26-259] 在 Xcode 中与智能体协作开发：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解如何在开发过程中使用 Xcode 中的编码智能体。我们将探索与智能体协作的多种方式，并分享从创建初始原型到打磨完善 App 的实用技巧。了解 Xcode 的编码助手如何适应你的需求，帮助你持续投入那些让编程充满乐趣的创意工作——无论你是独自开发 App，还是与团队协作开发。
-- [WWDC26-260] 充分利用 Device Hub：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解 Device Hub 如何加速你的开发流程。我们将介绍 Device Hub 的具体功能，还将演示如何借助设备和模拟器快速诊断并复现问题。
-- [WWDC26-261] 使用 Xcode Cloud 构建、交付并实现自动化：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：探索 Xcode Cloud 的最新更新，助你更快地开始构建和交付 App。了解 Xcode Cloud 的核心概念，通过连接你的源代码库来轻松设置云端构建和测试，并在准备好发布时配置 App 分发。了解 Web 挂钩和管理工具如何扩展 Xcode Cloud 的功能，为你的高级工作流程提供支持。
-- [WWDC26-262] Swift 的新功能：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：与我们一起了解 Swift 的最新更新。探索语言方面的最新进展，包括提升日常开发体验的更新、改进的并发性，以及更安全的高性能代码。了解工作流程和语言互操作性的改进，以及嵌入式 Swift 的更新。
-- [WWDC26-265] 使用 gRPC 和 Swift 构建实时 App 及服务：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：使用 gRPC 在你的 Swift App 中及后端打造引人入胜的实时体验。gRPC 是一个开源的 RPC 框架，专为高性能、双向流式 API 设计。探索 gRPC Swift 软件包如何借助 Swift 并发提供现代且安全的运行时环境。了解整合的诸多工具如何简化你的工作流程，并帮助你轻松打造实时功能。
-- [WWDC26-267] 迁移到 Swift Testing：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解如何借助测试框架之间的互操作性，在使用 XCTest 的同时放心地采用 Swift Testing。探索逐步引入高级测试功能的最佳做法和模式，以便加快开发速度并扩大测试覆盖面。
-- [WWDC26-268] 性能分析、修复和验证：利用 Instruments 提升 App 响应性：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：通过明确的工作流程处理 App 响应性问题。探索 Swift 并发 Instrument、Time Profiler 和 System Trace，以便定位性能瓶颈。了解如何使用热点函数并进行对比，以衡量你的性能改进并验证修复效果。同时探索 Instruments 中的其他增强功能，让每次迭代变得更快，从而帮助你在更短时间内为用户打造更流畅的体验。
-- [WWDC26-281] 使用 Xcode 扩展 Reality Composer Pro 3 的功能：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：探索 Reality Composer Pro 3 如何助你构建规模更大、更具雄心的空间项目。了解如何创建项目专属插件，以便编辑自定组件、运行自定系统，并构建自己的 ScriptGraph 节点，从而全面掌控你的空间创作工作流程。
-- [WWDC26-298] 了解 Evaluations 框架：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解如何使用 Evaluations 框架来评估模型驱动的体验。在概率世界中，仅靠单元测试是不够的。探索如何定义指标、自动评估输出质量并汇总统计数据，以便确保由 AI 支持的功能在各个 Apple 平台上都能稳定可靠地运行。
-- [WWDC26-335] 通过爬山法评估优化你的提示词：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解比较评估的实用技巧，从而引导你完善提示工程，并为你的 App 选择最合适的模型。探索如何为性能建立基准、扩展评估策略，并将结果转换为 JSON 格式以便与其他工具集成。了解不同提示策略的适用场景，以及如何迭代优化提示词以获得最佳结果。
+- [WWDC26-201] 使用 App Attest 保护你的 App：这场 Session 最值得关注的一件事是：Apple 终于把 App Attest 搬上了 macOS 27，并引入了基于 30 天内唯一密钥数量的 Fraud Metric（欺诈指标），这意味着靠改机软件和设备农场刷接口的黑产要迎来降维打击了。
+- [WWDC26-213] 使用 Xcode 中的智能体翻译你的 App：Xcode 终于把 AI 翻译做成了原生工作流，靠 String Catalogs（字符串目录）攒了三年的工程上下文，这次大模型翻译不再是“人工智障”了。
+- [WWDC26-216] 创建 Safari 浏览器的网页扩展：这场 Session 最值得关注的一件事是：Safari 扩展开发终于把前端开发者当人看了，全程无需打开 Xcode 就能完成 90% 的开发和调试。
+- [WWDC26-222] 了解全新的 MetricKit：这场 Session 最值得关注的一件事是：Apple 终于用全新的 StateReporting 框架解决了“全局平均指标掩盖特定页面卡顿”的千古难题。
+- [WWDC26-227] 使用 Xcode 中的智能体创建 UI 原型：这场 Session 最值得关注的一件事是：Apple 终于承认 AI 直接生成的 UI 通常是垃圾，并手把手教你如何用“多变体对比”和“实时调试面板”把 Xcode Agent 从盲盒玩具驯化成可控的设计工具。
+- [WWDC26-258] Xcode 27 的新功能：✅ "Coding Agent 终于从侧边栏玩具变成了编辑器里的一等公民，甚至包揽了多语言本地化和 Organizer 性能修复的脏活。"
+- [WWDC26-259] 在 Xcode 中与智能体协作开发：Xcode 27 的编码智能体 (Coding agents) 终于从“只会补全代码的打字员”变成了“能读懂祖传代码并自己拆包分发的包工头”。
+- [WWDC26-260] 充分利用 Device Hub：✅ Device Hub 把 Xcode 臃肿的设备管理剥离成了独立 App，并用全新的 devicectl 命令行工具彻底拯救了 CI/CD 里的设备控制脚本。
+- [WWDC26-261] 使用 Xcode Cloud 构建、交付并实现自动化：Xcode Cloud 这次没搞大新闻，但通过原生支持多 Git 仓库（Additional repositories）和极简的引导流程，彻底让中小团队自建 iOS CI/CD 变成了伪需求。
+- [WWDC26-265] 使用 gRPC 和 Swift 构建实时 App 及服务：gRPC Swift 终于补齐了现代 Swift 并发（Swift Concurrency）的最后一块拼图，全栈 Swift 开发者现在可以用一套 .proto 文件无缝搞定 iOS 和后端的双向实时流，不用再捏着鼻子手写 WebSocket 状态机了。
+- [WWDC26-267] 迁移到 Swift Testing：✅ Swift Testing 终于不用“推倒重来”了，官方提供的互操作性（Interoperability）让你能在同一个文件里无缝混写 XCTest 和 Swift Testing，老项目的迁移成本直接降维。
+- [WWDC26-268] 性能分析、修复和验证：利用 Instruments 提升 App 响应性：Instruments 27 终于把“找卡顿”从玄学变成了填空题，新增的 Top Functions 视图和 Swift Executors 工具让新手也能一眼看穿 Main Actor 阻塞和同步 I/O 的锅。
+- [WWDC26-388] 查找并修复 Metal 游戏中的性能问题：✅ 告别“无法复现的掉帧”，系统级无感回溯 (Lookback Collection) 结合 StateReporting API，让长线游戏性能排查从“玄学”变成“精准定位”。
+- [WWDC25-225] Code-along: Explore localization with Xcode：Xcode 26 的 String Catalog 自动注释生成和符号生成功能，让本地化从"维护负担"变成了"开发工作流的自然延伸" 你写代码，Xcode 帮你准备翻译上下文。
+- [WWDC25-247] Xcode 26 新特性详解：Xcode 26 最大的卖点是 LLM 驱动的 Coding Assistant 正式落地，但更实在的进步是 build 加速、debugger 改善、以及 UI testing 的代码生成革命。
+- [WWDC25-256] SwiftUI 年度更新：Liquid Glass、性能飞跃与三维布局：SwiftUI 今年的更新覆盖了从视觉到性能到生态的全链路——Liquid Glass 设计语言让你重新编译就焕然一新，列表性能提升 16 倍，WebView 和富文本终于官方支持，visionOS 三维布局正式成型。
+- [WWDC25-257] Xcode 新特性：Xcode 26 把 Apple Intelligence 直接嵌入了 IDE 工具链——真正改变日常开发节奏的不是 AI 本身，而是 playground 宏让代码验证从"事件"变成了"习惯"。
+- [WWDC25-306] 用 Instruments 优化 SwiftUI 性能：SwiftUI 的性能问题有两大根源：body 太慢和更新太多——新的 SwiftUI Instrument 能同时定位两者，特别是那个 Cause & Effect Graph，第一次把"为什么这个 View 会更新"这件事可视化了。

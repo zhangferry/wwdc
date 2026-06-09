@@ -3,20 +3,20 @@
   "coverage": {
     "from": 2020,
     "to": 2026,
-    "sessions": 1165
+    "sessions": 1146
   },
   "domains": {
-    "swiftui": 166,
-    "swift-concurrency": 44,
-    "uikit-appkit": 27,
-    "xcode-tools": 175,
-    "spatial-computing": 118,
-    "machine-learning": 108,
+    "swiftui": 173,
+    "swift-concurrency": 49,
+    "uikit-appkit": 28,
+    "xcode-tools": 165,
+    "spatial-computing": 119,
+    "machine-learning": 112,
     "networking-storage": 51,
-    "graphics-media": 206,
-    "platform-services": 337,
-    "app-distribution": 64,
-    "privacy-security": 60,
-    "design-accessibility": 170
+    "graphics-media": 207,
+    "platform-services": 335,
+    "app-distribution": 63,
+    "privacy-security": 61,
+    "design-accessibility": 166
   }
 }

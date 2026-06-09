@@ -2,21 +2,21 @@
 
 ## 领域判断
 
-UIKit、AppKit、生命周期与 SwiftUI 互操作。本领域覆盖 27 场 WWDC Session，回答时优先把 API 变化放回年度语境里判断。
+UIKit、AppKit、生命周期与 SwiftUI 互操作。本领域覆盖 28 场 WWDC Session，回答时优先把 API 变化放回年度语境里判断。
 
 ## 核心模型
 
-- **SwiftUI & UI Frameworks**：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解如何在现有的 AppKit 或 UIKit App 中逐步采用 SwiftUI。我们将介绍如何使用 Observation 框架自动更新视图，将 SwiftUI 组件整合到现有的视图层次结构中，并将手势识别器引入 SwiftUI。我们还将探索如何向你的 App 添加完整的 SwiftUI 场景，同时不改变整体架构。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：探索 UIKit 的最新更新。了解如何更新 iPhone App 的布局，以便在调整大小时能够呈现出色效果，让你的 App 无论是通过 iPhone 镜像功能使用还是显示在 iPad 上都相宜。探索适用于标签栏和导航栏的全新 API，并了解如何针对 Apple 智能的新功能准备好的 App。我们还将介绍一种充分利用所选编码智能体的技巧，帮助你实现代码库现代化。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：根据最新的 macOS 设计惯例升级改造你的 AppKit App。深入探索… 来源：[WWDC26-272]、[WWDC26-278]、[WWDC26-289]、[WWDC25-282]
-- **Observable**：UIKit 终于在 layoutSubviews() 里原生支持了 @Observable，这比 Liquid Glass 的视觉更新重要得多——它意味着你终于可以把项目里那些散落各处的 KVO（键值观察）和 NotificationCenter（通知中心）监听一次性干掉了。；UIHostingController 的增强、SwiftUI 视图用作 UICollectionView/UITableView cell——这场 Session 是渐进式 SwiftUI 采用的实操指南。 来源：[WWDC25-268]、[WWDC22-10072]
+- **Observable**：这场 Session 最值得关注的一件事是：AppKit 和 UIKit 的原生视图（NSView/UIView）终于能直接“白嫖” @Observable 的自动刷新机制了，老项目混编最恶心的手动状态同步彻底成为历史。；UIKit 终于在 layoutSubviews() 里原生支持了 @Observable，这比 Liquid Glass 的视觉更新重要得多——它意味着你终于可以把项目里那些散落各处的 KVO（键值观察）和 NotificationCenter（通知中心）监听一次性干掉了。；UIHostingController 的增强、SwiftUI 视图用作 UICollectionView/UITableView cell——这场 Session 是渐进式 SwiftUI 采用的实操指南。 来源：[WWDC26-272]、[WWDC25-268]、[WWDC22-10072]
+- **Liquid Glass**：✅ AppKit 彻底抛弃 mouseDown: 转向手势识别器（Gesture Recognizers），并用全新的“边角同心性（Concentricity）”API 终结了 macOS 嵌套圆角对不齐的强迫症。；UIKit 终于在 layoutSubviews() 里原生支持了 @Observable，这比 Liquid Glass 的视觉更新重要得多——它意味着你终于可以把项目里那些散落各处的 KVO（键值观察）和 NotificationCenter（通知中心）监听一次性干掉了。 来源：[WWDC26-289]、[WWDC25-268]
+- **MainActor**：这场 Session 最值得关注的一件事是：AppKit 和 UIKit 的原生视图（NSView/UIView）终于能直接“白嫖” @Observable 的自动刷新机制了，老项目混编最恶心的手动状态同步彻底成为历史。；AppKit 在 macOS 12 终于拿到了 Swift Concurrency 的入场券——@MainActor 标注的 NSViewController、async 版本的 panel 展示、以及改进的 SwiftUI 互操作能力，老牌 Mac app 的现代化路径越来越清晰了。 来源：[WWDC26-272]、[WWDC21-10054]
 - **Swift & UI**：SF Symbols 3 带来了多色渲染和可变颜色——但你如果在 UIKit 中还在用 withRenderingMode(.alwaysTemplate)，你正在浪费这套图标系统的全部能力。；macOS Big Sur 的 Mac Catalyst 终于可以做到"看不出是 Catalyst App"了——原生的窗口工具栏、侧边栏、右键菜单、以及可选的 AppKit 控件，让你的 iPad App 在 Mac 上获得真正的桌面体验。 来源：[WWDC21-10251]、[WWDC20-10143]
+- **SwiftUI & UI Frameworks**：UIScene 生命周期即将变成强制要求——现在不迁移以后编译都过不了。但 Apple 给的迁移路径其实很清晰：Scene 管生命周期和状态恢复，SplitView/TabBar 管布局适应，Safe Area + Layout Guide 管自适应 UI。问题在于老项目的迁移成本。；iOS 18 的 UIKit 最值得关注的是用 SwiftUI Animation 驱动 UIKit 动画——两个框架的动画系统终于打通了。 来源：[WWDC25-282]、[WWDC24-10118]
 - **Accessibility**：Accessibility Nutrition Labels 让辅助功能从"良心活"变成了"竞争力指标"——用户下载前就能看到你做了没有，这比任何技术 API 都更有杀伤力。 来源：[WWDC25-221]
-- **Apple Silicon 过渡的技术路线**：这是 WWDC 2020 的技术版 Keynote——如果你只看一场 Session 就要了解今年所有平台的开发者新特性，选这场准没错。 来源：[WWDC20-102]
-- **CollectionView Cell 中的 SwiftUI 托管技巧。**：如果你的 Mac App 已经有大量 AppKit 代码，这场 Session 以 Shortcuts 为案例，详细讲解了 SwiftUI 和 AppKit 互相嵌入、数据共享、响应链集成等实战技巧。 来源：[WWDC22-10075]
-- **Configuration 与旧 API 的共存**：UIButton.Configuration 是 UIKit 对「现代按钮」的正式回答——终于不用在 setTitle、setImage、setBackgroundColor 之间反复横跳了，一个 struct 搞定所有配置。 来源：[WWDC21-10064]
+- **Adaptivity**：iPhone App 在 Mac (iPhone Mirroring) 和 iPad 上变成了“完全可自由拉伸的窗口”，这直接宣判了 UIScreen.main 和硬编码设备类型的死刑，逼迫所有 UIKit 老项目必须彻底拥抱 Size Classes (尺寸类别)。 来源：[WWDC26-278]
 
 ## API 演进时间线
 
-- **WWDC26**：3 场，代表来源：[WWDC26-272]、[WWDC26-278]、[WWDC26-289]
+- **WWDC26**：4 场，代表来源：[WWDC26-272]、[WWDC26-278]、[WWDC26-289]、[WWDC26-372]
 - **WWDC25**：5 场，代表来源：[WWDC25-219]、[WWDC25-221]、[WWDC25-268]、[WWDC25-282]、[WWDC25-310]
 - **WWDC24**：2 场，代表来源：[WWDC24-10118]、[WWDC24-10124]
 - **WWDC23**：5 场，代表来源：[WWDC23-10036]、[WWDC23-10054]、[WWDC23-10055]、[WWDC23-10057]、[WWDC23-111215]
@@ -26,9 +26,9 @@ UIKit、AppKit、生命周期与 SwiftUI 互操作。本领域覆盖 27 场 WWDC
 
 ## 决策启发式
 
-- 先用本页确认 Session 是否与你的项目相关，再针对具体 API 查阅 Apple Developer Documentation。
-- 涉及最低系统版本、弃用状态和运行时行为时，以 Xcode 27 SDK 与正式文档为准。
-- 当前不要把章节摘要当作完整迁移指南；待 transcript 发布后再做架构和兼容性决策。
+- 已有项目的迁移策略 ：别想着“一把梭”重写。最稳妥的起手式是把核心数据模型加上 @Observable 宏，让现有的 NSView/UIView 享受自动刷新；遇到需要大改 UI 或新增复杂交互的独立模块（比如新的设置面板、复杂的图表），直接用 SwiftUI 写，通过 NSHostingView 嵌进去；边缘 Scene（如菜单栏扩展）则可以通过 NSHostingSceneRepresentation 无缝替换。
+- 新项目的采用建议 ：直接上纯 SwiftUI。除非你要做极度依赖底层事件循环的复杂自定义控件（比如 DAW 软件的钢琴卷帘），否则不要主动引入 AppKit/UIKit 混编，徒增心智负担。
+- 实战中容易踩的坑 ：Info.plist 里的 NSObservationTrackingEnabled 开关。如果你要支持 macOS 15 / iOS 18，必须手动加这个 key 才能开启自动追踪，而在 macOS 26 / iOS 26 上它是默认开启的。漏了这个 key 会导致老系统上视图死活不刷新，排查起来极其痛苦。
 - 第一步：用 Xcode 26 构建 。大部分新设计会自动生效——toolbar 浮动、sidebar 玻璃、控件新外观。这是最低成本的第一轮适配。
 - 清理遗留代码 ：移除 sidebar 中的 NSVisualEffectView，移除硬编码的控件高度（改用 Auto Layout），给菜单项加 symbol icon。
 - 内容延伸到边缘 ：充分利用浮动 toolbar 和 sidebar 的视觉效果，让内容（地图、照片、艺术品）延伸到这些区域下方。用 NSBackgroundExtensionView 处理没有足够负空间的艺术作品。
@@ -39,24 +39,25 @@ UIKit、AppKit、生命周期与 SwiftUI 互操作。本领域覆盖 27 场 WWDC
 
 ## 反模式与坑
 
-- SharePlay 的多人同步改进支持更灵活的交互延迟容错，适合派对游戏和多人观影场景，但 Session 里没有给具体 API 变化。
-- SwiftUI 的 LazyVGrid 在 tvOS 上的性能有明显提升，大列表滚动不再掉帧了，这对内容浏览类 app 是直接的体验改善。
-- 自定义视频播放叠加层现在支持章节导航 UI，可以不离开播放界面就切换章节，对长视频内容（课程、纪录片）体验提升明显。
-- 包容性债务（Inclusion Debt） ：苹果正式把这个概念提出来了，意思是累积未解决的辅助功能缺陷应该像技术债务一样被追踪和偿还。
-- Liquid Glass 的 Reduced Motion 适配 ：新的玻璃动效在"减少动效"模式下需要降级为静态效果，自定义动画需要额外处理。
-- Assistive Access 自定义场景定义 ：开发者现在可以为特定使用场景定义专用的简化界面，而不仅仅是全局开关。
-- UIBarButtonItem 新增 badge 属性，一行代码就能给导航栏按钮加未读数角标，如果你之前是自定义角标视图，现在可以换掉了。
-- HDR 颜色选取器原生支持和 UITraitHDRHeadroomUsageLimit trait 的组合，让 HDR 内容在失去焦点时自动降级功耗，对展示 HDR 照片的应用很有意义。
+- NSHostingMenu ：可以直接用 SwiftUI 的 View（包含 Button、Picker 等）构建菜单，然后包装成 NSMenu 塞进 AppKit 的主菜单栏，连键盘快捷键都能完美映射。
+- Canvas 与 CoreGraphics 互通 ：在 SwiftUI 的 Canvas 里可以通过 withCGContext 直接拿到 CGContext，以前写在 drawRect 里的老 CoreGraphics 绘制代码可以一行不改地搬到 SwiftUI 里。
+- Liquid Glass 的底层实现 ：Apple 透露 AppKit 里的 NSSlider、NSSwitch 等基础控件，底层已经大量使用 SwiftUI 来渲染新的 Liquid Glass 效果，这意味着你即使不写 SwiftUI，也在享受它的渲染红利。
+- Menu 图片可见性控制 ：在 iPadOS 和 macOS 的菜单栏中，Menu element (菜单元素) 的图片默认可能不显示，需要用 preferredImageVisibility 强制覆盖。
+- Siri 与 Drag & Drop 整合 ：如果你的 App 支持拖拽，Siri 可以直接读取你 Drag handler (拖拽处理器) 里的资源，但切记别在 sessionWillBegin 里弹 Modal UI，因为现在的拖拽可以由 Siri 无手势触发。
+- Navigation Bar 滚动隐藏 ：导航栏现在支持在滚动时自动滑走 (barMinimizationBehavior)，以前用 .soft 覆盖默认样式的 App 需要重新评估设计，因为 .automatic 的默认视觉效果已经大改了。
+- NSTextSelectionManager ：让非 NSTextView 的自定义视图也能白嫖原生的双向文本选择、拖拽和切换行为。
+- Liquid Glass 自动演进 ：macOS 27 会自动给侧边栏选中项加半粗体，给工具栏加玻璃材质，老 App 重新编译就能获得视觉升级。
 
 ## 高频主题
 
-`SwiftUI` (5)、`UIKit` (5)、`AppKit` (2)、`tvOS` (1)、`Accessibility` (1)、`Liquid Glass` (1)、`iPadOS` (1)、`Observable` (1)、`HDR` (1)
+`UIKit` (6)、`SwiftUI` (5)、`AppKit` (2)、`Liquid Glass` (2)、`Observation` (1)、`NSHostingView` (1)、`Size Classes` (1)、`Trait Collections` (1)、`UIScene` (1)、`Adaptivity` (1)、`Gesture Recognizers` (1)、`macOS 27` (1)、`State Restoration` (1)、`PaperKit` (1)、`PencilKit` (1)、`Canvas` (1)、`Adornments` (1)、`tvOS` (1)
 
 ## 关键 Session
 
-- [WWDC26-272] 将 SwiftUI 与 AppKit 和 UIKit 搭配使用：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解如何在现有的 AppKit 或 UIKit App 中逐步采用 SwiftUI。我们将介绍如何使用 Observation 框架自动更新视图，将 SwiftUI 组件整合到现有的视图层次结构中，并将手势识别器引入 SwiftUI。我们还将探索如何向你的 App 添加完整的 SwiftUI 场景，同时不改变整体架构。
-- [WWDC26-278] 升级改造你的 UIKit App：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：探索 UIKit 的最新更新。了解如何更新 iPhone App 的布局，以便在调整大小时能够呈现出色效果，让你的 App 无论是通过 iPhone 镜像功能使用还是显示在 iPad 上都相宜。探索适用于标签栏和导航栏的全新 API，并了解如何针对 Apple 智能的新功能准备好的 App。我们还将介绍一种充分利用所选编码智能体的技巧，帮助你实现代码库现代化。
-- [WWDC26-289] 升级改造你的 AppKit App：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：根据最新的 macOS 设计惯例升级改造你的 AppKit App。深入探索如何利用控制事件和手势识别器来处理输入，告别传统的追踪循环。增强 App 中的键盘导航功能，在重启后顺畅实现状态恢复；并利用新的边角同心性 API，让你的界面与 macOS 的美学设计无缝融合。
+- [WWDC26-272] 将 SwiftUI 与 AppKit 和 UIKit 搭配使用：这场 Session 最值得关注的一件事是：AppKit 和 UIKit 的原生视图（NSView/UIView）终于能直接“白嫖” @Observable 的自动刷新机制了，老项目混编最恶心的手动状态同步彻底成为历史。
+- [WWDC26-278] 升级改造你的 UIKit App：iPhone App 在 Mac (iPhone Mirroring) 和 iPad 上变成了“完全可自由拉伸的窗口”，这直接宣判了 UIScreen.main 和硬编码设备类型的死刑，逼迫所有 UIKit 老项目必须彻底拥抱 Size Classes (尺寸类别)。
+- [WWDC26-289] 升级改造你的 AppKit App：✅ AppKit 彻底抛弃 mouseDown: 转向手势识别器（Gesture Recognizers），并用全新的“边角同心性（Concentricity）”API 终结了 macOS 嵌套圆角对不齐的强迫症。
+- [WWDC26-372] 深入探索 PaperKit：✅ Apple 终于把 Notes 和 Freeform 的底裤（PaperKit）扒下来给开发者穿了，这意味着你可以用几行代码手搓一个带 Apple Pencil 原生支持和无限画布的白板应用。
 - [WWDC25-219] tvOS 新特性：如果你只做一件事：把你的 tvOS 应用的焦点管理从 UIKit 迁到 SwiftUI 的新 @FocusState 体系，这是回报最高的投入。
 - [WWDC25-221] 辅助功能新特性：Accessibility Nutrition Labels 让辅助功能从"良心活"变成了"竞争力指标"——用户下载前就能看到你做了没有，这比任何技术 API 都更有杀伤力。
 - [WWDC25-268] UIKit 新特性：UIKit 终于在 layoutSubviews() 里原生支持了 @Observable，这比 Liquid Glass 的视觉更新重要得多——它意味着你终于可以把项目里那些散落各处的 KVO（键值观察）和 NotificationCenter（通知中心）监听一次性干掉了。
@@ -71,4 +72,3 @@ UIKit、AppKit、生命周期与 SwiftUI 互操作。本领域覆盖 27 场 WWDC
 - [WWDC23-111215] UIKit 遇见空间计算：适配、材质与交互：把 UIKit App 带到空间计算平台，核心工作是替换硬编码颜色、使用语义字体、适配不可用 API，其余系统帮你搞定。
 - [WWDC22-10068] UIKit 新特性：如果你还在用 UIMenuController 和老式的 cell 高度计算方式，iOS 16 是时候动手迁移了——这版 UIKit 把过去几年积压的 API 债务清理了不少。
 - [WWDC22-10072] 在 UIKit 中使用 SwiftUI：UIHostingController 的增强、SwiftUI 视图用作 UICollectionView/UITableView cell——这场 Session 是渐进式 SwiftUI 采用的实操指南。
-- [WWDC22-10074] AppKit 新特性：macOS Ventura 的 AppKit 更新不算激进，但 Stage Manager 适配和 NSTableView 的性能改进是每个 Mac 开发者都需要关注的变化。

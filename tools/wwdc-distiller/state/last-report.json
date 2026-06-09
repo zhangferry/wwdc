@@ -1,5 +1,7 @@
 {
-  "added": [],
+  "added": [
+    "WWDC26-10356"
+  ],
   "changed": [
     "WWDC26-101",
     "WWDC26-102",
@@ -100,7 +102,6 @@
     "WWDC26-344",
     "WWDC26-345",
     "WWDC26-347",
-    "WWDC26-356",
     "WWDC26-357",
     "WWDC26-358",
     "WWDC26-359",
@@ -114,7 +115,10 @@
     "WWDC26-389",
     "WWDC26-391",
     "WWDC26-393",
-    "WWDC26-394",
+    "WWDC26-394"
+  ],
+  "removed": [
+    "WWDC26-356",
     "WWDC26-8001",
     "WWDC26-8002",
     "WWDC26-8003",
@@ -135,7 +139,6 @@
     "WWDC26-8120",
     "WWDC26-8121"
   ],
-  "removed": [],
   "unchanged": 1032,
   "affectedDomains": [
     "app-distribution",

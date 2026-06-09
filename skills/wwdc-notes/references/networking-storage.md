@@ -6,7 +6,7 @@
 
 ## 核心模型
 
-- **SwiftData**：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解 SwiftData 的最新增强功能。我们将介绍如何使用 Codable 持久保留自定类型和第三方类型的数据，并将获取的数据分组到 SwiftUI App 的各个分区。我们还将探索如何使用 ModelResultsObserver 和 HistoryObserver 在其他各处观察数据存储的变化，以便灵活地驱动强大的状态对象、与基于委托的架构实现整合，并精准地响应模型更新。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：跟着我们为现有 App 添加持久化功能的演示，体验 SwiftData 的实际应用。我们将介绍如何定义数据模型，并将持久数据无缝整合到 SwiftUI 中。你还将了解一些基础技能，以便利用这个富有表现力的声明式 API 来管理 App 状态。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：参加我们的线上活动，与 Apple 工程师和设计师一起深入探索 WWDC26。在这个以 SwiftData 为主题的活动中，你可以提出问… 来源：[WWDC26-274]、[WWDC26-275]、[WWDC26-8017]、[WWDC24-10075]
+- **SwiftData**：这场 Session 最值得关注的一件事是：SwiftData 终于把数据监听能力从 SwiftUI 视图里剥离出来了，ModelResultsObserver 让你能在纯 ViewModel 或后台服务里优雅地响应数据库变化，不用再写恶心的 workaround。；这场 Session 最值得关注的一件事是：SwiftData 迁移绝不是无脑加 @Model 宏，它强迫你重构底层数据结构（比如把 Enum 拍平成 Class 继承），并且苹果终于用全新的 withContinuousObservation API 解决了 @Model 里 didSet 失效的痛点。；这场 Session 最值得关注的一件事是：Apple 正在用 Group Labs（小组实验室）全面替代传统的 1 on 1 Labs，这意味着你在 WWDC 期间想白嫖 Apple 工程师帮你单对单 debug 的机会变少了，但“围观”别人踩坑的机会变多了。 来源：[WWDC26-274]、[WWDC26-275]、[WWDC26-394]、[WWDC24-10075]
 - **CloudKit**：如果你的 App 用了 CloudKit 但从未打开过 Console 的 Telemetry 页面，你大概率遗漏了线上错误率和延迟的系统性问题——这场 Session 教你用对工具。；SwiftData 的 ModelContainer 和 ModelConfiguration 让你精细控制持久化策略——从内存数据库到多 CloudKit 容器，一套 API 全搞定。；CloudKit Console 终于从一个"能看数据库"的只读工具变成了一个完整的开发者控制台——新查询构建器、Schema 编辑器、Token 管理、团队协作支持，日常开发再也不用开 Xcode 了。 来源：[WWDC24-10122]、[WWDC23-10196]、[WWDC22-10115]、[WWDC21-10015]
 - **CoreData**：NSPersistentCloudKitContainer 终于支持了多用户数据共享——这意味着协作类 app（共享笔记、共享列表）可以不用自建后端了，但共享粒度的控制还需要仔细设计。；Core Data 终于正式拥抱 Swift Concurrency——@MainActor 标注的 View Context 和 NSManagedObjectContext 的 perform 方法现在可以用 async/await 写了，不用再嵌套回调地狱。；Core Data 团队罕见地在 WWDC 上做了一场"知识补完" Session，涵盖并发、迁移、性能调优等长期困扰开发者的杂项——如果你还在用 Core Data，这是必看内容。 来源：[WWDC21-10015]、[WWDC21-10017]、[WWDC20-10017]、[WWDC20-10650]
 - **Task**：CloudKit 这次的更新主要是"运维友好"方向：共享记录的权限细化、CloudKit Console 的 Web 版、以及 Schema 变更的声明式管理 —— 但如果你没用过 CloudKit，这些改进无法吸引你从 Firebase 迁移过来。；URLSession 的 async/await API 不是简单的语法糖 —— 它彻底消灭了嵌套回调地狱和手动管理 Resume Data 的复杂度，网络层代码量能砍掉一半，但你需要理解 structured concurrency 的取消语义才能用好它。；CloudKit Console 是旧版 CloudKit Dashboard 的 Web 重建版本 —— 终于可以在浏览器里直接写查询、查看日志、监控性能了，但还缺少批量数据导入和实时数据流查看这些高级功能。 来源：[WWDC21-10086]、[WWDC21-10095]、[WWDC21-10117]、[WWDC21-10258]
@@ -16,7 +16,7 @@
 
 ## API 演进时间线
 
-- **WWDC26**：3 场，代表来源：[WWDC26-274]、[WWDC26-275]、[WWDC26-8017]
+- **WWDC26**：3 场，代表来源：[WWDC26-274]、[WWDC26-275]、[WWDC26-394]
 - **WWDC25**：5 场，代表来源：[WWDC25-212]、[WWDC25-234]、[WWDC25-250]、[WWDC25-291]、[WWDC25-346]
 - **WWDC24**：4 场，代表来源：[WWDC24-10075]、[WWDC24-10122]、[WWDC24-10137]、[WWDC24-10138]
 - **WWDC23**：13 场，代表来源：[WWDC23-10002]、[WWDC23-10004]、[WWDC23-10007]、[WWDC23-10154]、[WWDC23-10171]
@@ -26,37 +26,37 @@
 
 ## 决策启发式
 
-- 先用本页确认 Session 是否与你的项目相关，再针对具体 API 查阅 Apple Developer Documentation。
-- 涉及最低系统版本、弃用状态和运行时行为时，以 Xcode 27 SDK 与正式文档为准。
-- 当前不要把章节摘要当作完整迁移指南；待 transcript 发布后再做架构和兼容性决策。
+- 已有项目的迁移策略 ：如果你之前为了在非 UI 层监听 SwiftData 数据，写了基于 NSManagedObjectContextDidSave 的 Notification 监听，或者搞了个隐藏的 SwiftUI View 来桥接 @Query，现在可以全部删掉，替换为 ModelResultsObserver。这能让你的 ViewModel 或 Controller 代码干净一半。
+- 新项目的采用建议 ：大胆把数据获取逻辑从 View 层抽离。View 层的 @Query 只用于最简单的列表渲染；涉及复杂计算、网络请求联动、地图边界计算的场景，统统交给持有 ModelResultsObserver 的 @Observable 状态对象。
+- 实战中容易踩的坑 ：使用 HistoryObserver 做云端同步时，一定要在初始化时传入 authors 参数（比如 ["App"]）。如果不加过滤，你会把从服务器拉取下来的数据变更再次触发同步，直接导致死循环。
+- 已有项目的迁移策略 ：别想着一步到位。先剥离内存 DataSource，把纯数据模型改成 @Model。遇到 Enum 状态机，果断重构为 Class 继承体系。把环境对象（EnvironmentObject）替换为 @Query 时，按视图层级逐个替换，确保每次替换后 UI 渲染正常。
+- 新项目的采用建议 ：直接在 Model 层设计好继承体系，别用 Enum 凑合。对于需要频繁查询的字段，确保它们是可被 Predicate 解析的基础类型。
+- 实战中容易踩的坑 ：@Model 里的属性如果是自定义类型（比如示例中的 TripCollection 枚举），必须显式实现 Codable 协议，否则 SwiftData 无法将其序列化到数据库列中，会直接抛出编译错误。
+- 已有项目的迁移策略 ：WWDC 期间不要急着把新 API 合入主分支。建一个 wwdc26 experiment 分支，把 SOTU 里提到的新特性（比如新的 Swift 并发模型或 SwiftUI 宏）在隔离环境里跑通。等 Xcode 正式版（通常是 9 月）发布后再做实际迁移。
+- 新项目的采用建议 ：如果你刚好在 WWDC 后启动新项目，直接用上最新版的 Swift 和 Xcode beta。但切记，UI 层可以用最新的 SwiftUI 特性，底层数据持久化和网络层尽量用成熟方案（如 CoreData/URLSession），beta 版的底层框架往往在 Beta 3 之后才会稳定。
+- 实战中容易踩的坑 ：看 Session 视频时，千万别只看中文字幕。很多关键的 API 命名和参数类型，字幕翻译会丢失上下文。遇到听不懂的地方，直接切到英文 CC 字幕，或者去 Apple Developer 网站看 Session 的 Text Transcript（文字版），Cmd+F 搜索 API 名字最准。
 - HTTP 网络请求继续使用 URLSession，不需要迁移到 Network framework。
-- App to app 通信优先选择 Coder over TLS/QUIC，获得类型安全和零样板代码的双重收益。
-- 对接已有服务器时，先确认服务器使用的协议格式，再选择 TLV framer 或 byte stream 模式。
-- 为 NetworkConnection 安装 stateUpdateHandler 以在 UI 中反映连接状态，即使你不需要主动管理状态。
-- 不同线程使用不同的 Command Allocator（Metal 4 类比：NetworkConnection 的 task 取消会自动清理连接，但自己创建的 task 仍需注意生命周期）。
-- Wi Fi Aware 仅支持 iOS 26 的 iPhone，跨平台场景用 Bonjour + NetworkBrowser。
-- 先画查询模式再决定模型结构。 列出你的所有 fetch/query 场景，统计 deep vs shallow search 的比例。继承不是默认选择。
 
 ## 反模式与坑
 
-- URLSessionTaskMetrics 新增了 TLS 握手和 DNS 解析的独立耗时，排查"为什么这个请求慢"终于不用抓包了。
-- HTTP/3 连接建立优化在 Session 里被提及，但实际性能提升取决于你的用户网络环境和 CDN 配置，别指望开个开关就能提速。
-- @Generable 宏可以简化 Codable 模型定义，但和类型化响应 API 是两个独立特性，别搞混了。
-- iOS 26 新增 NEHotspotHelper 扩展 API，用于 Wi Fi 热点交互。
-- VPN 的 excludeLocalNetworks 等异常选项现在大多数默认开启，但可以根据安全需求自定义。
-- URL Filter 的 PIR 服务器有开源示例代码，包含完整的 PIR 服务器和 Privacy Pass Issuer 实现。
-- 如果你之前使用的是 Network framework 的 C API 或偏好 completion handler 风格，不需要迁移——所有旧 API 继续得到完整支持。
-- NetworkListener 自动为每个新连接启动 subtask，你可以在 handler 里直接做 async 操作而不用担心阻塞后续连接。
+- HistoryObserver 的 eventCounter ：Apple 没有给历史记录搞复杂的回调，而是暴露了一个简单的递增计数器 eventCounter，配合 fetchHistory() 使用，这种 "拉" 而不是 "推" 的设计大大降低了状态同步的复杂度。
+- ObservationTracking.Token 的生命周期 ：这次 Session 反复强调要把 token 存起来，这暗示了 Swift Observation 框架底层的监听机制是弱引用的，忘记存 token 将是未来一年 Swift 论坛里最常见的 Bug 提问。
+- Section 的底层实现 ： trips.sections 返回的集合直接实现了 RandomAccessCollection，这意味着在 SwiftUI 里嵌套 ForEach 时，性能和自己手写 Dictionary 分组没有区别，Apple 在底层做了优化。
+- 绝对不能
+- 内联缩略图数据 ：示例中将 thumbnailData: Data? 直接存入数据库，而不是只存文件路径。这避免了文件被系统清理或移动导致路径失效的问题，对于小体积图片来说，读取效率反而更高。
+- FetchDescriptor 的 fetchLimit ：在首页展示“最近旅行”时，使用了 fetchLimit: 5。这是一个极其好用的内存保护机制，直接限制底层 SQL 拉取的条数，避免一次性把几千条数据全加载到内存里。
+- 运行时错误暴露 ：Session 提到了使用 SwiftUI view modifiers 来捕获和展示 SwiftData 的运行时错误（如数据库损坏或 Schema 迁移失败），这在以前只能靠 do catch 盲猜，现在有了更优雅的 UI 降级方案。
+- Clarus the Dogcow 回归 ：Apple 居然把远古 Mac 时代的吉祥物 Dogcow 做成了贴纸，老 Mac 开发者看到估计会泪目，记得去 App 里领。
 
 ## 高频主题
 
-`SwiftData` (3)、`SwiftUI` (2)、`系统服务` (2)、`URLSession` (1)、`网络` (1)、`HTTP` (1)、`Swift Concurrency` (1)、`隐私` (1)、`应用服务` (1)、`Swift` (1)、`开发工具` (1)
+`SwiftData` (3)、`SwiftUI` (2)、`系统服务` (2)、`ModelResultsObserver` (1)、`Codable` (1)、`Observation` (1)、`Data Modeling` (1)、`@Query` (1)、`Persistence` (1)、`WWDC26` (1)、`Group Labs` (1)、`Developer App` (1)、`EventKit` (1)、`URLSession` (1)、`网络` (1)、`HTTP` (1)、`Swift Concurrency` (1)、`隐私` (1)
 
 ## 关键 Session
 
-- [WWDC26-274] SwiftData 的新功能：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解 SwiftData 的最新增强功能。我们将介绍如何使用 Codable 持久保留自定类型和第三方类型的数据，并将获取的数据分组到 SwiftUI App 的各个分区。我们还将探索如何使用 ModelResultsObserver 和 HistoryObserver 在其他各处观察数据存储的变化，以便灵活地驱动强大的状态对象、与基于委托的架构实现整合，并精准地响应模型更新。
-- [WWDC26-275] 跟随编程：使用 SwiftData 添加持久化功能：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：跟着我们为现有 App 添加持久化功能的演示，体验 SwiftData 的实际应用。我们将介绍如何定义数据模型，并将持久数据无缝整合到 SwiftUI 中。你还将了解一些基础技能，以便利用这个富有表现力的声明式 API 来管理 App 状态。
-- [WWDC26-8017] SwiftData 小组实验室：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：参加我们的线上活动，与 Apple 工程师和设计师一起深入探索 WWDC26。在这个以 SwiftData 为主题的活动中，你可以提出问题、获取建议，并实时关注围绕大会一周的相关重磅发布展开的精彩讨论。活动语言为英语。
+- [WWDC26-274] SwiftData 的新功能：这场 Session 最值得关注的一件事是：SwiftData 终于把数据监听能力从 SwiftUI 视图里剥离出来了，ModelResultsObserver 让你能在纯 ViewModel 或后台服务里优雅地响应数据库变化，不用再写恶心的 workaround。
+- [WWDC26-275] 跟随编程：使用 SwiftData 添加持久化功能：这场 Session 最值得关注的一件事是：SwiftData 迁移绝不是无脑加 @Model 宏，它强迫你重构底层数据结构（比如把 Enum 拍平成 Class 继承），并且苹果终于用全新的 withContinuousObservation API 解决了 @Model 里 didSet 失效的痛点。
+- [WWDC26-394] 为 WWDC26 做好准备：这场 Session 最值得关注的一件事是：Apple 正在用 Group Labs（小组实验室）全面替代传统的 1 on 1 Labs，这意味着你在 WWDC 期间想白嫖 Apple 工程师帮你单对单 debug 的机会变少了，但“围观”别人踩坑的机会变多了。
 - [WWDC25-212] URLSession 新特性：如果你还在每个网络调用点手写 JSONDecoder + decode() 的样板代码，这场 Session 直接帮你把这层废代码删掉了。
 - [WWDC25-234] 用 NetworkExtension 过滤和隧道化网络流量：iOS 26 终于允许你根据完整 URL 而不只是 host 来做内容过滤了——但代价是你永远碰不到 URL 本身，系统用 Bloom filter + 同态加密 + Privacy Pass 做了一个隐私优先的方案。
 - [WWDC25-250] Network framework 的结构化并发实践：Network framework 终于有了 Swift native 的声明式 API——NetworkConnection、NetworkListener、NetworkBrowser 三个类型把底层网络编程的门槛拉低到了 SwiftUI 的水平。
