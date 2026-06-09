@@ -1,6 +1,6 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
-export type SessionEntry = CollectionEntry<"wwdc2025"> | CollectionEntry<"wwdc2024"> | CollectionEntry<"wwdc2023"> | CollectionEntry<"wwdc2022"> | CollectionEntry<"wwdc2021"> | CollectionEntry<"wwdc2020">;
+export type SessionEntry = CollectionEntry<"wwdc2026"> | CollectionEntry<"wwdc2025"> | CollectionEntry<"wwdc2024"> | CollectionEntry<"wwdc2023"> | CollectionEntry<"wwdc2022"> | CollectionEntry<"wwdc2021"> | CollectionEntry<"wwdc2020">;
 
 export interface YearInfo {
   year: number;
@@ -9,6 +9,7 @@ export interface YearInfo {
 }
 
 const YEAR_COLLECTIONS: Record<string, number> = {
+  wwdc2026: 2026,
   wwdc2025: 2025,
   wwdc2024: 2024,
   wwdc2023: 2023,
@@ -26,11 +27,12 @@ export function yearFromCollection(collectionName: string): number | undefined {
 }
 
 export async function getAllSessions(): Promise<SessionEntry[]> {
-  const [s2025, s2024] = await Promise.all([
+  const [s2026, s2025, s2024] = await Promise.all([
+    getCollection("wwdc2026"),
     getCollection("wwdc2025"),
     getCollection("wwdc2024"),
   ]);
-  const sessions = [...s2025, ...s2024];
+  const sessions = [...s2026, ...s2025, ...s2024];
   sessions.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
   return sessions;
 }

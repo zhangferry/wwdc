@@ -3,7 +3,8 @@ import { getCollection, render } from "astro:content";
 import PostLayout from "../../layouts/PostLayout.astro";
 
 export async function getStaticPaths() {
-  const [s2025, s2024, s2023, s2022, s2021, s2020] = await Promise.all([
+  const [s2026, s2025, s2024, s2023, s2022, s2021, s2020] = await Promise.all([
+    getCollection("wwdc2026"),
     getCollection("wwdc2025"),
     getCollection("wwdc2024"),
     getCollection("wwdc2023"),
@@ -11,7 +12,7 @@ export async function getStaticPaths() {
     getCollection("wwdc2021"),
     getCollection("wwdc2020"),
   ]);
-  const sessions = [...s2025, ...s2024, ...s2023, ...s2022, ...s2021, ...s2020];
+  const sessions = [...s2026, ...s2025, ...s2024, ...s2023, ...s2022, ...s2021, ...s2020];
   return sessions.map((session) => {
     const year = session.data.date.getFullYear();
     return {

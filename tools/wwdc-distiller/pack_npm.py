@@ -154,7 +154,7 @@ def main() -> int:
 
     readme = f"""# WWDC Notes Skill
 
-离线 WWDC 2020-2025 Apple 平台开发知识 skill。
+离线 WWDC 2020-2026 Apple 平台开发知识 skill。
 
 ## Install
 
@@ -174,7 +174,7 @@ npx {PACKAGE_NAME} install claude
 npx {PACKAGE_NAME} install --target ~/.codex/skills
 ```
 
-安装后使用 `$wwdc-notes` 查询 Swift、SwiftUI、UIKit、AppKit、并发、Xcode、visionOS、Core ML 等 WWDC 知识。
+安装后使用 `$wwdc-notes` 查询 Swift、SwiftUI、UIKit、AppKit、并发、Xcode、visionOS、Core AI、Foundation Models、MLX 等 WWDC 知识。
 """
     (out / "README.md").write_text(readme, encoding="utf-8")
 

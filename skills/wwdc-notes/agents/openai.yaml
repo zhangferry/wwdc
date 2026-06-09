@@ -1,4 +1,4 @@
 interface:
   display_name: "WWDC Notes"
-  short_description: "查询 WWDC 2020-2025 Apple 平台开发知识"
+  short_description: "查询 WWDC 2020-2026 Apple 平台开发知识"
   default_prompt: "Use $wwdc-notes to answer this Apple platform development question with WWDC sources."

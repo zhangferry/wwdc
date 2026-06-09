@@ -1,6 +1,6 @@
 ---
 name: wwdc-notes
-description: 独立查询 WWDC 2020-2025 Apple 平台开发知识。用于回答 Swift、SwiftUI、UIKit、AppKit、并发、Xcode、visionOS、Core ML、网络存储、图形媒体、系统服务、隐私安全、设计与分发问题；需要按年份追踪 API 演进或检索 WWDC Session 来源时使用此 skill。
+description: 独立查询 WWDC 2020-2026 Apple 平台开发知识。用于回答 Swift、SwiftUI、UIKit、AppKit、并发、Xcode、visionOS、Core AI、Foundation Models、MLX、网络存储、图形媒体、系统服务、隐私安全、设计与分发问题；需要按年份追踪 API 演进或检索 WWDC Session 来源时使用此 skill。
 ---
 
 # WWDC Notes
@@ -26,6 +26,8 @@ python3 scripts/search.py "查询内容" --limit 8
 ```
 
 回答时引用 `[WWDC25-266]` 这类来源格式。不要假设 Session ID 长度固定。
+
+WWDC 2026 内容当前为首发速览版，依据 Apple 官方标题、简介、章节摘要和示例代码索引整理。完整 transcript 尚未发布时，回答中应明确资料状态，不把章节摘要扩写成 Apple 未声明的实现细节。
 
 ## 领域路由
 

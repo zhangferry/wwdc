@@ -3,8 +3,8 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { extractTracks, consolidateTrack } from "../utils/format";
 
-// Get all sessions from both years
-const [s2025, s2024, s2023, s2022, s2021, s2020] = await Promise.all([
+const [s2026, s2025, s2024, s2023, s2022, s2021, s2020] = await Promise.all([
+  getCollection("wwdc2026"),
   getCollection("wwdc2025"),
   getCollection("wwdc2024"),
   getCollection("wwdc2023"),
@@ -12,7 +12,7 @@ const [s2025, s2024, s2023, s2022, s2021, s2020] = await Promise.all([
   getCollection("wwdc2021"),
   getCollection("wwdc2020"),
 ]);
-const allSessions = [...s2025, ...s2024, ...s2023, ...s2022, ...s2021, ...s2020];
+const allSessions = [...s2026, ...s2025, ...s2024, ...s2023, ...s2022, ...s2021, ...s2020];
 allSessions.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 // Extract unique consolidated tracks with counts
@@ -26,6 +26,7 @@ const tracks = extractTracks(allSessions.map((s) => ({ track: s.data.track })));
 // Year info
 const years = [
   { label: "全部", value: "", count: allSessions.length },
+  { label: "WWDC 2026", value: "2026", count: s2026.length },
   { label: "WWDC 2025", value: "2025", count: s2025.length },
   { label: "WWDC 2024", value: "2024", count: s2024.length },
   { label: "WWDC 2023", value: "2023", count: s2023.length },
@@ -118,7 +119,9 @@ function formatDuration(seconds: number): string {
                     class="card-image"
                     loading="lazy"
                   />
-                  <span class="card-duration">{formatDuration(session.data.duration)}</span>
+                  {session.data.duration > 0 && (
+                    <span class="card-duration">{formatDuration(session.data.duration)}</span>
+                  )}
                 </div>
                 <div class="card-info">
                   <span class="card-track">{displayTrack}</span>

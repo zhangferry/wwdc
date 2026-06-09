@@ -10,6 +10,7 @@
     "fetch": "tsx scripts/fetch-sessions.ts",
     "generate": "tsx scripts/generate-summaries.ts",
     "pipeline": "pnpm fetch && pnpm generate && pnpm build",
+    "import:wwdc2026": "python3 scripts/import-wwdc2026.py",
     "skill:distill": "python3 tools/wwdc-distiller/distill.py --source . --out skills/wwdc-notes --full",
     "skill:update": "python3 tools/wwdc-distiller/update.py --source . --out skills/wwdc-notes",
     "skill:validate": "python3 tools/wwdc-distiller/validate.py --skill skills/wwdc-notes",

@@ -1,22 +1,22 @@
 {
-  "knowledgeVersion": "2026.06.03",
+  "knowledgeVersion": "2026.06.09",
   "coverage": {
     "from": 2020,
-    "to": 2025,
-    "sessions": 1032
+    "to": 2026,
+    "sessions": 1165
   },
   "domains": {
-    "swiftui": 147,
-    "swift-concurrency": 43,
-    "uikit-appkit": 24,
-    "xcode-tools": 152,
-    "spatial-computing": 103,
-    "machine-learning": 73,
-    "networking-storage": 48,
-    "graphics-media": 187,
-    "platform-services": 325,
-    "app-distribution": 57,
-    "privacy-security": 57,
-    "design-accessibility": 153
+    "swiftui": 166,
+    "swift-concurrency": 44,
+    "uikit-appkit": 27,
+    "xcode-tools": 175,
+    "spatial-computing": 118,
+    "machine-learning": 108,
+    "networking-storage": 51,
+    "graphics-media": 206,
+    "platform-services": 337,
+    "app-distribution": 64,
+    "privacy-security": 60,
+    "design-accessibility": 170
   }
 }

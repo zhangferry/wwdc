@@ -19,9 +19,9 @@
         "swiftui-tvos"
       ],
       "topSources": [
+        "WWDC26-269",
         "WWDC25-266",
-        "WWDC25-306",
-        "WWDC23-10149"
+        "WWDC25-306"
       ]
     },
     {
@@ -81,9 +81,9 @@
         "swiftui-namespace"
       ],
       "topSources": [
+        "WWDC26-272",
         "WWDC23-10036",
-        "WWDC22-10072",
-        "WWDC25-268"
+        "WWDC22-10072"
       ]
     },
     {

@@ -18,7 +18,7 @@
     "xcode-tools": {
       "label": "Xcode & Developer Tools",
       "description": "Xcode、调试、测试、Instruments、性能与开发工具",
-      "keywords": ["xcode", "instrument", "调试", "debug", "测试", "test", "performance", "性能", "profil", "metric", "lldb", "build", "编译", "crash", "启动"]
+      "keywords": ["xcode", "instrument", "调试", "debug", "测试", "test", "performance", "性能", "profil", "metric", "lldb", "build", "编译", "crash", "启动", "coding intelligence", "device hub", "evaluation", "评测"]
     },
     "spatial-computing": {
       "label": "Spatial Computing",
@@ -27,8 +27,8 @@
     },
     "machine-learning": {
       "label": "Machine Learning & AI",
-      "description": "Core ML、Create ML、端侧推理、模型优化与 Apple Intelligence",
-      "keywords": ["core ml", "coreml", "create ml", "createml", "machine learning", "机器学习", "模型", "model", "neural", "ai", "apple intelligence", "inference", "推理", "transformer"]
+      "description": "Core ML、Core AI、MLX、Foundation Models、端侧推理、模型优化与 Apple Intelligence",
+      "keywords": ["core ml", "coreml", "core ai", "create ml", "createml", "mlx", "foundation models", "language model", "llm", "agentic", "智能体", "machine learning", "机器学习", "模型", "model", "neural", "ai", "apple intelligence", "inference", "推理", "transformer", "private cloud compute"]
     },
     "networking-storage": {
       "label": "Networking & Storage",

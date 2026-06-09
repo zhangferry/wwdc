@@ -2,12 +2,12 @@
 
 ## 领域判断
 
-网络、数据持久化、CloudKit、SwiftData 与同步。本领域覆盖 48 场 WWDC Session，回答时优先把 API 变化放回年度语境里判断。
+网络、数据持久化、CloudKit、SwiftData 与同步。本领域覆盖 51 场 WWDC Session，回答时优先把 API 变化放回年度语境里判断。
 
 ## 核心模型
 
+- **SwiftData**：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解 SwiftData 的最新增强功能。我们将介绍如何使用 Codable 持久保留自定类型和第三方类型的数据，并将获取的数据分组到 SwiftUI App 的各个分区。我们还将探索如何使用 ModelResultsObserver 和 HistoryObserver 在其他各处观察数据存储的变化，以便灵活地驱动强大的状态对象、与基于委托的架构实现整合，并精准地响应模型更新。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：跟着我们为现有 App 添加持久化功能的演示，体验 SwiftData 的实际应用。我们将介绍如何定义数据模型，并将持久数据无缝整合到 SwiftUI 中。你还将了解一些基础技能，以便利用这个富有表现力的声明式 API 来管理 App 状态。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：参加我们的线上活动，与 Apple 工程师和设计师一起深入探索 WWDC26。在这个以 SwiftData 为主题的活动中，你可以提出问… 来源：[WWDC26-274]、[WWDC26-275]、[WWDC26-8017]、[WWDC24-10075]
 - **CloudKit**：如果你的 App 用了 CloudKit 但从未打开过 Console 的 Telemetry 页面，你大概率遗漏了线上错误率和延迟的系统性问题——这场 Session 教你用对工具。；SwiftData 的 ModelContainer 和 ModelConfiguration 让你精细控制持久化策略——从内存数据库到多 CloudKit 容器，一套 API 全搞定。；CloudKit Console 终于从一个"能看数据库"的只读工具变成了一个完整的开发者控制台——新查询构建器、Schema 编辑器、Token 管理、团队协作支持，日常开发再也不用开 Xcode 了。 来源：[WWDC24-10122]、[WWDC23-10196]、[WWDC22-10115]、[WWDC21-10015]
-- **SwiftData**：如果你的 App 需要离线同步、Widget 数据回传或增量式 UI 更新，SwiftData History 是今年最值得直接上手的新 API 之一。；SwiftData 今年补上了三个关键短板：唯一约束、自定义数据存储、复杂查询优化，从"能用的 Core Data 替代品"变成了"值得认真投入的数据层方案"。；这是一场手把手教学——用闪卡应用做实例，演示如何用 @Model、@Query、ModelContainer 三板斧在 SwiftUI 中集成 SwiftData，从零到完整持久化只需要改几行代码。 来源：[WWDC24-10075]、[WWDC24-10137]、[WWDC23-10154]、[WWDC23-10189]
 - **CoreData**：NSPersistentCloudKitContainer 终于支持了多用户数据共享——这意味着协作类 app（共享笔记、共享列表）可以不用自建后端了，但共享粒度的控制还需要仔细设计。；Core Data 终于正式拥抱 Swift Concurrency——@MainActor 标注的 View Context 和 NSManagedObjectContext 的 perform 方法现在可以用 async/await 写了，不用再嵌套回调地狱。；Core Data 团队罕见地在 WWDC 上做了一场"知识补完" Session，涵盖并发、迁移、性能调优等长期困扰开发者的杂项——如果你还在用 Core Data，这是必看内容。 来源：[WWDC21-10015]、[WWDC21-10017]、[WWDC20-10017]、[WWDC20-10650]
 - **Task**：CloudKit 这次的更新主要是"运维友好"方向：共享记录的权限细化、CloudKit Console 的 Web 版、以及 Schema 变更的声明式管理 —— 但如果你没用过 CloudKit，这些改进无法吸引你从 Firebase 迁移过来。；URLSession 的 async/await API 不是简单的语法糖 —— 它彻底消灭了嵌套回调地狱和手动管理 Resume Data 的复杂度，网络层代码量能砍掉一半，但你需要理解 structured concurrency 的取消语义才能用好它。；CloudKit Console 是旧版 CloudKit Dashboard 的 Web 重建版本 —— 终于可以在浏览器里直接写查询、查看日志、监控性能了，但还缺少批量数据导入和实时数据流查看这些高级功能。 来源：[WWDC21-10086]、[WWDC21-10095]、[WWDC21-10117]、[WWDC21-10258]
 - **AVFoundation**：5G 不只是"更快的 4G" —— 苹果提供了 NWPathMonitor 的 5G 感知能力和 URLSession 的 allowsExpensiveNetworkAccess 属性，让你根据网络类型和资费状态做出不同的数据加载策略，这才是这集 Session 的真正价值。；AVAssetDownloadSession 在 iOS 14 中获得了完整的功能升级——支持 FairPlay DRM 离线下载、多语言音频轨道选择、以及后台下载恢复，做视频类 app 的离线缓存方案终于不用自己造轮子了。 来源：[WWDC21-10103]、[WWDC20-10655]
@@ -16,6 +16,7 @@
 
 ## API 演进时间线
 
+- **WWDC26**：3 场，代表来源：[WWDC26-274]、[WWDC26-275]、[WWDC26-8017]
 - **WWDC25**：5 场，代表来源：[WWDC25-212]、[WWDC25-234]、[WWDC25-250]、[WWDC25-291]、[WWDC25-346]
 - **WWDC24**：4 场，代表来源：[WWDC24-10075]、[WWDC24-10122]、[WWDC24-10137]、[WWDC24-10138]
 - **WWDC23**：13 场，代表来源：[WWDC23-10002]、[WWDC23-10004]、[WWDC23-10007]、[WWDC23-10154]、[WWDC23-10171]
@@ -25,6 +26,9 @@
 
 ## 决策启发式
 
+- 先用本页确认 Session 是否与你的项目相关，再针对具体 API 查阅 Apple Developer Documentation。
+- 涉及最低系统版本、弃用状态和运行时行为时，以 Xcode 27 SDK 与正式文档为准。
+- 当前不要把章节摘要当作完整迁移指南；待 transcript 发布后再做架构和兼容性决策。
 - HTTP 网络请求继续使用 URLSession，不需要迁移到 Network framework。
 - App to app 通信优先选择 Coder over TLS/QUIC，获得类型安全和零样板代码的双重收益。
 - 对接已有服务器时，先确认服务器使用的协议格式，再选择 TLV framer 或 byte stream 模式。
@@ -32,9 +36,6 @@
 - 不同线程使用不同的 Command Allocator（Metal 4 类比：NetworkConnection 的 task 取消会自动清理连接，但自己创建的 task 仍需注意生命周期）。
 - Wi Fi Aware 仅支持 iOS 26 的 iPhone，跨平台场景用 Bonjour + NetworkBrowser。
 - 先画查询模式再决定模型结构。 列出你的所有 fetch/query 场景，统计 deep vs shallow search 的比例。继承不是默认选择。
-- 迁移测试要覆盖完整升级路径。 用户可能从任何历史版本直接升级到最新版。用 versioned schema + migration plan 确保每一步都能正确执行。
-- History token 要持久化。 存在 UserDefaults 或文件中，下次启动时从上次 token 继续，避免重复处理。
-- @available 标记要同步。 子类、version schema、migration stage 都需要标注 iOS 26 availability，否则编译器会报错。
 
 ## 反模式与坑
 
@@ -49,10 +50,13 @@
 
 ## 高频主题
 
-`系统服务` (2)、`URLSession` (1)、`网络` (1)、`HTTP` (1)、`Swift Concurrency` (1)、`隐私` (1)、`应用服务` (1)、`Swift` (1)、`开发工具` (1)
+`SwiftData` (3)、`SwiftUI` (2)、`系统服务` (2)、`URLSession` (1)、`网络` (1)、`HTTP` (1)、`Swift Concurrency` (1)、`隐私` (1)、`应用服务` (1)、`Swift` (1)、`开发工具` (1)
 
 ## 关键 Session
 
+- [WWDC26-274] SwiftData 的新功能：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解 SwiftData 的最新增强功能。我们将介绍如何使用 Codable 持久保留自定类型和第三方类型的数据，并将获取的数据分组到 SwiftUI App 的各个分区。我们还将探索如何使用 ModelResultsObserver 和 HistoryObserver 在其他各处观察数据存储的变化，以便灵活地驱动强大的状态对象、与基于委托的架构实现整合，并精准地响应模型更新。
+- [WWDC26-275] 跟随编程：使用 SwiftData 添加持久化功能：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：跟着我们为现有 App 添加持久化功能的演示，体验 SwiftData 的实际应用。我们将介绍如何定义数据模型，并将持久数据无缝整合到 SwiftUI 中。你还将了解一些基础技能，以便利用这个富有表现力的声明式 API 来管理 App 状态。
+- [WWDC26-8017] SwiftData 小组实验室：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：参加我们的线上活动，与 Apple 工程师和设计师一起深入探索 WWDC26。在这个以 SwiftData 为主题的活动中，你可以提出问题、获取建议，并实时关注围绕大会一周的相关重磅发布展开的精彩讨论。活动语言为英语。
 - [WWDC25-212] URLSession 新特性：如果你还在每个网络调用点手写 JSONDecoder + decode() 的样板代码，这场 Session 直接帮你把这层废代码删掉了。
 - [WWDC25-234] 用 NetworkExtension 过滤和隧道化网络流量：iOS 26 终于允许你根据完整 URL 而不只是 host 来做内容过滤了——但代价是你永远碰不到 URL 本身，系统用 Bloom filter + 同态加密 + Privacy Pass 做了一个隐私优先的方案。
 - [WWDC25-250] Network framework 的结构化并发实践：Network framework 终于有了 Swift native 的声明式 API——NetworkConnection、NetworkListener、NetworkBrowser 三个类型把底层网络编程的门槛拉低到了 SwiftUI 的水平。
@@ -68,6 +72,3 @@
 - [WWDC23-10154] 用 SwiftData 构建应用：这是一场手把手教学——用闪卡应用做实例，演示如何用 @Model、@Query、ModelContainer 三板斧在 SwiftUI 中集成 SwiftData，从零到完整持久化只需要改几行代码。
 - [WWDC23-10171] 认识 Swift OpenAPI Generator：OpenAPI 规范驱动的代码生成，让 Swift 调用 REST API 从样板代码地狱中解脱出来。
 - [WWDC23-10186] Core Data 的新功能：Composite Attributes 让你终于可以用结构化的方式在 Core Data 中存储复杂类型，而不再依赖 Transformable 的黑盒序列化——而且还能在 NSPredicate 中用命名空间键路径查询。如果你之前因为 Transformable 的局限性而绕开 Core Data，现在值得重新评估。
-- [WWDC23-10187] 认识 SwiftData：SwiftData 用一个 @Model 宏替代了 Core Data 的整个 xcdatamodel 文件——数据持久化终于进入了纯 Swift 时代。
-- [WWDC23-10188] 用 CKSyncEngine 同步 iCloud 数据：少写代码，多同步：如果你不用 Core Data 但需要 CloudKit 同步，CKSyncEngine 帮你处理调度、推送通知、订阅管理和错误重试——你只管提供数据。
-- [WWDC23-10189] 迁移到 SwiftData：Core Data 到 SwiftData 的迁移有两条路径——完全迁移（删掉 Core Data 栈，全面拥抱 SwiftData）和共存模式（两个栈共享同一个持久化存储，渐进式迁移），Xcode 的 Managed Object Model Editor 助手可以自动生成 SwiftData 模型类。

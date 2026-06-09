@@ -26,9 +26,11 @@ const href = `/wwdc${year}/${id}`;
       class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
       loading="lazy"
     />
-    <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded text-xs font-medium" style="background-color: rgba(0,0,0,0.7); color: white;">
-      {formatDuration(duration)}
-    </span>
+    {duration > 0 && (
+      <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded text-xs font-medium" style="background-color: rgba(0,0,0,0.7); color: white;">
+        {formatDuration(duration)}
+      </span>
+    )}
   </div>
 
   <!-- Info -->

@@ -2,11 +2,11 @@
 
 ## 领域判断
 
-隐私、安全、权限、认证与数据最小化。本领域覆盖 57 场 WWDC Session，回答时优先把 API 变化放回年度语境里判断。
+隐私、安全、权限、认证与数据最小化。本领域覆盖 60 场 WWDC Session，回答时优先把 API 变化放回年度语境里判断。
 
 ## 核心模型
 
-- **Privacy & Security**：iOS 18 用"进程外选择器"（out of process picker）的思路把隐私控制做到了极致——你的 App 永远看不到完整数据，只能拿到用户主动选中的那一条。；Automatic passkey upgrades 让你在零用户感知的情况下把现有密码账号升级为 passkey，这是推动行业消灭密码的最关键一步。；如果你的 App 有积分、内购或任何有价值的数字资产，App Attest 是防止篡改和伪造请求的必备防线——它在设备上生成不可伪造的断言（Assertion），让你的服务器可以验证请求确实来自一个未被篡改的 App。 来源：[WWDC24-10123]、[WWDC24-10125]、[WWDC21-10244]、[WWDC20-10110]
+- **Privacy & Security**：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：充分利用 App Attest 保护你的 App 免遭欺诈和未经授权的修改。探索攻击者如何利用修改后的 App 来伪造数据并绕过安全检查，以及 App Attest 如何防御这些威胁。了解如何生成和管理与安全隔区绑定的 App Attest 密钥，对证明和断言进行验证，并利用欺诈指标来检测滥用行为。探索适合各个 Apple 平台的最佳做法，包括 iOS 27 中助你加强验证的新信号。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解声明式设备管理、Apple 商务和 Apple 校园教务管理平台的最新进展。探索这些优化升级如何帮助你简化部署、增强安全性，并提升受管理设备的用户体验。你还将了解到运用这些新功能的实用技巧，无论你是想构建设备管理解决方案，还是要管理企业设备群，都能从中受益。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：参加我们的线上活动，与 Apple 工程师和设计师一起深入探索 WWDC26。在这个以隐私和安全为主题的活动中… 来源：[WWDC26-201]、[WWDC26-206]、[WWDC26-8009]、[WWDC24-10123]
 - **隐私与安全**：Wi Fi Aware 是 Apple 官方的 P2P 直连方案 不依赖路由器，不中断现有 Wi Fi 连接，高吞吐低延迟，配合 DeviceDiscoveryUI 和 AccessorySetupKit 做发现配对，用 Network framework 建连接。做本地文件传输、屏幕共享、配件控制的开发者终于有了一等公民 API。；UIKit 终于原生支持 Swift Observation 了——在 layoutSubviews 里引用 @Observable 对象，UIKit 会自动追踪依赖并在属性变化时精确失效视图，不再需要手动调 setNeedsLayout。；这场 Session 不是讲某个新 API，而是一套从规划到部署的隐私工程方法论——对有上架需求的团队来说，它是 App Store 审核合规的实操指南。 来源：[WWDC25-228]、[WWDC25-243]、[WWDC25-246]、[WWDC25-279]
 - **Swift & UI**：UICollectionView 在 iOS 14 中迎来了它历史上最大的 API 更新：Compositional Layout 支持列表布局、Diffable Data Source 支持重新排序、Cell Registration 大幅简化，这些变化让你几乎可以扔掉所有的 UICollectionView 扩展库。；iOS 14 把 AutoFill 从密码扩展到了所有类型的表单字段——姓名、邮箱、电话、信用卡、地址，甚至一次性验证码（OTP）。如果你的 App 有注册或支付流程，正确配置 AutoFill 能把用户填表时间缩短一半。 来源：[WWDC20-10097]、[WWDC20-10115]
 - **System Frameworks**：iOS 18 把联系人权限从"全部给"或"全不给"改成了"按需给"，ContactAccessButton 让你在搜索流中逐个授权联系人，用户体验和隐私保护同时升级。；如果你还在用 URLSession 做"万能"网络请求，这个 Session 会告诉你如何利用 Network.framework 的 TLS 1.3、Multipath TCP、IPv6 Happy Eyeballs 等能力来打造更快更安全的网络层。 来源：[WWDC24-10121]、[WWDC20-10111]
@@ -16,6 +16,7 @@
 
 ## API 演进时间线
 
+- **WWDC26**：3 场，代表来源：[WWDC26-201]、[WWDC26-206]、[WWDC26-8009]
 - **WWDC25**：11 场，代表来源：[WWDC25-203]、[WWDC25-208]、[WWDC25-228]、[WWDC25-243]、[WWDC25-246]
 - **WWDC24**：4 场，代表来源：[WWDC24-10121]、[WWDC24-10123]、[WWDC24-10125]、[WWDC24-102]
 - **WWDC23**：4 场，代表来源：[WWDC23-10040]、[WWDC23-10053]、[WWDC23-10060]、[WWDC23-10263]
@@ -25,6 +26,9 @@
 
 ## 决策启发式
 
+- 先用本页确认 Session 是否与你的项目相关，再针对具体 API 查阅 Apple Developer Documentation。
+- 涉及最低系统版本、弃用状态和运行时行为时，以 Xcode 27 SDK 与正式文档为准。
+- 当前不要把章节摘要当作完整迁移指南；待 transcript 发布后再做架构和兼容性决策。
 - 先检查设备能力 。使用 WACapabilities.supportedFeatures 确认设备支持 Wi Fi Aware，再启用相关功能。
 - 配对完成后用 WAPairedDevice.allDevices 监听配对设备列表变化 。用户可能在系统设置中删除配对设备，你的 app 需要响应这个变化。
 - 连接建立后及时停止 listener 和 browser 。持续运行会消耗无线资源和电量，只在需要时开启。
@@ -32,9 +36,6 @@
 - 在真实 Wi Fi 环境中测试 。Wi Fi 干扰、信号强度变化、设备能力差异都会影响实际性能。用 performanceReport 监控连接质量。
 - 在规划阶段用四大支柱（数据最小化、设备端处理、透明与控制、安全保护）定义隐私保证声明，再从声明推导工程需求。
 - 优先使用系统提供的 picker（PhotosPicker、ContactPicker）替代广权限 API，避免不必要的权限弹窗。
-- 权限弹窗不要在 app 首次启动时触发，放在用户真正需要该功能时再请求，并在 purpose string 中清楚说明原因。
-- 在 App Privacy Report 中定期检查 app 的数据访问和网络活动，确保与用户预期一致。
-- 将隐私测试纳入 CI：写 UI test 验证 opt in 设置确实改变了数据流，写 integration test 验证 CloudKit 加密字段的读写行为。
 
 ## 反模式与坑
 
@@ -49,10 +50,13 @@
 
 ## 高频主题
 
-`隐私与安全` (7)、`系统服务` (3)、`SwiftUI` (2)、`ManagedApp` (1)、`Enterprise` (1)、`MDM` (1)、`Security` (1)、`HealthKit` (1)、`健康` (1)、`隐私` (1)、`数据共享` (1)、`商业与教育` (1)、`应用服务` (1)、`Swift` (1)
+`隐私与安全` (7)、`Privacy & Security` (3)、`系统服务` (3)、`SwiftUI` (2)、`ManagedApp` (1)、`Enterprise` (1)、`MDM` (1)、`Security` (1)、`HealthKit` (1)、`健康` (1)、`隐私` (1)、`数据共享` (1)、`商业与教育` (1)、`应用服务` (1)、`Swift` (1)
 
 ## 关键 Session
 
+- [WWDC26-201] 使用 App Attest 保护你的 App：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：充分利用 App Attest 保护你的 App 免遭欺诈和未经授权的修改。探索攻击者如何利用修改后的 App 来伪造数据并绕过安全检查，以及 App Attest 如何防御这些威胁。了解如何生成和管理与安全隔区绑定的 App Attest 密钥，对证明和断言进行验证，并利用欺诈指标来检测滥用行为。探索适合各个 Apple 平台的最佳做法，包括 iOS 27 中助你加强验证的新信号。
+- [WWDC26-206] Apple 设备管理和身份管理方面的新动向：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解声明式设备管理、Apple 商务和 Apple 校园教务管理平台的最新进展。探索这些优化升级如何帮助你简化部署、增强安全性，并提升受管理设备的用户体验。你还将了解到运用这些新功能的实用技巧，无论你是想构建设备管理解决方案，还是要管理企业设备群，都能从中受益。
+- [WWDC26-8009] 隐私和安全小组实验室：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：参加我们的线上活动，与 Apple 工程师和设计师一起深入探索 WWDC26。在这个以隐私和安全为主题的活动中，你可以提出问题、获取建议，并实时关注围绕大会一周的相关重磅发布展开的精彩讨论。活动语言为英语。
 - [WWDC25-203] 认识 ManagedApp 框架：如果你在做企业应用，现在终于可以扔掉自己写的那套 MDM 配置解析代码了。
 - [WWDC25-208] HealthKit 新特性：HealthKitUI 的推出比新增的情绪数据类型影响更大——它宣告 Apple 认为健康数据可视化应该是系统级能力，不是每个 App 自己用 Charts 库画的活儿。
 - [WWDC25-228] Supercharge device connectivity with Wi-Fi Aware：Wi Fi Aware 是 Apple 官方的 P2P 直连方案 不依赖路由器，不中断现有 Wi Fi 连接，高吞吐低延迟，配合 DeviceDiscoveryUI 和 AccessorySetupKit 做发现配对，用 Network framework 建连接。做本地文件传输、屏幕共享、配件控制的开发者终于有了一等公民 API。
@@ -68,6 +72,3 @@
 - [WWDC24-10123] 隐私保护新动向：iOS 18 用"进程外选择器"（out of process picker）的思路把隐私控制做到了极致——你的 App 永远看不到完整数据，只能拿到用户主动选中的那一条。
 - [WWDC24-10125] 用 Passkey 自动升级和凭证管理器简化登录：Automatic passkey upgrades 让你在零用户感知的情况下把现有密码账号升级为 passkey，这是推动行业消灭密码的最关键一步。
 - [WWDC24-102] 平台技术综述：这是 WWDC 2024 技术层面的"全局地图"——Apple Intelligence 的端侧+云端双轨架构、Private Cloud Compute 的安全模型、以及全平台 API 的关键更新都在这里集中展示，如果你只看一场 Session 来把握今年方向，就是这场。
-- [WWDC23-10040] Apple 设备管理新动态：macOS 安全增强与 Platform SSO 进化：如果你的团队负责企业 Apple 设备的部署和管理，macOS 14 的自动化设备注册（ADE）增强和 Platform SSO 新能力是最值得关注的——FileVault 可以在设置助手中强制启用，身份提供商的集成范围进一步扩大。
-- [WWDC23-10053] 隐私功能的新更新：今年的隐私更新围绕"减少权限请求"展开——嵌入式 Photos Picker 不需要相册权限、屏幕共享 Picker 不需要录屏权限、日历新增"仅添加"权限——如果你的 App 还在请求全量权限，现在是时候重新设计了。
-- [WWDC23-10060] 隐私清单入门：保护用户数据的新方式：如果你的 App 使用了第三方 SDK，隐私清单（Privacy Manifest）是你 2024 年必须关注的东西——它让 SDK 的数据收集行为变得透明，也让你的隐私标签更准确。Required Reason API 则意味着某些系统 API 必须声明使用理由才能调用。

@@ -1,4 +1,415 @@
 {
+  "WWDC26-101": [],
+  "WWDC26-102": [],
+  "WWDC26-111": [],
+  "WWDC26-112": [],
+  "WWDC26-121": [
+    "machine-learning"
+  ],
+  "WWDC26-122": [],
+  "WWDC26-201": [
+    "privacy-security"
+  ],
+  "WWDC26-203": [
+    "swiftui"
+  ],
+  "WWDC26-204": [
+    "graphics-media",
+    "spatial-computing"
+  ],
+  "WWDC26-205": [
+    "app-distribution"
+  ],
+  "WWDC26-206": [
+    "privacy-security"
+  ],
+  "WWDC26-207": [
+    "platform-services"
+  ],
+  "WWDC26-209": [],
+  "WWDC26-210": [
+    "app-distribution",
+    "platform-services",
+    "xcode-tools"
+  ],
+  "WWDC26-212": [
+    "platform-services"
+  ],
+  "WWDC26-213": [
+    "xcode-tools",
+    "swiftui",
+    "machine-learning"
+  ],
+  "WWDC26-215": [
+    "spatial-computing",
+    "machine-learning"
+  ],
+  "WWDC26-216": [
+    "xcode-tools",
+    "graphics-media"
+  ],
+  "WWDC26-219": [
+    "design-accessibility"
+  ],
+  "WWDC26-220": [
+    "design-accessibility"
+  ],
+  "WWDC26-221": [
+    "design-accessibility"
+  ],
+  "WWDC26-222": [
+    "xcode-tools"
+  ],
+  "WWDC26-223": [
+    "platform-services"
+  ],
+  "WWDC26-224": [
+    "graphics-media"
+  ],
+  "WWDC26-226": [],
+  "WWDC26-227": [
+    "xcode-tools"
+  ],
+  "WWDC26-230": [
+    "design-accessibility"
+  ],
+  "WWDC26-232": [
+    "machine-learning"
+  ],
+  "WWDC26-233": [
+    "machine-learning"
+  ],
+  "WWDC26-234": [
+    "spatial-computing"
+  ],
+  "WWDC26-237": [
+    "machine-learning"
+  ],
+  "WWDC26-240": [
+    "machine-learning",
+    "xcode-tools"
+  ],
+  "WWDC26-241": [
+    "machine-learning"
+  ],
+  "WWDC26-242": [
+    "machine-learning"
+  ],
+  "WWDC26-243": [
+    "machine-learning",
+    "xcode-tools"
+  ],
+  "WWDC26-246": [
+    "machine-learning"
+  ],
+  "WWDC26-250": [
+    "design-accessibility"
+  ],
+  "WWDC26-251": [
+    "design-accessibility"
+  ],
+  "WWDC26-252": [
+    "swiftui",
+    "design-accessibility",
+    "graphics-media"
+  ],
+  "WWDC26-253": [
+    "graphics-media"
+  ],
+  "WWDC26-254": [
+    "app-distribution"
+  ],
+  "WWDC26-256": [
+    "design-accessibility"
+  ],
+  "WWDC26-258": [
+    "xcode-tools"
+  ],
+  "WWDC26-259": [
+    "xcode-tools"
+  ],
+  "WWDC26-260": [
+    "xcode-tools"
+  ],
+  "WWDC26-261": [
+    "xcode-tools"
+  ],
+  "WWDC26-262": [
+    "swift-concurrency",
+    "xcode-tools",
+    "platform-services"
+  ],
+  "WWDC26-265": [
+    "xcode-tools"
+  ],
+  "WWDC26-267": [
+    "xcode-tools"
+  ],
+  "WWDC26-268": [
+    "xcode-tools"
+  ],
+  "WWDC26-269": [
+    "swiftui"
+  ],
+  "WWDC26-271": [
+    "swiftui"
+  ],
+  "WWDC26-272": [
+    "uikit-appkit",
+    "swiftui"
+  ],
+  "WWDC26-274": [
+    "swiftui",
+    "networking-storage"
+  ],
+  "WWDC26-275": [
+    "swiftui",
+    "networking-storage"
+  ],
+  "WWDC26-277": [
+    "platform-services"
+  ],
+  "WWDC26-278": [
+    "uikit-appkit",
+    "swiftui"
+  ],
+  "WWDC26-279": [
+    "spatial-computing"
+  ],
+  "WWDC26-280": [
+    "spatial-computing"
+  ],
+  "WWDC26-281": [
+    "spatial-computing",
+    "xcode-tools"
+  ],
+  "WWDC26-282": [
+    "spatial-computing"
+  ],
+  "WWDC26-283": [
+    "spatial-computing"
+  ],
+  "WWDC26-284": [
+    "spatial-computing"
+  ],
+  "WWDC26-285": [
+    "design-accessibility"
+  ],
+  "WWDC26-286": [
+    "spatial-computing",
+    "swiftui"
+  ],
+  "WWDC26-287": [
+    "spatial-computing"
+  ],
+  "WWDC26-289": [
+    "uikit-appkit",
+    "swiftui"
+  ],
+  "WWDC26-290": [
+    "design-accessibility"
+  ],
+  "WWDC26-292": [
+    "design-accessibility"
+  ],
+  "WWDC26-295": [
+    "machine-learning"
+  ],
+  "WWDC26-297": [
+    "graphics-media"
+  ],
+  "WWDC26-298": [
+    "xcode-tools",
+    "machine-learning"
+  ],
+  "WWDC26-299": [
+    "machine-learning"
+  ],
+  "WWDC26-303": [
+    "graphics-media"
+  ],
+  "WWDC26-304": [
+    "graphics-media"
+  ],
+  "WWDC26-305": [
+    "graphics-media"
+  ],
+  "WWDC26-309": [
+    "app-distribution"
+  ],
+  "WWDC26-310": [
+    "machine-learning"
+  ],
+  "WWDC26-312": [
+    "platform-services"
+  ],
+  "WWDC26-314": [
+    "design-accessibility"
+  ],
+  "WWDC26-315": [
+    "design-accessibility"
+  ],
+  "WWDC26-319": [
+    "machine-learning"
+  ],
+  "WWDC26-320": [
+    "spatial-computing"
+  ],
+  "WWDC26-321": [
+    "swiftui"
+  ],
+  "WWDC26-322": [
+    "swiftui",
+    "graphics-media"
+  ],
+  "WWDC26-324": [
+    "machine-learning"
+  ],
+  "WWDC26-325": [
+    "machine-learning"
+  ],
+  "WWDC26-326": [
+    "machine-learning"
+  ],
+  "WWDC26-328": [
+    "machine-learning"
+  ],
+  "WWDC26-330": [
+    "machine-learning"
+  ],
+  "WWDC26-334": [
+    "machine-learning"
+  ],
+  "WWDC26-335": [
+    "xcode-tools",
+    "machine-learning"
+  ],
+  "WWDC26-338": [
+    "spatial-computing"
+  ],
+  "WWDC26-339": [
+    "machine-learning"
+  ],
+  "WWDC26-341": [
+    "graphics-media"
+  ],
+  "WWDC26-343": [
+    "machine-learning"
+  ],
+  "WWDC26-344": [
+    "machine-learning",
+    "xcode-tools"
+  ],
+  "WWDC26-345": [
+    "platform-services"
+  ],
+  "WWDC26-347": [
+    "machine-learning"
+  ],
+  "WWDC26-356": [
+    "graphics-media"
+  ],
+  "WWDC26-357": [
+    "machine-learning",
+    "graphics-media"
+  ],
+  "WWDC26-358": [
+    "graphics-media"
+  ],
+  "WWDC26-359": [
+    "machine-learning",
+    "graphics-media"
+  ],
+  "WWDC26-369": [
+    "platform-services"
+  ],
+  "WWDC26-370": [
+    "swiftui"
+  ],
+  "WWDC26-372": [
+    "swiftui"
+  ],
+  "WWDC26-375": [
+    "swiftui"
+  ],
+  "WWDC26-378": [
+    "app-distribution",
+    "platform-services",
+    "graphics-media"
+  ],
+  "WWDC26-379": [
+    "machine-learning"
+  ],
+  "WWDC26-388": [
+    "xcode-tools",
+    "graphics-media"
+  ],
+  "WWDC26-389": [
+    "platform-services"
+  ],
+  "WWDC26-391": [
+    "app-distribution"
+  ],
+  "WWDC26-393": [
+    "spatial-computing"
+  ],
+  "WWDC26-394": [],
+  "WWDC26-8001": [],
+  "WWDC26-8002": [
+    "swiftui"
+  ],
+  "WWDC26-8003": [
+    "design-accessibility",
+    "xcode-tools"
+  ],
+  "WWDC26-8004": [
+    "spatial-computing"
+  ],
+  "WWDC26-8005": [
+    "design-accessibility"
+  ],
+  "WWDC26-8006": [
+    "swiftui"
+  ],
+  "WWDC26-8007": [
+    "xcode-tools"
+  ],
+  "WWDC26-8009": [
+    "privacy-security"
+  ],
+  "WWDC26-8010": [
+    "app-distribution"
+  ],
+  "WWDC26-8011": [
+    "design-accessibility",
+    "machine-learning"
+  ],
+  "WWDC26-8012": [],
+  "WWDC26-8013": [
+    "xcode-tools"
+  ],
+  "WWDC26-8014": [
+    "design-accessibility",
+    "platform-services"
+  ],
+  "WWDC26-8015": [
+    "graphics-media"
+  ],
+  "WWDC26-8016": [
+    "machine-learning"
+  ],
+  "WWDC26-8017": [
+    "networking-storage"
+  ],
+  "WWDC26-8018": [
+    "graphics-media"
+  ],
+  "WWDC26-8120": [
+    "swiftui"
+  ],
+  "WWDC26-8121": [
+    "machine-learning"
+  ],
   "WWDC25-101": [
     "graphics-media",
     "machine-learning",
@@ -10,10 +421,12 @@
     "machine-learning"
   ],
   "WWDC25-111": [
-    "design-accessibility",
+    "machine-learning",
+    "design-accessibility"
+  ],
+  "WWDC25-112": [
     "machine-learning"
   ],
-  "WWDC25-112": [],
   "WWDC25-201": [
     "graphics-media",
     "spatial-computing"
@@ -453,6 +866,7 @@
     "machine-learning"
   ],
   "WWDC25-365": [
+    "machine-learning",
     "platform-services"
   ],
   "WWDC25-367": [

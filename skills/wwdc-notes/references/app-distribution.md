@@ -2,20 +2,21 @@
 
 ## 领域判断
 
-App Store、TestFlight、签名、审核与分发。本领域覆盖 57 场 WWDC Session，回答时优先把 API 变化放回年度语境里判断。
+App Store、TestFlight、签名、审核与分发。本领域覆盖 64 场 WWDC Session，回答时优先把 API 变化放回年度语境里判断。
 
 ## 核心模型
 
-- **App Store & Distribution**：Cloud Signing 终于让你不用再管本地证书和 provisioning profile 的同步问题——私钥存在 Apple 服务器上，团队成员谁都能签名。；如果你的教育 App 是基于文档的（如笔记、练习册），ClassKit 的新文件集成让学生在 Schoolwork 中直接打开你的文件，完成后自动汇报进度——不需要在两个 App 之间切换。；macOS Monterey 的公证（Notarization）流程从"提交等几分钟查邮件"简化成了"一条命令搞定"——notarytool 替代了 altool，支持提交、等待和装订（Staple）一步完成。 来源：[WWDC21-10204]、[WWDC21-10257]、[WWDC21-10261]、[WWDC20-10118]
+- **App Store & Distribution**：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：通过在新位置展示相关图像和视频，重新构想你在 App Store 上推广 App 和游戏的方式。探索如何在 App Store 上的产品页面、搜索结果和 Apple Ads 广告系列中，利用新的视觉素材展示位置以更丰富生动的故事打动用户。了解如何使用全新的 Asset Library 将所有视觉素材汇于一处来简化管理，以及如何借助一款新工具在产品页面上线之前预览效果。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：探索如何利用 Retention Messaging 的强大功能，在用户取消订阅之前及时触达他们。了解如何在 App Store Connect 中设置这项功能并添加订阅优惠，同时利用 Retention Messaging API 推送实时消息和替代选项，从而鼓励用户持续订阅你的 App 或游戏。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：探索通过多席位购买扩大订阅用户群的两种新方法：群组购买允许单个订阅者购买多个席位，并直接… 来源：[WWDC26-205]、[WWDC26-309]、[WWDC26-391]、[WWDC26-8010]
 - **App Store, Distribution & Marketing**：Offer code 终于不再局限于自动续期订阅——消耗品、非消耗品、非续期订阅现在都能用 offer code 了，这对做促销活动和用户召回来说是一个被低估的变化。；App Analytics 终于补上了付费用户转化漏斗和订阅留存的完整分析能力——如果你之前只能看 proceeds 和 downloads，现在能看清每个环节到底差在哪了。；等了好几年，App Store Connect 终于有了 Webhook 和 Build Upload API——CI/CD 里最缺失的那一环现在补上了。 来源：[WWDC25-241]、[WWDC25-252]、[WWDC25-324]、[WWDC25-328]
 - **App Store Distribution & Marketing**：iOS 18 终于把已完成的消耗品交易纳入交易历史 API，同时新增货币和价格字段、win back offers 和更强大的 StoreKit Views，这三个改动组合起来让内购管理从"头疼"变成了"基本不用操心"。；如果你在做什么内购系统却还没用上 App Store Server API 和 Server Library，这个 session 就是你的必读清单——尤其是退款决策和订阅续期的新能力，直接关系到钱。；今年 App Store Connect 最重要的更新是 Featuring Nominations——你终于可以主动告诉 App Store 编辑团队"我的 App 要更新了，请考虑推荐"，而不是被动等待被发现。 来源：[WWDC24-10061]、[WWDC24-10062]、[WWDC24-10063]、[WWDC24-10110]
 - **Developer Tools**：App Store 推广购买、Billing Issue 消息、SHA 256 迁移——StoreKit 2 今年带来了多项实用更新。；这是一场信息密度极高的全景扫描——Swift 并发、Xcode Cloud、StoreKit 2、SharePlay 四大主题构成了 2021 年 Apple 开发者生态的骨架。；Xcode 13 的 Organizer 终于把崩溃分析、用户反馈和指标数据放在了一个地方——你不用再在 App Store Connect 网页和邮件之间来回跳了。 来源：[WWDC23-10140]、[WWDC21-102]、[WWDC21-10203]、[WWDC21-10205]
 - **应用服务**：Offer code 终于不再局限于自动续期订阅——消耗品、非消耗品、非续期订阅现在都能用 offer code 了，这对做促销活动和用户召回来说是一个被低估的变化。；appTransactionId 终于统一了所有交易对象的标识符体系——如果你还在用 originalTransactionId 做跨产品的用户关联，是时候迁移了。；On Demand Resources 要退役了，Background Assets 的 Managed 模式接管——Apple 帮你托管 200GB 的资源包，系统自动下载、更新、压缩，你甚至不需要写 downloader extension。 来源：[WWDC25-241]、[WWDC25-249]、[WWDC25-325]
+- **StoreKit**：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解如何利用 12 个月承诺期的月度订阅，为用户提供更实惠的订阅支付方式，同时巩固长期订阅关系。探索如何使用 App Store Connect、StoreKit API、Xcode 测试以及其他工具，配置并测试这一全新的支付选项。你还将了解优惠代码兑换 API 的改进，以及 App 审核内容提交体验的提升。；我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：使用 Steam Asset Converter 和新的 Unity 插件，简化你的跨平台开发，并为 App 内购买项目提供更好的支持。了解如何通过特定于语言的资源包，精准地分发恰如所需的内容，从而让你的游戏更精简，并为玩家带来更出色的体验。 来源：[WWDC26-210]、[WWDC26-378]
 - **Task**：ASC 今年是「功能大年」——Build Upload 可视化、App Store Tags、Custom Product Page 关键词、Offer Codes 全品类、Accessibility Nutrition Labels，每一项都直接影响你的上架效率和获客能力。；StoreKit 2 是 IAP（In App Purchase）开发体验的全面翻新 —— 用 async/await + Swift 原生 API 替代了 delegate 回调地狱，用 JWS 签名的事务替代了不可读的收据（Receipt），整个内购模块的代码量能砍掉三分之二。 来源：[WWDC25-328]、[WWDC21-10114]
-- **365 天的预购窗口期**：App Store 预订购终于支持按地区独立管理了——你可以先在一个地区发布 App，然后在其他地区开放预订购，这对灰度发布和分地区运营策略来说是关键能力。 来源：[WWDC23-10015]
 
 ## API 演进时间线
 
+- **WWDC26**：7 场，代表来源：[WWDC26-205]、[WWDC26-210]、[WWDC26-254]、[WWDC26-309]、[WWDC26-378]
 - **WWDC25**：8 场，代表来源：[WWDC25-202]、[WWDC25-241]、[WWDC25-249]、[WWDC25-252]、[WWDC25-324]
 - **WWDC24**：5 场，代表来源：[WWDC24-10061]、[WWDC24-10062]、[WWDC24-10063]、[WWDC24-10110]、[WWDC24-10214]
 - **WWDC23**：8 场，代表来源：[WWDC23-10013]、[WWDC23-10014]、[WWDC23-10015]、[WWDC23-10061]、[WWDC23-10117]
@@ -25,6 +26,9 @@ App Store、TestFlight、签名、审核与分发。本领域覆盖 57 场 WWDC 
 
 ## 决策启发式
 
+- 先用本页确认 Session 是否与你的项目相关，再针对具体 API 查阅 Apple Developer Documentation。
+- 涉及最低系统版本、弃用状态和运行时行为时，以 Xcode 27 SDK 与正式文档为准。
+- 当前不要把章节摘要当作完整迁移指南；待 transcript 发布后再做架构和兼容性决策。
 - 新项目统一使用 appTransactionId 作为交易关联的主键，避免混用多种标识符导致的逻辑复杂化。
 - 使用 App Store Server Library 的 JWS 签名生成器，不要自己实现签名逻辑。
 - 对所有产品类型的退款通知都实现处理逻辑，包括 non consumable 和 non renewing subscription。
@@ -32,9 +36,6 @@ App Store、TestFlight、签名、审核与分发。本领域覆盖 57 场 WWDC 
 - V1 的 Send Consumption Information 端点已废弃，新集成直接用 V2。
 - 定期检查 App Store Server API 的 GitHub 仓库，Apple 持续更新 server library。
 - 定期检查 Download to Paid Conversion 的 benchmark，如果低于 50th percentile，优先优化转化漏斗而不是拉新。
-- 用 custom product page 过滤 cohort 数据，识别不同获客渠道的用户价值差异，指导营销预算分配。
-- 关注 Subscription Retention 的 6 个月留存率，如果低于 peer group，考虑引入 intro offer 或改善 onboarding。
-- 对每个 offer 单独追踪转化率和留存率，确认 offer 吸引的是高价值用户而不是薅羊毛用户。
 
 ## 反模式与坑
 
@@ -49,10 +50,17 @@ App Store、TestFlight、签名、审核与分发。本领域覆盖 57 场 WWDC 
 
 ## 高频主题
 
-`App Store, Distribution & Marketing` (6)、`应用服务` (3)、`Wallet` (1)、`PassKit` (1)、`Apple Pay` (1)、`Live Activity` (1)、`图形与游戏` (1)、`系统服务` (1)、`Swift` (1)、`开发工具` (1)
+`App Store, Distribution & Marketing` (6)、`App Store & Distribution` (4)、`应用服务` (3)、`StoreKit` (2)、`Xcode` (1)、`MusicKit` (1)、`Wallet` (1)、`PassKit` (1)、`Apple Pay` (1)、`Live Activity` (1)、`图形与游戏` (1)、`系统服务` (1)、`Swift` (1)、`开发工具` (1)
 
 ## 关键 Session
 
+- [WWDC26-205] 提升 App 在 App Store 上的表现：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：通过在新位置展示相关图像和视频，重新构想你在 App Store 上推广 App 和游戏的方式。探索如何在 App Store 上的产品页面、搜索结果和 Apple Ads 广告系列中，利用新的视觉素材展示位置以更丰富生动的故事打动用户。了解如何使用全新的 Asset Library 将所有视觉素材汇于一处来简化管理，以及如何借助一款新工具在产品页面上线之前预览效果。
+- [WWDC26-210] Apple App 内购买项目的新功能：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：了解如何利用 12 个月承诺期的月度订阅，为用户提供更实惠的订阅支付方式，同时巩固长期订阅关系。探索如何使用 App Store Connect、StoreKit API、Xcode 测试以及其他工具，配置并测试这一全新的支付选项。你还将了解优惠代码兑换 API 的改进，以及 App 审核内容提交体验的提升。
+- [WWDC26-254] 将 MusicKit 整合到你的 App 中：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：使用 MusicKit 将 Apple Music 的强大功能融入你的 App。我们将介绍授权、订阅状态检查、音乐选择、播放控制以及跨平台歌曲共享。了解如何使用新的音乐选择器，方便用户浏览 Apple Music 目录和自己的个人音乐库。我们还将详细讲解 SystemMusicPlayer 和 ApplicationMusicPlayer 之间的区别，并展示如何观察播放状态。
+- [WWDC26-309] 在 App Store Connect 中探索 Retention Messaging：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：探索如何利用 Retention Messaging 的强大功能，在用户取消订阅之前及时触达他们。了解如何在 App Store Connect 中设置这项功能并添加订阅优惠，同时利用 Retention Messaging API 推送实时消息和替代选项，从而鼓励用户持续订阅你的 App 或游戏。
+- [WWDC26-378] 通过 StoreKit 和后台资源解锁游戏内内容：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：使用 Steam Asset Converter 和新的 Unity 插件，简化你的跨平台开发，并为 App 内购买项目提供更好的支持。了解如何通过特定于语言的资源包，精准地分发恰如所需的内容，从而让你的游戏更精简，并为玩家带来更出色的体验。
+- [WWDC26-391] 利用多席位订阅来拓展订阅用户群并触达新受众：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：探索通过多席位购买扩大订阅用户群的两种新方法：群组购买允许单个订阅者购买多个席位，并直接从你的 App 邀请其他用户；批量购买则通过 Apple 商务和 Apple 校园教务管理进行，可将你的订阅呈现给大规模采购 App 的企业客户和教育机构客户。了解如何支持多席位订阅，以及在 App Store Connect 中配置价格与销售范围的选项。
+- [WWDC26-8010] App Store Connect 小组实验室：我的判断是，这场 Session 当前最值得先掌握的内容已经写在 Apple 的官方概述里：参加我们的线上活动，与 Apple 工程师和设计师一起深入探索 WWDC26。在这个以 App Store Connect 为主题的活动中，你可以提出问题、获取建议，并实时关注围绕大会一周的相关重磅发布展开的精彩讨论。活动语言为英语。
 - [WWDC25-202] Wallet 新特性：如果你做票务或航空 App，今年 Wallet 的更新能让你砍掉一半的推送逻辑和通行证管理代码——前提是你愿意把航班状态追踪这类核心体验交给 Apple 的系统服务。
 - [WWDC25-241] StoreKit 与内购新特性：Offer code 终于不再局限于自动续期订阅——消耗品、非消耗品、非续期订阅现在都能用 offer code 了，这对做促销活动和用户召回来说是一个被低估的变化。
 - [WWDC25-249] App Store 服务端 API 深度解析：appTransactionId 终于统一了所有交易对象的标识符体系——如果你还在用 originalTransactionId 做跨产品的用户关联，是时候迁移了。
@@ -64,10 +72,3 @@ App Store、TestFlight、签名、审核与分发。本领域覆盖 57 场 WWDC 
 - [WWDC24-10061] StoreKit 和应用内购买的新变化：iOS 18 终于把已完成的消耗品交易纳入交易历史 API，同时新增货币和价格字段、win back offers 和更强大的 StoreKit Views，这三个改动组合起来让内购管理从"头疼"变成了"基本不用操心"。
 - [WWDC24-10062] 深入探索 App Store Server API 与内购服务端集成：如果你在做什么内购系统却还没用上 App Store Server API 和 Server Library，这个 session 就是你的必读清单——尤其是退款决策和订阅续期的新能力，直接关系到钱。
 - [WWDC24-10063] App Store Connect 新功能一览：今年 App Store Connect 最重要的更新是 Featuring Nominations——你终于可以主动告诉 App Store 编辑团队"我的 App 要更新了，请考虑推荐"，而不是被动等待被发现。
-- [WWDC24-10110] 实现 App Store 订阅优惠：Win back Offers 是今年订阅体系最重要的新增：Apple 替你筛选流失用户、替你分发优惠卡片，你只需要在 App Store Connect 里配规则、在应用里处理兑换逻辑。
-- [WWDC24-10214] 充分发挥 Apple Pencil 的能力：PKToolPicker 今年开放了自定义工具的能力，你的 App 终于可以把画笔、橡皮、印章等自定义绘制工具直接嵌入系统工具栏，和 PencilKit 原生工具混排。
-- [WWDC23-10013] 认识 StoreKit 的 SwiftUI 视图：StoreKit 终于有了原生的 SwiftUI 视图，几行代码就能搭建完整的内购商店界面。
-- [WWDC23-10014] App Store 定价新变化：App Store 推出了自上线以来最大规模的定价能力升级——900 个价格点、175 个区域中任选基准区域、自动汇率和税率调整，加上定时调价功能，让全球定价管理从噩梦变成了配置问题。
-- [WWDC23-10015] App Store 预订购的新功能：App Store 预订购终于支持按地区独立管理了——你可以先在一个地区发布 App，然后在其他地区开放预订购，这对灰度发布和分地区运营策略来说是关键能力。
-- [WWDC23-10061] 用数字签名验证应用依赖的完整性：Xcode 15 内置了依赖签名自动验证功能——当你引入的第三方 xcframework 被篡改或签名身份变更时，构建会直接报错拦截，供应链安全从此不需要手动检查了。
-- [WWDC23-10117] App Store Connect 的新功能：今年的 App Store Connect 更新覆盖了整个 App 生命周期——从 StoreKit for SwiftUI 的几行代码接入内购，到 900 个价格点位的灵活定价，到 TestFlight 的家庭共享测试，再到 xrOS 的隐私数据类型，每个环节都有实质性改进。

@@ -7,6 +7,7 @@ import { extractTracks } from "../../utils/format";
 
 export function getStaticPaths() {
   return [
+    { params: { year: "wwdc2026" }, props: { collection: "wwdc2026" } },
     { params: { year: "wwdc2025" }, props: { collection: "wwdc2025" } },
     { params: { year: "wwdc2024" }, props: { collection: "wwdc2024" } },
     { params: { year: "wwdc2023" }, props: { collection: "wwdc2023" } },
