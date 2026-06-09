@@ -6,23 +6,35 @@ interface Props {
 const { tracks } = Astro.props;
 ---
 
-<div class="flex flex-wrap gap-2 mb-8">
-  <a
-    href="#"
-    class="filter-pill filter-active px-3 py-1.5 rounded-full text-sm font-medium transition-colors"
-    data-track=""
-  >
-    全部
-  </a>
-  {tracks.map((track) => (
+<div class="flex flex-wrap items-center gap-2 mb-8">
+  <div class="flex flex-wrap gap-2 flex-1 min-w-0">
     <a
       href="#"
-      class="filter-pill px-3 py-1.5 rounded-full text-sm font-medium transition-colors"
-      data-track={track}
+      class="filter-pill filter-active px-3 py-1.5 rounded-full text-sm font-medium transition-colors"
+      data-track=""
     >
-      {track}
+      全部
     </a>
-  ))}
+    {tracks.map((track) => (
+      <a
+        href="#"
+        class="filter-pill px-3 py-1.5 rounded-full text-sm font-medium transition-colors"
+        data-track={track}
+      >
+        {track}
+      </a>
+    ))}
+  </div>
+  <div class="flex items-center gap-3 shrink-0">
+    <label class="flex items-center gap-1.5 cursor-pointer select-none text-sm" style="color: var(--color-text-secondary);">
+      <input type="checkbox" id="hide-read" class="filter-checkbox rounded" />
+      <span>隐藏已读</span>
+    </label>
+    <label class="flex items-center gap-1.5 cursor-pointer select-none text-sm" style="color: var(--color-text-secondary);">
+      <input type="checkbox" id="show-favorite" class="filter-checkbox rounded" />
+      <span>只看收藏</span>
+    </label>
+  </div>
 </div>
 
 <style>
@@ -38,5 +50,11 @@ const { tracks } = Astro.props;
   .filter-pill.filter-active {
     background-color: var(--color-accent);
     color: white;
+  }
+  .filter-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--color-accent);
   }
 </style>
