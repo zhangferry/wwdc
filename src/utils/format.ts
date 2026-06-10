@@ -38,7 +38,10 @@ const TRACK_MAP: Record<string, string> = {
   "Essentials|Machine Learning & AI": "Essentials",
   "Design|SwiftUI & UI Frameworks": "Design",
   "Machine Learning & AI|Design": "Machine Learning & AI",
+  "AI & Machine Learning": "Machine Learning & AI",
   "Audio & Video|Spatial Computing": "Spatial Computing",
+  "visionOS & Spatial Computing": "Spatial Computing",
+  "visionOS": "Spatial Computing",
   "App Store, Distribution & Marketing": "App Store & Distribution",
   "App Store & Distribution": "App Store & Distribution",
   "App Store Distribution & Marketing": "App Store & Distribution",
@@ -51,9 +54,13 @@ const TRACK_MAP: Record<string, string> = {
   "watchOS": "System & Services",
   "tvOS": "System & Services",
   "App Services": "System & Services",
+  "Xcode & Developer Tools": "Developer Tools",
   "Audio & Video": "Media & Web",
   "Photos & Camera": "Media & Web",
   "Safari & Web": "Media & Web",
+  "Graphics, Games & Media": "Graphics & Games",
+  "Swift & Data": "Swift & UI",
+  "Accessibility & Inclusion": "Accessibility",
 };
 
 export function consolidateTrack(track: string): string {

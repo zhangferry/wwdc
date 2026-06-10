@@ -24,6 +24,8 @@ export async function getStaticPaths() {
 
 const { session } = Astro.props;
 const { Content } = await render(session);
+const year = session.data.date.getFullYear();
+const id = session.data.id;
 ---
 
 <PostLayout
@@ -36,6 +38,8 @@ const { Content } = await render(session);
   thumbnail={session.data.thumbnail}
   videoUrl={session.data.videoUrl}
   tags={session.data.tags}
+  year={year}
+  id={id}
 >
   <Content />
 </PostLayout>

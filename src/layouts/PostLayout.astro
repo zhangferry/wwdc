@@ -13,9 +13,11 @@ interface Props {
   thumbnail: string;
   videoUrl: string;
   tags: string[];
+  year: number;
+  id: string;
 }
 
-const { title, titleZh, track, level, duration, date, thumbnail, videoUrl, tags } = Astro.props;
+const { title, titleZh, track, level, duration, date, thumbnail, videoUrl, tags, year, id } = Astro.props;
 ---
 
 <BaseLayout title={`${titleZh} — WWDC Notes`}>
@@ -43,8 +45,24 @@ const { title, titleZh, track, level, duration, date, thumbnail, videoUrl, tags 
           {formatDuration(duration)}
         </span>
       </div>
-      <h1 class="text-2xl sm:text-3xl font-bold mb-2" style="color: var(--color-text-primary);">{titleZh}</h1>
-      <p class="text-lg" style="color: var(--color-text-secondary);">{title}</p>
+      <div class="flex items-start justify-between gap-3">
+        <div class="min-w-0 flex-1">
+          <h1 class="text-2xl sm:text-3xl font-bold mb-2" style="color: var(--color-text-primary);">{titleZh}</h1>
+          <p class="text-lg" style="color: var(--color-text-secondary);">{title}</p>
+        </div>
+        <!-- Favorite button -->
+        <button
+          id="favorite-btn"
+          class="favorite-btn shrink-0 mt-1 p-2 rounded-lg transition-all duration-200 hover:scale-110"
+          aria-label="收藏此 Session"
+          data-year={year}
+          data-id={id}
+        >
+          <svg class="favorite-icon w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+          </svg>
+        </button>
+      </div>
       <p class="text-sm mt-2" style="color: var(--color-text-tertiary);">
         {formatDate(date)}
       </p>
@@ -68,5 +86,113 @@ const { title, titleZh, track, level, duration, date, thumbnail, videoUrl, tags 
         ))}
       </div>
     )}
+
+    <!-- Mark as read button -->
+    <div class="flex justify-center mt-10 pt-6 border-t" style="border-color: var(--color-border-subtle);">
+      <button
+        id="read-btn"
+        class="read-btn flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105"
+        aria-label="标记为已读"
+        data-year={year}
+        data-id={id}
+      >
+        <svg class="read-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="read-label">标记为已读</span>
+      </button>
+    </div>
   </article>
 </BaseLayout>
+
+<style>
+  .favorite-btn {
+    color: #9CA3AF;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .favorite-btn:hover {
+    color: #FBBF24;
+  }
+  .favorite-btn.is-favorite {
+    color: #FBBF24;
+  }
+  .favorite-btn.is-favorite .favorite-icon {
+    fill: #FBBF24;
+  }
+  .read-btn {
+    background-color: var(--color-tag-bg);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-subtle);
+    cursor: pointer;
+  }
+  .read-btn:hover {
+    opacity: 0.85;
+  }
+  .read-btn.is-read {
+    background-color: #10B981;
+    color: white;
+    border-color: #10B981;
+  }
+</style>
+
+<script>
+  // Favorite button logic
+  const favBtn = document.getElementById('favorite-btn');
+  if (favBtn) {
+    const year = favBtn.dataset.year;
+    const sid = favBtn.dataset.id;
+    const favKey = `wwdc-favorite-${year}-${sid}`;
+
+    const updateFavUI = (isFav: boolean) => {
+      favBtn.classList.toggle('is-favorite', isFav);
+      favBtn.setAttribute('aria-label', isFav ? '取消收藏' : '收藏此 Session');
+    };
+
+    // Init state
+    const isFav = localStorage.getItem(favKey) === '1';
+    updateFavUI(isFav);
+
+    favBtn.addEventListener('click', () => {
+      const currently = localStorage.getItem(favKey) === '1';
+      if (currently) {
+        localStorage.removeItem(favKey);
+      } else {
+        localStorage.setItem(favKey, '1');
+      }
+      updateFavUI(!currently);
+    });
+  }
+
+  // Read button logic
+  const readBtn = document.getElementById('read-btn');
+  if (readBtn) {
+    const year = readBtn.dataset.year;
+    const sid = readBtn.dataset.id;
+    const readKey = `wwdc-read-${year}-${sid}`;
+
+    const updateReadUI = (isRead: boolean) => {
+      readBtn.classList.toggle('is-read', isRead);
+      const label = readBtn.querySelector('.read-label');
+      if (label) {
+        label.textContent = isRead ? '已读' : '标记为已读';
+      }
+      readBtn.setAttribute('aria-label', isRead ? '取消已读' : '标记为已读');
+    };
+
+    // Init state
+    const isRead = localStorage.getItem(readKey) === '1';
+    updateReadUI(isRead);
+
+    readBtn.addEventListener('click', () => {
+      const currently = localStorage.getItem(readKey) === '1';
+      if (currently) {
+        localStorage.removeItem(readKey);
+      } else {
+        localStorage.setItem(readKey, '1');
+      }
+      updateReadUI(!currently);
+    });
+  }
+</script>

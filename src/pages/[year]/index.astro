@@ -58,7 +58,12 @@ const tracks = extractTracks(allSessions.map((s) => ({ track: s.data.track })));
   <!-- Card grid -->
   <div id="session-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
     {allSessions.map((session) => (
-      <div class="session-card-wrapper" data-track={session.data.track}>
+      <div
+        class="session-card-wrapper"
+        data-track={session.data.track}
+        data-year={yearNum}
+        data-id={session.data.id}
+      >
         <SessionCard
           id={session.data.id}
           title={session.data.title}
@@ -85,31 +90,86 @@ const tracks = extractTracks(allSessions.map((s) => ({ track: s.data.track })));
     const pills = document.querySelectorAll<HTMLAnchorElement>('.filter-pill');
     const cards = document.querySelectorAll<HTMLElement>('.session-card-wrapper');
     const emptyState = document.getElementById('empty-state');
+    const hideReadCheckbox = document.getElementById('hide-read') as HTMLInputElement;
+    const showFavoriteCheckbox = document.getElementById('show-favorite') as HTMLInputElement;
 
+    // Initialize card states from localStorage
+    cards.forEach((card) => {
+      const year = card.dataset.year;
+      const id = card.dataset.id;
+
+      // Read state
+      const readKey = `wwdc-read-${year}-${id}`;
+      const isRead = localStorage.getItem(readKey) === '1';
+      if (isRead) {
+        card.setAttribute('data-read', '1');
+        const readBadge = card.querySelector('.read-badge');
+        if (readBadge) readBadge.classList.add('is-read');
+      }
+
+      // Favorite state
+      const favKey = `wwdc-favorite-${year}-${id}`;
+      const isFavorite = localStorage.getItem(favKey) === '1';
+      if (isFavorite) {
+        card.setAttribute('data-favorite', '1');
+        const favBadge = card.querySelector('.favorite-badge');
+        if (favBadge) favBadge.classList.add('is-favorite');
+      }
+    });
+
+    // Apply all filters
+    function applyFilters() {
+      const activePill = document.querySelector('.filter-pill.filter-active');
+      const track = activePill?.getAttribute('data-track') || '';
+      const hideRead = hideReadCheckbox?.checked || false;
+      const showFavorite = showFavoriteCheckbox?.checked || false;
+
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const cardTrack = card.dataset.track;
+        const isRead = card.getAttribute('data-read') === '1';
+        const isFavorite = card.getAttribute('data-favorite') === '1';
+
+        let show = true;
+
+        // Track filter
+        if (track && cardTrack !== track) {
+          show = false;
+        }
+
+        // Hide read filter
+        if (hideRead && isRead) {
+          show = false;
+        }
+
+        // Show favorite filter
+        if (showFavorite && !isFavorite) {
+          show = false;
+        }
+
+        card.style.display = show ? '' : 'none';
+        if (show) visibleCount++;
+      });
+
+      // Show/hide empty state
+      if (emptyState) {
+        emptyState.classList.toggle('hidden', visibleCount > 0);
+      }
+    }
+
+    // Track pill click handlers
     pills.forEach(pill => {
       pill.addEventListener('click', (e) => {
         e.preventDefault();
-        const track = pill.dataset.track || '';
-
-        // Update active state
-        pills.forEach(p => {
-          const isActive = (p.dataset.track || '') === track;
-          p.classList.toggle('filter-active', isActive);
-        });
-
-        // Filter cards
-        let visibleCount = 0;
-        cards.forEach(card => {
-          const show = !track || card.dataset.track === track;
-          card.style.display = show ? '' : 'none';
-          if (show) visibleCount++;
-        });
-
-        // Show/hide empty state
-        if (emptyState) {
-          emptyState.classList.toggle('hidden', visibleCount > 0);
-        }
+        pills.forEach(p => p.classList.remove('filter-active'));
+        pill.classList.add('filter-active');
+        applyFilters();
       });
     });
+
+    // Checkbox change handlers
+    hideReadCheckbox?.addEventListener('change', applyFilters);
+    showFavoriteCheckbox?.addEventListener('change', applyFilters);
   });
 </script>
