@@ -82,6 +82,23 @@ function formatDuration(seconds: number): string {
           ))}
         </nav>
       </div>
+
+      <!-- Read/Favorite section -->
+      <div class="sidebar-section">
+        <h2 class="sidebar-title">状态</h2>
+        <nav class="sidebar-nav">
+          <label class="sidebar-item">
+            <input type="checkbox" id="hide-read-checkbox" class="status-checkbox" />
+            <span class="checkbox-box"></span>
+            <span class="sidebar-label">隐藏已读</span>
+          </label>
+          <label class="sidebar-item">
+            <input type="checkbox" id="show-favorite-checkbox" class="status-checkbox" />
+            <span class="checkbox-box"></span>
+            <span class="sidebar-label">只看收藏</span>
+          </label>
+        </nav>
+      </div>
     </aside>
 
     <!-- Main content -->
@@ -110,7 +127,7 @@ function formatDuration(seconds: number): string {
           const year = session.data.date.getFullYear();
           const displayTrack = consolidateTrack(session.data.track);
           return (
-            <div class="session-card-wrapper" data-year={year.toString()} data-track={displayTrack} data-raw-track={session.data.track} data-title={session.data.titleZh} data-title-en={session.data.title} data-tags={session.data.tags.join(",")}>
+            <div class="session-card-wrapper" data-year={year.toString()} data-id={session.data.id} data-track={displayTrack} data-raw-track={session.data.track} data-title={session.data.titleZh} data-title-en={session.data.title} data-tags={session.data.tags.join(",")}>
               <a href={`/wwdc${year}/${session.data.id}`} class="session-card group">
                 <div class="card-cover">
                   <img
@@ -122,6 +139,18 @@ function formatDuration(seconds: number): string {
                   {session.data.duration > 0 && (
                     <span class="card-duration">{formatDuration(session.data.duration)}</span>
                   )}
+                  <div class="status-badges">
+                    <div class="favorite-badge" aria-hidden="true">
+                      <svg width="14" height="14" fill="#FBBF24" stroke="#FBBF24" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                      </svg>
+                    </div>
+                    <div class="read-badge" aria-hidden="true">
+                      <svg width="16" height="16" fill="none" stroke="white" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
                 <div class="card-info">
                   <span class="card-track">{displayTrack}</span>
@@ -153,10 +182,27 @@ function formatDuration(seconds: number): string {
 
   /* Sidebar */
   .sidebar {
-    width: 220px;
+    width: 280px;
     flex-shrink: 0;
     position: sticky;
     top: 2rem;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+
+  .sidebar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .sidebar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 2px;
   }
 
   .sidebar-section {
@@ -193,6 +239,7 @@ function formatDuration(seconds: number): string {
     border-radius: 8px;
     transition: background-color 0.15s;
     user-select: none;
+    white-space: nowrap;
   }
 
   .sidebar-item:hover {
@@ -403,6 +450,36 @@ function formatDuration(seconds: number): string {
     color: white;
   }
 
+  /* Status badges */
+  .status-badges {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .favorite-badge,
+  .read-badge {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+
+  .favorite-badge.is-favorite {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .read-badge.is-read {
+    display: flex;
+    background-color: #10B981;
+  }
+
   .card-info {
     padding: 0.75rem 1rem 1rem;
   }
@@ -507,6 +584,35 @@ function formatDuration(seconds: number): string {
     let selectedTracks = new Set<string>();
     let selectedYear = '';
     let searchQuery = '';
+    let hideRead = false;
+    let showFavorite = false;
+
+    const hideReadCheckbox = document.getElementById('hide-read-checkbox') as HTMLInputElement;
+    const showFavoriteCheckbox = document.getElementById('show-favorite-checkbox') as HTMLInputElement;
+
+    // Initialize card states from localStorage
+    cards.forEach((card) => {
+      const year = card.dataset.year;
+      const id = card.dataset.id;
+
+      // Read state
+      const readKey = `wwdc-read-${year}-${id}`;
+      const isRead = localStorage.getItem(readKey) === '1';
+      if (isRead) {
+        card.setAttribute('data-read', '1');
+        const readBadge = card.querySelector('.read-badge');
+        if (readBadge) readBadge.classList.add('is-read');
+      }
+
+      // Favorite state
+      const favKey = `wwdc-favorite-${year}-${id}`;
+      const isFavorite = localStorage.getItem(favKey) === '1';
+      if (isFavorite) {
+        card.setAttribute('data-favorite', '1');
+        const favBadge = card.querySelector('.favorite-badge');
+        if (favBadge) favBadge.classList.add('is-favorite');
+      }
+    });
 
     const originalOrder = new Map<HTMLElement, number>();
     cards.forEach((card, index) => originalOrder.set(card, index));
@@ -614,8 +720,12 @@ function formatDuration(seconds: number): string {
         const matchTrack = showAllTracks || selectedTracks.has(card.dataset.track || '');
         const searchScore = getSearchScore(card, query);
         const matchSearch = !query || searchScore > 0;
+        const isRead = card.getAttribute('data-read') === '1';
+        const isFavorite = card.getAttribute('data-favorite') === '1';
+        const matchRead = !hideRead || !isRead;
+        const matchFavorite = !showFavorite || isFavorite;
 
-        const show = matchYear && matchTrack && matchSearch;
+        const show = matchYear && matchTrack && matchSearch && matchRead && matchFavorite;
         card.style.display = show ? '' : 'none';
         if (show) {
           visibleCount++;
@@ -677,6 +787,17 @@ function formatDuration(seconds: number): string {
     // Search
     searchInput?.addEventListener('input', () => {
       searchQuery = searchInput.value.trim();
+      applyFilters();
+    });
+
+    // Status filters
+    hideReadCheckbox?.addEventListener('change', () => {
+      hideRead = hideReadCheckbox.checked;
+      applyFilters();
+    });
+
+    showFavoriteCheckbox?.addEventListener('change', () => {
+      showFavorite = showFavoriteCheckbox.checked;
       applyFilters();
     });
 
